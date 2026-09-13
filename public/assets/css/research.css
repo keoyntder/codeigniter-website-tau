@@ -1,0 +1,132 @@
+.research-header{
+    padding:20px 5%;
+    border-bottom:1px solid #ddd;
+    background:white;
+}
+
+.research-topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.research-logo{
+    font-family:var(--font-display);
+    font-size:24px;
+    color:var(--green-deep);
+}
+
+.research-topbar nav{
+    display:flex;
+    gap:20px;
+}
+
+.research-topbar nav a{
+    color:var(--charcoal);
+    font-weight:600;
+}
+
+.featured-research{
+    width:90%;
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.research-tag{
+    display:inline-block;
+    background:var(--gold);
+    color:white;
+    padding:6px 12px;
+    border-radius:50px;
+    font-size:12px;
+}
+
+.featured-left h1{
+    font-family:var(--font-display);
+    font-size:60px;
+    line-height:1;
+    margin:20px 0;
+    color:var(--green-deep);
+}
+
+.featured-left p{
+    font-size:17px;
+    line-height:1.8;
+}
+
+.read-btn{
+    display:inline-block;
+    margin-top:25px;
+    background:var(--green-deep);
+    color:white;
+    padding:12px 25px;
+}
+
+.featured-right img{
+    width:100%;
+    height:550px;
+    object-fit:cover;
+}
+
+.latest-posts{
+    width:90%;
+    margin:100px auto;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-family:var(--font-display);
+    color:var(--green-deep);
+}
+
+.research-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+}
+
+.large img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px 0;
+}
+
+.card-content h3{
+    font-family:var(--font-display);
+    font-size:40px;
+    margin-top:10px;
+}
+
+.research-side{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.small-card{
+    background:white;
+    border:1px solid #ddd;
+}
+
+.small-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.small-card h4{
+    padding:15px;
+    font-size:18px;
+}

@@ -1,0 +1,98 @@
+/* ===================== DEPARTMENT PAGES ===================== */
+
+.dept-hero {
+  background: #2b2b2b;
+  padding: 48px 24px;
+  display: flex;
+  justify-content: center;
+  margin-top: 180px; /* fallback if JS hasn't set the exact header height yet */
+}
+
+.dept-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.dept-hero-logo {
+  height: 90px;
+  width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.dept-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dept-hero-abbr {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #b9b9b9;
+  text-transform: uppercase;
+}
+
+.dept-hero-title {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 32px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.dept-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.dept-main img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.dept-section h2 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #2b2b2b;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #8a8a8a;
+  display: inline-block;
+}
+
+.dept-section p {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #3f3f3f;
+  max-width: 800px;
+}
+
+.dept-placeholder-note {
+  font-style: italic;
+  color: #8a8a8a;
+}
+
+@media (max-width: 640px) {
+  .dept-hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dept-hero-title {
+    font-size: 24px;
+  }
+}
