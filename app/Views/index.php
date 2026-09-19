@@ -21,7 +21,7 @@
 </div>
 
 <!-- ===================== HEADER ===================== -->
-<header class="site-header" id="siteHeader">
+<header class="header site-header" id="siteHeader">
   <div class="header-inner">
 
     <div class="brand-group">
@@ -82,10 +82,23 @@
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="home">
-  <video class="hero-video" autoplay muted loop playsinline poster="<?= base_url('assets/Images/taulogo.png') ?>">
-    <source src="<?= base_url('assets/Images/hero.mp4') ?>" type="video/mp4">
-  </video>
-  <div class="hero-fallback" aria-hidden="true"></div>
+
+    <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="<?= base_url('assets/Images/hero-bg.jpg') ?>"
+    >
+        <source
+            src="<?= base_url('assets/Images/hero.mp4') ?>"
+            type="video/mp4"
+        >
+    </video>
+
+    <div class="hero-overlay"></div>
+
 </section>
 
 <main>

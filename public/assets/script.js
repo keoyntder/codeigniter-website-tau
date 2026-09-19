@@ -2,6 +2,74 @@
 const header = document.getElementById('siteHeader');
 const SCROLL_THRESHOLD = 60;
 
+(function () {
+
+    const header = document.getElementById('siteHeader');
+
+    if (!header) return;
+
+    function updateHeader() {
+
+        if (window.scrollY > 40) {
+
+            header.classList.add('is-scrolled');
+
+        } else {
+
+            header.classList.remove('is-scrolled');
+
+        }
+
+    }
+
+    window.addEventListener('scroll', updateHeader, {
+        passive: true
+    });
+
+    // Set correct state on page load
+    updateHeader();
+
+})();
+
+(function () {
+
+    const hero = document.querySelector('.hero');
+    const video = document.querySelector('.hero-video');
+
+    if (!hero || !video) return;
+
+    let ticking = false;
+
+    function updateParallax() {
+
+        const scrollY = window.scrollY;
+
+        const heroHeight = hero.offsetHeight;
+
+        if (scrollY <= heroHeight) {
+
+            video.style.transform =
+                `translateY(${scrollY * 0.25}px)`;
+
+        }
+
+        ticking = false;
+
+    }
+
+    window.addEventListener('scroll', function () {
+
+        if (!ticking) {
+
+            window.requestAnimationFrame(updateParallax);
+
+            ticking = true;
+
+        }
+
+    }, { passive: true });
+
+})();
 function updateHeaderState() {
   if (!header) return;
   if (window.scrollY > SCROLL_THRESHOLD) {
