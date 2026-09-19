@@ -170,60 +170,105 @@
   </section>
 
   <!-- ===================== UNIVERSITY BULLETIN ===================== -->
-  <section class="bulletin" id="bulletin">
-    <div class="bulletin-inner">
+<section class="bulletin" id="bulletin">
+  <div class="bulletin-inner">
 
-      <div class="bulletin-header">
-        <div class="bulletin-header-left">
-          <h2 class="bulletin-heading">University Bulletin</h2>
-        </div>
-        <div class="bulletin-header-right">
-          <p class="bulletin-subtext">Stay updated with the latest news, memos, and announcements from Tarlac Agricultural University.</p>
-          <a href="#" class="bulletin-view-all">
-            View All Announcements
-            <span class="bulletin-view-all-circle">→</span>
-          </a>
-        </div>
+    <div class="bulletin-header">
+      <div class="bulletin-header-left">
+        <h2 class="bulletin-heading">University Bulletin</h2>
       </div>
-
-      <div class="bulletin-cards">
-
-        <div class="bulletin-card">
-          <div class="bulletin-card-img" style="background-image: url('<?= base_url('assets/Images/taulogo.png') ?>');"></div>
-          <div class="bulletin-card-overlay">
-            <div class="bulletin-card-top">
-              <h3 class="bulletin-card-title">Enrollment Advisory</h3>
-            </div>
-            <p class="bulletin-card-text">Replace this with a short summary of the enrollment schedule and requirements for the upcoming semester.</p>
-            <a href="#" class="bulletin-card-link">Read More <span>→</span></a>
-          </div>
-        </div>
-
-        <div class="bulletin-card">
-          <div class="bulletin-card-img" style="background-image: url('<?= base_url('assets/Images/taulogo.png') ?>');"></div>
-          <div class="bulletin-card-overlay">
-            <div class="bulletin-card-top">
-              <h3 class="bulletin-card-title">Campus Memo</h3>
-            </div>
-            <p class="bulletin-card-text">Replace this with a short summary of a recent memo or policy update from the administration.</p>
-            <a href="#" class="bulletin-card-link">Read More <span>→</span></a>
-          </div>
-        </div>
-
-        <div class="bulletin-card">
-          <div class="bulletin-card-img" style="background-image: url('<?= base_url('assets/Images/taulogo.png') ?>');"></div>
-          <div class="bulletin-card-overlay">
-            <div class="bulletin-card-top">
-              <h3 class="bulletin-card-title">Graduation Notice</h3>
-            </div>
-            <p class="bulletin-card-text">Replace this with a short summary of graduation requirements, dates, or ceremony details.</p>
-            <a href="#" class="bulletin-card-link">Read More <span>→</span></a>
-          </div>
-        </div>
-
+      <div class="bulletin-header-right">
+        <p class="bulletin-subtext">Stay updated with the latest news, memos, and announcements from Tarlac Agricultural University.</p>
+        <a href="#" class="bulletin-view-all">
+          View All Announcements
+          <span class="bulletin-view-all-circle">→</span>
+        </a>
       </div>
     </div>
-  </section>
+
+    <div class="bulletin-layout">
+
+      <!-- LEFT: today's news -->
+      <div class="bulletin-main">
+
+        <!-- small stacked items, beside/above the featured story -->
+        <div class="bulletin-stack">
+          <a href="#" class="bulletin-stack-item">
+            <div class="bulletin-stack-img" style="background-image: url('Images/bulletin-2.jpg');"></div>
+            <div class="bulletin-stack-body">
+              <h3 class="bulletin-stack-title">Campus Memo</h3>
+              <p class="bulletin-stack-meta">JANUARY 20, 7:49 AM &middot; ADMIN</p>
+            </div>
+          </a>
+          <a href="#" class="bulletin-stack-item">
+            <div class="bulletin-stack-img" style="background-image: url('Images/bulletin-3.jpg');"></div>
+            <div class="bulletin-stack-body">
+              <h3 class="bulletin-stack-title">Graduation Notice</h3>
+              <p class="bulletin-stack-meta">JANUARY 21, 8:32 AM &middot; ADMIN</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- featured / biggest story of the day -->
+        <div class="bulletin-featured">
+          <div class="bulletin-featured-img" style="background-image: url('Images/bulletin1.jpg');"></div>
+          <div class="bulletin-featured-caption">
+            <span class="bulletin-featured-tag">Latest</span>
+            <h3 class="bulletin-featured-title">Official List of Accredited Student Organizations, A.Y. 2026–2027</h3>
+            <p class="bulletin-featured-text">The Office of Student Services and Development (OSSD) has announced this year's accredited student organizations. Students are encouraged to join and grow through leadership and community.</p>
+            <a href="https://www.facebook.com/photo/?fbid=1441665724645667&set=pcb.1441668574645382" class="bulletin-featured-link">Read More <span>→</span></a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- vertical divider -->
+      <div class="bulletin-divider"></div>
+
+      <!-- RIGHT: latest list -->
+      <div class="bulletin-sidebar">
+        <h3 class="bulletin-sidebar-heading">Latest</h3>
+
+        <div class="bulletin-sidebar-list">
+
+          <a href="#" class="bulletin-sidebar-item">
+            <div class="bulletin-sidebar-text">
+              <h4>Official List of Accredited Student Organizations</h4>
+              <span>By Admin</span>
+            </div>
+            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin1.jpg');"></div>
+          </a>
+
+          <a href="#" class="bulletin-sidebar-item">
+            <div class="bulletin-sidebar-text">
+              <h4>Campus Memo: Updated Policy Guidelines</h4>
+              <span>By Admin</span>
+            </div>
+            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin2.jpg');"></div>
+          </a>
+
+          <a href="#" class="bulletin-sidebar-item">
+            <div class="bulletin-sidebar-text">
+              <h4>Graduation Notice: Requirements &amp; Schedule</h4>
+              <span>By Admin</span>
+            </div>
+            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin3.jpg');"></div>
+          </a>
+
+          <a href="#" class="bulletin-sidebar-item">
+            <div class="bulletin-sidebar-text">
+              <h4>Enrollment Reminders for Next Semester</h4>
+              <span>By Admin</span>
+            </div>
+            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin4.jpg');"></div>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <!-- ===================== CAMPUS HIGHLIGHTS SLIDER ===================== -->
   <section class="campus-slider" id="highlights">
