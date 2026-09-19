@@ -1,7 +1,4 @@
 /* ===================== HEADER SHRINK ON SCROLL ===================== */
-const header = document.getElementById('siteHeader');
-const SCROLL_THRESHOLD = 60;
-
 (function () {
 
     const header = document.getElementById('siteHeader');
@@ -70,17 +67,6 @@ const SCROLL_THRESHOLD = 60;
     }, { passive: true });
 
 })();
-function updateHeaderState() {
-  if (!header) return;
-  if (window.scrollY > SCROLL_THRESHOLD) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-}
-
-window.addEventListener('scroll', updateHeaderState, { passive: true });
-updateHeaderState();
 
 /* ===================== LOADING THROBBER ===================== */
 (function initLoader() {
@@ -242,6 +228,56 @@ window.addEventListener('resize', layoutWhyTauMasonry);
       btn.classList.add('active');
     });
   });
+})();
+
+/* ===================== CAMPUS HIGHLIGHTS SLIDER ===================== */
+(function campusSlider() {
+  const track = document.getElementById('campusSliderTrack');
+  const prevBtn = document.getElementById('campusPrevBtn');
+  const nextBtn = document.getElementById('campusNextBtn');
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const viewport = track.parentElement;
+  const slides = Array.from(track.children);
+  if (!slides.length) return;
+
+  let activeIndex = Math.min(2, slides.length - 1);
+
+  function update() {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === activeIndex);
+    });
+
+    const activeSlide = slides[activeIndex];
+    const viewportWidth = viewport.offsetWidth;
+    const slideCenter = activeSlide.offsetLeft + activeSlide.offsetWidth / 2;
+    const offset = viewportWidth / 2 - slideCenter;
+
+    track.style.transform = `translateX(${offset}px)`;
+
+    prevBtn.disabled = activeIndex === 0;
+    nextBtn.disabled = activeIndex === slides.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (activeIndex > 0) {
+      activeIndex--;
+      update();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (activeIndex < slides.length - 1) {
+      activeIndex++;
+      update();
+    }
+  });
+
+  window.addEventListener('resize', update, { passive: true });
+  window.addEventListener('load', update);
+
+  update();
 })();
 
 /* ===================== ADMIN MODAL MANAGER ===================== */

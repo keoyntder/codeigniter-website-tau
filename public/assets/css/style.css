@@ -427,11 +427,10 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   padding: 0 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
-  position: relative;
 }
 
 /* ---- Brand (left) ---- */
@@ -441,7 +440,6 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 12px;
   min-width: 0;
-  flex-shrink: 0;
 }
 
 .logo-placeholder {
@@ -503,11 +501,13 @@ a { color: inherit; text-decoration: none; }
 .header-nav-main {
   display: none;
   align-items: center;
+  justify-content: center;
   gap: 30px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-30%, -38%);
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .header-nav-main a {
@@ -516,6 +516,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 13px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--charcoal);
   position: relative;
   padding: 4px 0;
@@ -537,8 +538,16 @@ a { color: inherit; text-decoration: none; }
 .header-nav-main a:hover::after { width: 100%; }
 
 @media (min-width: 900px) {
-  .site-header.scrolled .header-nav-main {
+  /* Always a real grid item at this width, so .header-icons never
+     shifts column when this nav's visibility toggles */
+  .header-nav-main {
     display: flex;
+  }
+
+  .site-header.is-scrolled .header-nav-main {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
@@ -1160,6 +1169,175 @@ a { color: inherit; text-decoration: none; }
   .bulletin-header-right {
     text-align: left;
     max-width: none;
+  }
+}
+
+/* ===================== CAMPUS HIGHLIGHTS SLIDER ===================== */
+.campus-slider {
+  width: 100%;
+  background: linear-gradient(135deg, var(--green-dark), var(--green-deep));
+  padding: 90px 24px 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.campus-slider-inner {
+  max-width: 1250px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.campus-slider-eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.campus-slider-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--white);
+  text-transform: none;
+  margin-bottom: 56px;
+}
+
+.campus-slider-viewport {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.campus-slider-track {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  width: max-content;
+  transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  will-change: transform;
+}
+
+.campus-slide {
+  position: relative;
+  flex: 0 0 320px;
+  height: 460px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0.45;
+  transform: scale(0.86);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1),
+              opacity 0.5s ease,
+              box-shadow 0.5s ease;
+}
+
+.campus-slide.is-active {
+  opacity: 1;
+  transform: scale(1.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 3px var(--gold) inset;
+  z-index: 2;
+}
+
+.campus-slide-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.campus-slide-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 22px 22px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
+}
+
+.campus-slide-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  line-height: 1.45;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 0.4s ease;
+}
+
+.campus-slide.is-active .campus-slide-title {
+  color: var(--white);
+}
+
+.campus-slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 54px;
+}
+
+.campus-slider-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
+}
+
+.campus-slider-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.campus-slider-btn:hover:not(:disabled) {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.campus-slider-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+@media (max-width: 900px) {
+  .campus-slide {
+    flex: 0 0 260px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 700px) {
+  .campus-slide {
+    flex: 0 0 210px;
+    height: 300px;
+  }
+  .campus-slide-caption {
+    padding: 26px 16px 16px;
+  }
+  .campus-slide-title {
+    font-size: 12px;
+  }
+  .campus-slider-btn {
+    width: 50px;
+    height: 50px;
   }
 }
 

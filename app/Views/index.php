@@ -225,6 +225,62 @@
     </div>
   </section>
 
+  <!-- ===================== CAMPUS HIGHLIGHTS SLIDER ===================== -->
+  <section class="campus-slider" id="highlights">
+    <div class="campus-slider-inner">
+
+      <span class="campus-slider-eyebrow">Campus Life</span>
+      <h2 class="campus-slider-heading">Campus Highlights</h2>
+
+      <div class="campus-slider-viewport">
+        <div class="campus-slider-track" id="campusSliderTrack">
+
+                  <div class="campus-slide">
+          <img src="<?= base_url('assets/Images/pubmats/milestone.png') ?>" alt="Enrollment Advisory" class="campus-slide-img">
+          <div class="campus-slide-caption">
+            <h3 class="campus-slide-title">Enrollment Advisory</h3>
+          </div>
+        </div>
+          <div class="campus-slide">
+            <img src="<?= base_url('assets/Images/cas2.png') ?>" alt="College of Arts and Sciences" class="campus-slide-img">
+            <h3 class="campus-slide-title">College of Arts<br>and Sciences</h3>
+          </div>
+
+          <div class="campus-slide">
+            <img src="<?= base_url('assets/Images/caf.png') ?>" alt="College of Agriculture and Forestry" class="campus-slide-img"  >
+            <h3 class="campus-slide-title">College of Agriculture<br>and Forestry</h3>
+          </div>
+
+          <div class="campus-slide">
+            <img src="<?= base_url('assets/Images/cbm2.png') ?>" alt="College of Business and Management" class="campus-slide-img">
+            <h3 class="campus-slide-title">College of Business<br>and Management</h3>
+          </div>
+
+          <div class="campus-slide">
+            <img src="<?= base_url('assets/Images/cvm.png') ?>" alt="College of Veterinary Medicine" class="campus-slide-img">
+            <h3 class="campus-slide-title">College of Veterinary<br>Medicine</h3>
+          </div>
+
+          <div class="campus-slide">
+            <img src="<?= base_url('assets/Images/coed.png') ?>" alt="College of Education" class="campus-slide-img">
+            <h3 class="campus-slide-title">College of Education</h3>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="campus-slider-controls">
+        <button class="campus-slider-btn" id="campusPrevBtn" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <button class="campus-slider-btn" id="campusNextBtn" aria-label="Next slide">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
 <!-- ===================== UPCOMING EVENTS + EXAM SCHEDULE ===================== -->
   <section class="events" id="events">
     <div class="events-inner">
