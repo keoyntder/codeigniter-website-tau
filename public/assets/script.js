@@ -337,39 +337,69 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ===================== HERO RANK SWITCHER ===================== */
-(function () {
-    const hero   = document.querySelector('.hero');
-    const tabs   = [...document.querySelectorAll('.hero-cat')];
+(function heroAutoSlider() {
+
+    const hero = document.querySelector('.hero');
     const slides = [...document.querySelectorAll('.hero-slide')];
 
-    if (!hero || !tabs.length || !slides.length) return;
+    if (!hero || !slides.length) return;
 
     let current = 0;
     let timer = null;
 
-    function show(i) {
-        current = i;
-        tabs.forEach((t, n) => {
-            t.classList.toggle('is-active', n === i);
-            t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+    const duration = 4000;
+
+    function showSlide(index) {
+
+        current = index;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle(
+                'is-active',
+                i === current
+            );
         });
-        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
     }
 
-    function stop() { clearInterval(timer); }
+    function nextSlide() {
 
-    function start() {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        stop();
-        timer = setInterval(() => show((current + 1) % slides.length), 7000);
+        const next = (current + 1) % slides.length;
+
+        showSlide(next);
     }
 
-    tabs.forEach((t, i) => t.addEventListener('click', () => { show(i); start(); }));
+    function startSlider() {
 
-    hero.addEventListener('mouseenter', stop);   // pause while the mouse is over the hero
-    hero.addEventListener('mouseleave', start);
+        if (
+            window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+            ).matches
+        ) {
+            return;
+        }
 
-    start();
+        stopSlider();
+
+        timer = setInterval(
+            nextSlide,
+            duration
+        );
+    }
+
+    function stopSlider() {
+
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    // Make sure the first slide is visible
+    showSlide(0);
+
+    // Start automatic rotation
+    startSlider();
+
 })();
 
 
