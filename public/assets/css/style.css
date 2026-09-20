@@ -89,28 +89,18 @@ a { color: inherit; text-decoration: none; }
     position: absolute;
     inset: 0;
     z-index: 1;
-    pointer-events: none;
 
     background:
-        /* Left-side readability */
         linear-gradient(
             90deg,
-            rgba(3, 30, 21, 0.92) 0%,
-            rgba(3, 40, 28, 0.78) 27%,
-            rgba(3, 45, 31, 0.42) 52%,
-            rgba(3, 45, 31, 0.16) 76%,
-            rgba(3, 45, 31, 0.42) 100%
-        ),
-
-        /* Top cinematic shade */
-        linear-gradient(
-            180deg,
-            rgba(0, 25, 17, 0.82) 0%,
-            rgba(0, 35, 24, 0.28) 28%,
-            rgba(0, 35, 24, 0.08) 55%,
-            rgba(0, 22, 15, 0.78) 100%
+            rgba(4, 35, 24, 0.78) 0%,
+            rgba(4, 35, 24, 0.50) 30%,
+            rgba(4, 35, 24, 0.20) 58%,
+            rgba(4, 35, 24, 0.06) 78%,
+            rgba(4, 35, 24, 0) 100%
         );
 
+    pointer-events: none;
 }
 
 /* Subtle gold atmospheric glow */
