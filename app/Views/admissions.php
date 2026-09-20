@@ -86,8 +86,38 @@ $firstDay    = array_key_first($enrollSchedule);
       <a href="#admission-test" class="quick-jump-btn">Admission Test</a>
       <a href="#passers" class="quick-jump-btn">List of Passers</a>
       <a href="#enrollment-schedule" class="quick-jump-btn">Enrollment Schedule</a>
+      <a href="#enrollment-process" class="quick-jump-btn">Enrollment Process</a>
     </div>
   </section>
+
+
+  <!-- ============ SECOND COURSER / SECOND DEGREE MODAL ============ -->
+<div class="adm-modal-overlay" id="secondCourserModal">
+  <div class="adm-modal">
+    <button type="button" class="adm-modal-close" data-modal-close aria-label="Close">&times;</button>
+
+    <div class="adm-modal-body">
+      <h2 class="adm-modal-title">Before You Apply</h2>
+      <p class="adm-modal-lead">Second degree / second courser applicants must have an existing and valid email address, together with the original and photocopy of the following requirements:</p>
+      <ul class="adm-modal-list">
+        <li>Transcript of Records</li>
+        <li>Certification of Good Moral Character</li>
+        <li>PSA / NSO Birth Certificate</li>
+        <li>2x2 ID picture with a name tag and white background</li>
+      </ul>
+
+      <p class="adm-modal-note">
+        Take the first step toward a brighter future with TAU. For inquiries, contact
+        0916-744-2456 or <a href="mailto:admission@tau.edu.ph">admission@tau.edu.ph</a>.
+      </p>
+    </div>
+
+    <div class="adm-modal-actions">
+      <a href="http://tau.edu.ph:8083/OnlineAdmissionV2t/" class="adm-btn adm-btn--apply" target="_blank" rel="noopener">Apply</a>
+      <a href="<?= base_url('#contact') ?>" class="adm-btn" data-modal-close>Contact Admissions and Registration</a>
+    </div>
+  </div>
+</div>
 
 <!-- ===================== FRESHMEN ADMISSION MODAL ===================== -->
 <div class="adm-modal-overlay" id="freshmenModal">
@@ -156,33 +186,7 @@ $firstDay    = array_key_first($enrollSchedule);
   </div>
 </div>
 
-<!-- ============ SECOND COURSER / SECOND DEGREE MODAL ============ -->
-<div class="adm-modal-overlay" id="secondCourserModal">
-  <div class="adm-modal">
-    <button type="button" class="adm-modal-close" data-modal-close aria-label="Close">&times;</button>
 
-    <div class="adm-modal-body">
-      <h2 class="adm-modal-title">Before You Apply</h2>
-      <p class="adm-modal-lead">Second degree / second courser applicants must have an existing and valid email address, together with the original and photocopy of the following requirements:</p>
-      <ul class="adm-modal-list">
-        <li>Transcript of Records</li>
-        <li>Certification of Good Moral Character</li>
-        <li>PSA / NSO Birth Certificate</li>
-        <li>2x2 ID picture with a name tag and white background</li>
-      </ul>
-
-      <p class="adm-modal-note">
-        Take the first step toward a brighter future with TAU. For inquiries, contact
-        0916-744-2456 or <a href="mailto:admission@tau.edu.ph">admission@tau.edu.ph</a>.
-      </p>
-    </div>
-
-    <div class="adm-modal-actions">
-      <a href="http://tau.edu.ph:8083/OnlineAdmissionV2t/" class="adm-btn adm-btn--apply" target="_blank" rel="noopener">Apply</a>
-      <a href="<?= base_url('#contact') ?>" class="adm-btn" data-modal-close>Contact Admissions and Registration</a>
-    </div>
-  </div>
-</div>
 
 <!-- ===================== FOREIGN STUDENTS MODAL ===================== -->
 <div class="adm-modal-overlay" id="foreignModal">
@@ -240,76 +244,6 @@ $firstDay    = array_key_first($enrollSchedule);
   </div>
 </div>
 
-
-<!-- ===================== AFTER YOU'RE ADMITTED / PASSED THE EXAM MODAL ===================== -->
-<div class="adm-modal-overlay" id="admittedModal">
-  <div class="adm-modal">
-    <button type="button" class="adm-modal-close" data-modal-close aria-label="Close">&times;</button>
-
-    <div class="adm-modal-body">
-      <h2 class="adm-modal-title">Admission Requirements</h2>
-      <p class="adm-modal-lead">Qualified incoming first-year students are required to submit the following documents:</p>
-      <ul class="adm-modal-list">
-        <li>Printed copy of the Notice of Admission (accessible through the Online Admission System using the applicant's system account)</li>
-        <li>Original copy of Grade 12 Report Card/Form 138 or its equivalent</li>
-        <li>Original copy of the latest Certificate of Good Moral Character</li>
-        <li>One (1) copy of latest 2x2 ID picture with name tag</li>
-        <li>Photocopy of PSA Birth Certificate</li>
-      </ul>
-
-      <h2 class="adm-modal-title">General Guidelines</h2>
-      <ul class="adm-modal-list">
-        <li>Only qualified applicants who have confirmed their slots shall be allowed to enroll.</li>
-        <li>The enrolment of qualified incoming first-year students shall be facilitated by the Admission and Registration Services Staff. Qualified transferees are advised to wait for the official announcement regarding their enrolment schedule.</li>
-        <li>The prescribed enrolment schedule shall be strictly observed. Applicants who fail to enroll during their assigned schedule may only be accommodated during the designated late enrolment period.</li>
-        <li>For inquiries and assistance, applicants may contact the Office of Admission and Registration Services through:
-          <br>0916-744-2456
-          <br><a href="mailto:admission@tau.edu.ph">admission@tau.edu.ph</a>
-        </li>
-      </ul>
-
-      <h2 class="adm-modal-title">Enrolment Procedure</h2>
-
-      <div class="adm-step-block">
-        <p class="adm-step-title">Step 1</p>
-        <p>Present the Notice of Admission to the guard on duty at the TAU Main Gate.</p>
-      </div>
-      <div class="adm-step-block">
-        <p class="adm-step-title">Step 2</p>
-        <p>Proceed to the Learning Resource Center Atrium for queue registration and verification of admission requirements.</p>
-      </div>
-      <div class="adm-step-block">
-        <p class="adm-step-title">Step 3</p>
-        <p>Proceed to the Admission and Registration Services Office and submit the following documentary requirements:</p>
-        <ul class="adm-modal-list">
-          <li>Printed Notice of Admission</li>
-          <li>Original copy of Grade 12 Report Card/Form 138 or its equivalent</li>
-          <li>Latest Certificate of Good Moral Character</li>
-          <li>One (1) copy of 2x2 ID picture with name tag</li>
-          <li>Photocopy of PSA Birth Certificate</li>
-        </ul>
-        <p>While waiting for the verification of documents and processing of enrolment, students are requested to complete the ID processing form.</p>
-      </div>
-      <div class="adm-step-block">
-        <p class="adm-step-title">Step 4</p>
-        <p>Proceed to the Accounting Office for the validation of the Certificate of Registration (COR).</p>
-      </div>
-      <div class="adm-step-block">
-        <p class="adm-step-title">Step 5</p>
-        <p>Submit the accomplished ID processing form, claim the printed copy of the Certificate of Registration (COR), and verify the accuracy and completeness of the information reflected in the document.</p>
-        <p class="adm-step-venue">Venue: Admin Building – Admission and Registration Services</p>
-      </div>
-
-      <p class="adm-modal-note">Incoming students are advised to regularly monitor the University's official communication platforms for additional announcements and updates.</p>
-    </div>
-
-    <div class="adm-modal-actions">
-      <a href="<?= base_url('#enrollment-schedule') ?>" class="adm-btn" data-modal-close>View Enrollment Schedule</a>
-      <a href="<?= base_url('#contact') ?>" class="adm-btn" data-modal-close>Contact Admissions and Registration</a>
-    </div>
-  </div>
-</div>
-
 <!-- ===================== SECTION: DEGREE PROGRAMS BY COLLEGE ===================== -->
   <section class="programs" id="programs-offered" aria-labelledby="programs-title">
 
@@ -321,36 +255,23 @@ $firstDay    = array_key_first($enrollSchedule);
     <div class="college-col">
      <div class="college-list-panel">
 
-      <?php foreach ($colleges as $ci => $c): ?>
-        <?php
-          // Degree programs only, so the count matches the hero figure
-          $degreeCount = 0;
-          foreach ($c['programs'] as $p) {
-              if (trim($p[0]) !== '') {
-                  $degreeCount++;
-              }
-          }
-        ?>
+      <?php
+        $collegeCols = array_chunk($colleges, max(1, (int) ceil(count($colleges) / 2)), true);
+      ?>
+      <?php foreach ($collegeCols as $colColleges): ?>
+      <div class="college-half">
+      <?php foreach ($colColleges as $c): ?>
         <section class="college-block"
                  id="<?= esc($c['code']) ?>"
                  aria-labelledby="<?= esc($c['code']) ?>-title">
 
           <div class="college-info">
-            <button type="button"
-                    class="college-toggle"
-                    aria-expanded="false"
-                    aria-controls="<?= esc($c['code']) ?>-panel">
+            <div class="college-toggle">
               <span class="college-logo">
                 <img src="<?= base_url('assets/Images/' . $c['logo']) ?>" alt="">
               </span>
               <span class="college-name" id="<?= esc($c['code']) ?>-title"><?= esc($c['name']) ?></span>
-              <span class="college-count"><?= $degreeCount ?> program<?= $degreeCount === 1 ? '' : 's' ?></span>
-              <span class="college-chev" aria-hidden="true">&rsaquo;</span>
-            </button>
-
-            <?php if (! empty($collegeFacebook[$c['code']])): ?>
-              <a href="<?= esc($collegeFacebook[$c['code']]) ?>" class="college-link college-link--fb" target="_blank" rel="noopener">View Page</a>
-            <?php endif; ?>
+            </div>
           </div>
 
           <div class="college-panel" id="<?= esc($c['code']) ?>-panel">
@@ -398,11 +319,14 @@ $firstDay    = array_key_first($enrollSchedule);
 
         </section>
       <?php endforeach; ?>
+      </div>
+      <?php endforeach; ?>
 
      </div>
     </div>
 
   </section>
+
 
 <!-- ===================== SECTION: HOW YOU'RE APPLYING ===================== -->
   <section class="apply-types" id="how-to-apply" aria-labelledby="applicant-col-title">
@@ -420,16 +344,6 @@ $firstDay    = array_key_first($enrollSchedule);
           </button>
         </li>
         <li>
-          <a href="#returnees" class="applicant-type">
-            Returnees <span aria-hidden="true">&rsaquo;</span>
-          </a>
-        </li>
-        <li>
-          <a href="#shifters" class="applicant-type">
-            Shifters <span aria-hidden="true">&rsaquo;</span>
-          </a>
-        </li>
-        <li>
           <button type="button" class="applicant-type" data-modal="transfereesModal">
             Transferees <span aria-hidden="true">&rsaquo;</span>
           </button>
@@ -445,20 +359,10 @@ $firstDay    = array_key_first($enrollSchedule);
           </button>
         </li>
       </ul>
-
-      <div class="apply-types-footer">
-        <a href="http://tau.edu.ph:8083/OnlineAdmissionV2t/" class="adm-btn adm-btn--apply" target="_blank" rel="noopener">Apply</a>
-
-        <div class="apply-types-passed">
-          <p class="applicant-col-subnote">Already passed the entrance exam?</p>
-          <button type="button" class="applicant-type applicant-type--alt" data-modal="admittedModal">
-            Enrollment Steps <span aria-hidden="true">&rsaquo;</span>
-          </button>
-        </div>
-      </div>
     </div>
 
   </section>
+
 
 
   <!-- ===================== COLLEGE ADMISSION TEST: REMINDERS ===================== -->
@@ -612,7 +516,7 @@ $firstDay    = array_key_first($enrollSchedule);
   <?php endif; ?>
 
 
-<!-- ===================== MAJORS MODALS (one per program that has majors) ===================== -->
+  <!-- ===================== MAJORS MODALS (one per program that has majors) ===================== -->
 <?php foreach ($majorsModals as $mm): ?>
 <div class="adm-modal-overlay" id="<?= esc($mm['id']) ?>">
   <div class="adm-modal">
@@ -635,22 +539,74 @@ $firstDay    = array_key_first($enrollSchedule);
 </div>
 <?php endforeach; ?>
 
-<!-- ===================== APPLY NOW ===================== -->
-  <section class="adm-apply-final" id="apply-now">
-    <a href="http://tau.edu.ph:8083/OnlineAdmissionV2t/" class="adm-btn adm-btn--apply" target="_blank" rel="noopener">Apply</a>
-  </section>
+    <!-- ===================== ENROLLMENT PROCESS ===================== -->
+  <section class="enrollment-process" id="enrollment-process">
+    <h2 class="adm-heading">Enrollment Process</h2>
+    <p class="enr-sub">Requirements and steps for qualified incoming first-year students</p>
 
-  <!-- ===================== HELP ===================== -->
-  <section class="adm-cta" id="contact-admissions">
-    <div class="adm-cta-copy">
-      <h2 class="adm-cta-title">Not sure which program fits?</h2>
-      <p class="adm-cta-text">The Admissions and Registration office can help you compare programs and check what you need to apply.</p>
+    <div class="enrp-grid">
+      <div class="enrp-card">
+        <div class="enrp-card-head">
+          <span class="enrp-ico"><i class="ti ti-file-text" aria-hidden="true"></i></span>
+          <span>Requirements to bring</span>
+        </div>
+        <ul class="enrp-checklist">
+          <li><i class="ti ti-check" aria-hidden="true"></i> Printed copy of the Notice of Admission</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i> Original Grade 12 Report Card / Form 138 or its equivalent</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i> Original latest Certificate of Good Moral Character</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i> One (1) copy of latest 2x2 ID picture with name tag</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i> Photocopy of PSA Birth Certificate</li>
+        </ul>
+      </div>
+
+      <div class="enrp-card">
+        <div class="enrp-card-head">
+          <span class="enrp-ico"><i class="ti ti-info-circle" aria-hidden="true"></i></span>
+          <span>General guidelines</span>
+        </div>
+        <p class="enrp-note">Only qualified applicants who have confirmed their slots shall be allowed to enroll.</p>
+        <p class="enrp-note">Qualified transferees are advised to wait for the official announcement regarding their enrolment schedule.</p>
+        <p class="enrp-note">The prescribed enrolment schedule shall be strictly observed — missing it may only be accommodated during the designated late enrolment period.</p>
+        <div class="enrp-contact">
+          <span><i class="ti ti-phone" aria-hidden="true"></i> 0916-744-2456</span>
+          <span><i class="ti ti-mail" aria-hidden="true"></i> <a href="mailto:admission@tau.edu.ph">admission@tau.edu.ph</a></span>
+        </div>
+      </div>
     </div>
-    <div class="adm-cta-actions">
-      <a href="<?= base_url('#contact') ?>" class="adm-btn">Contact Admissions and Registration</a>
+
+    <div class="enrp-steps-card">
+      <p class="enrp-steps-title">Enrolment procedure</p>
+      <div class="enrp-steps">
+        <div class="enrp-step">
+          <div class="enrp-step-num">1</div>
+          <i class="ti ti-door-enter" aria-hidden="true"></i>
+          <span>Present the Notice of Admission at the TAU Main Gate</span>
+        </div>
+        <div class="enrp-step">
+          <div class="enrp-step-num">2</div>
+          <i class="ti ti-users" aria-hidden="true"></i>
+          <span>Queue for registration at the Learning Resource Center Atrium</span>
+        </div>
+        <div class="enrp-step">
+          <div class="enrp-step-num">3</div>
+          <i class="ti ti-clipboard-check" aria-hidden="true"></i>
+          <span>Submit requirements at the Admission and Registration Services Office</span>
+        </div>
+        <div class="enrp-step">
+          <div class="enrp-step-num">4</div>
+          <i class="ti ti-cash" aria-hidden="true"></i>
+          <span>Validate your Certificate of Registration at the Accounting Office</span>
+        </div>
+        <div class="enrp-step enrp-step--final">
+          <div class="enrp-step-num">5</div>
+          <i class="ti ti-certificate" aria-hidden="true"></i>
+          <span>Claim your COR at the Admin Building</span>
+        </div>
+      </div>
+
+      <p class="enrp-steps-note">While waiting at Step 3, students are requested to complete the ID processing form. Step 5 takes place at the Admin Building — Admission and Registration Services. Incoming students are advised to regularly monitor the University's official communication platforms for additional announcements and updates.</p>
     </div>
   </section>
-
 
 </main>
 

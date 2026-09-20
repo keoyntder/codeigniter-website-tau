@@ -24,6 +24,7 @@ $routes->get('/research', 'Research::index');
 $routes->get('about', 'Home::about');
 $routes->get('admissions', 'Admissions::index');
 $routes->get('departments/(:segment)', 'Admissions::department/$1');
+$routes->get('careers', 'Careers::index');
 
 // Route for the main admin dashboard controller file in app/Controllers/Admin.php
 $routes->get('admin/dashboard', 'Admin::index');

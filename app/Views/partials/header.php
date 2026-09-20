@@ -16,6 +16,7 @@
       <a href="<?= base_url('academic-affairs') ?>" data-en="Academic Affairs" data-tl="Pang-akademikong Sangay">Academic Affairs</a>
       <a href="<?= base_url('research') ?>" data-en="Research and Development" data-tl="Pananaliksik at Pagpapaunlad">Research and Development</a>
       <a href="<?= base_url('offices') ?>" data-en="Offices" data-tl="Mga Tanggapan">Offices</a>
+      <a href="<?= base_url('careers') ?>" data-en="Careers" data-tl="Karera">Careers</a>
     </nav>
 
     <div class="header-icons">
@@ -51,6 +52,7 @@
     <li><a href="<?= base_url('academic-affairs') ?>">Academic Affairs</a></li>
     <li><a href="<?= base_url('research') ?>">Research and Development</a></li>
     <li><a href="<?= base_url('offices') ?>">Offices</a></li>
+    <li><a href="<?= base_url('careers') ?>">Careers</a></li>
     <li><a href="<?= base_url('#announcements') ?>">Announcements</a></li>
     <li><a href="<?= base_url('#contact') ?>">Contact</a></li>
   </ul>

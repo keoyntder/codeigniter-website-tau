@@ -206,9 +206,10 @@
 ========================================================= */
 
 .apply-types {
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 56px 24px 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 56px clamp(16px, 4vw, 64px) 0;
   scroll-margin-top: 100px;
 }
 
@@ -218,8 +219,6 @@
 
 .apply-types-card {
   background: var(--plain-panel);
-  border: 1px solid var(--plain-border);
-  border-radius: 16px;
   padding: 24px;
 }
 
@@ -228,7 +227,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -347,9 +346,10 @@
 ========================================================= */
 
 .programs {
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 48px 24px 40px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 48px clamp(16px, 4vw, 64px) 40px;
   scroll-margin-top: 100px;
 }
 
@@ -366,9 +366,17 @@
 /* One panel enclosing every college */
 .college-list-panel {
   background: var(--plain-panel);
-  border: 1px solid var(--plain-border);
   border-radius: 16px;
-  padding: 6px 20px;
+  padding: 2px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+
+/* Each half is its own stack, so opening a college never moves the other column */
+.college-half {
+  min-width: 0;
 }
 
 .college-block {
@@ -392,15 +400,16 @@
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 13px;
   min-width: 0;
-  padding: 17px 2px;
+  padding: 10px 2px;
   background: none;
   border: 0;
   font: inherit;
   color: var(--plain-text);
   text-align: left;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;      /* header only, colleges no longer collapse */
 }
 
 .college-toggle:focus-visible {
@@ -412,8 +421,8 @@
 .college-logo {
   display: block;
   flex: 0 0 auto;
-  width: 56px;
-  height: 56px;
+  width: 42px;
+  height: 42px;
   margin-bottom: 0;
   border-radius: 50%;
   overflow: hidden;
@@ -433,7 +442,7 @@
   min-width: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(20px, 2.2vw, 26px);
+  font-size: clamp(16px, 1.45vw, 20px);
   line-height: 1.2;
   color: var(--plain-text);
   margin: 0;
@@ -441,27 +450,10 @@
 
 .college-count {
   flex: 0 0 auto;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--plain-muted);
   white-space: nowrap;
-}
-
-.college-chev {
-  flex: 0 0 auto;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--plain-muted);
-  transition: transform 0.25s ease;
-}
-
-.college-block.is-open .college-chev {
-  transform: rotate(90deg);
-  color: var(--gold-text);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .college-chev { transition: none; }
 }
 
 .college-link {
@@ -489,7 +481,7 @@
   align-items: center;
   margin-left: 0;
   padding: 0 2px 0 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--gold-text);
   border-bottom: 0;
@@ -502,29 +494,15 @@
 
 /* ---------- Expanding panel ---------- */
 
-.college-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s ease;
-}
-
-.college-block.is-open .college-panel {
-  grid-template-rows: 1fr;
-}
-
+/* Programs are always shown, so there is no expand/collapse animation */
 .college-panel-inner {
-  overflow: hidden;
   min-height: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .college-panel { transition: none; }
-}
-
-/* Keeps the first row from touching the bar once open */
-.college-block.is-open .program-list {
+/* Keeps the first row from touching the college header */
+.college-block .program-list {
   margin-top: 10px;
-  padding-bottom: 6px;
+  padding-bottom: 12px;
 }
 
 /* ---------- Program rows ---------- */
@@ -537,29 +515,34 @@
   margin-top: 4px;
 }
 
-.program-list li {
-  border-bottom: 1px solid var(--rule);
-}
-
 .program-row {
   display: block;
   height: 100%;
-  padding: 14px 12px 14px 0;
+  padding: 11px 10px 11px 0;
+}
+
+/* Degree prefix and title share one line: "Bachelor of Science in Agriculture".
+   .program-text stays a block so the Majors button drops to its own line below. */
+.program-text {
+  display: block;
+  line-height: 1.3;
+}
+
+.program-level,
+.program-name {
+  display: inline;
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.3;
 }
 
 .program-level {
-  display: block;
-  margin-bottom: 3px;
-  font-size: 12.5px;
+  font-weight: 500;
   color: var(--plain-muted);
 }
 
 .program-name {
-  display: block;
-  font-family: var(--font-display);
   font-weight: 600;
-  font-size: 21px;
-  line-height: 1.25;
   color: var(--plain-text);
 }
 
@@ -570,12 +553,12 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 4px;
+  margin-top: 3px;
   padding: 0;
   background: none;
   border: 0;
   font: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--plain-text);
   text-decoration: none;
@@ -608,10 +591,15 @@
 
 /* ---------- Responsive ---------- */
 
+@media (max-width: 900px) {
+  .college-list-panel { grid-template-columns: minmax(0, 1fr); }
+  .college-half:not(:last-child) .college-block:last-child { border-bottom: 1px solid var(--plain-border); }
+}
+
 @media (max-width: 800px) {
   .college-list-panel { padding: 4px 16px; }
-  .college-toggle { padding: 14px 2px; gap: 12px; }
-  .college-logo { width: 46px; height: 46px; }
+  .college-toggle { padding: 9px 2px; gap: 11px; }
+  .college-logo { width: 36px; height: 36px; }
 }
 
 @media (max-width: 640px) {
@@ -622,7 +610,7 @@
   }
   .college-toggle {
     flex: 1 1 100%;
-    padding: 14px 2px 4px;
+    padding: 10px 2px 4px;
   }
   .college-count {
     font-size: 12.5px;
@@ -631,8 +619,9 @@
     flex: 1 1 100%;
     padding: 0 0 10px;
   }
+  .program-level,
   .program-name {
-    font-size: 19px;
+    font-size: 16px;
   }
 }
 
@@ -889,7 +878,14 @@
 }
 
 /* ===================== ADMISSION TEST REMINDERS ===================== */
-.cat-reminders { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+.cat-reminders {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  scroll-margin-top: 100px;
+}
+
 .cat-grid { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
 .cat-grid--2 { grid-template-columns: repeat(2, 1fr); }
 
@@ -953,7 +949,12 @@
 }
 
 /* ===================== LIST OF PASSERS ===================== */
-.passers { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+.passers { width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  scroll-margin-top: 100px;
+}
 
 .passers-card {
   display: grid;
@@ -1007,7 +1008,13 @@
 }
 
 /* ===================== ENROLLMENT SCHEDULE ===================== */
-.enr-schedule { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+.enr-schedule { width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  scroll-margin-top: 100px;
+
+}
 .enr-sub { color: #6b6b6b; margin: .25rem 0 1.25rem; }
 
 .enr-card {
@@ -1058,4 +1065,190 @@
 @media (max-width: 720px) {
   .enr-card { grid-template-columns: 1fr; }
   .enr-divider { width: auto; height: 1px; }   /* horizontal on mobile */
+}
+
+/* ===================== ENROLLMENT PROCESS ===================== */
+.enrollment-process { 
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  scroll-margin-top: 100px; }
+
+.enrp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.enrp-card {
+  background: var(--plain-panel);
+  border: 1px solid var(--plain-border);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.enrp-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #1a5c3a;
+  margin-bottom: 14px;
+}
+
+.enrp-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--plain-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.enrp-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.enrp-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--plain-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: .88rem;
+  color: var(--plain-text);
+  line-height: 1.4;
+}
+
+.enrp-checklist li i {
+  color: #1a5c3a;
+  font-size: 16px;
+  flex: none;
+}
+
+.enrp-note {
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--plain-text);
+  margin: 0 0 10px;
+}
+
+.enrp-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--plain-border);
+  padding-top: 10px;
+  margin-top: 4px;
+  font-size: .85rem;
+  color: var(--plain-text);
+}
+
+.enrp-contact i {
+  margin-right: 6px;
+  color: var(--plain-muted);
+}
+
+.enrp-contact a {
+  color: var(--gold-text);
+}
+
+.enrp-steps-card {
+  background: var(--plain-panel);
+  border: 1px solid var(--plain-border);
+  border-radius: 16px;
+  padding: 24px 20px;
+}
+
+.enrp-steps-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #1a5c3a;
+  margin: 0 0 20px;
+}
+
+.enrp-steps {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.enrp-steps::before {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 38px;
+  right: 38px;
+  height: 2px;
+  background: var(--plain-border);
+}
+
+.enrp-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  text-align: center;
+}
+
+.enrp-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1a5c3a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.enrp-step i {
+  font-size: 18px;
+  color: #1a5c3a;
+}
+
+.enrp-step span {
+  font-size: .74rem;
+  color: var(--plain-text);
+  max-width: 100px;
+  line-height: 1.3;
+}
+
+.enrp-step--final .enrp-step-num { background: var(--gold); }
+.enrp-step--final i { color: var(--gold-text); }
+
+.enrp-steps-note {
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--plain-muted);
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--plain-border);
+}
+
+@media (max-width: 700px) {
+  .enrp-grid { grid-template-columns: 1fr; }
+  .enrp-steps { flex-direction: column; gap: 20px; align-items: stretch; }
+  .enrp-steps::before { display: none; }
+  .enrp-step { flex-direction: row; text-align: left; gap: 12px; }
+  .enrp-step span { max-width: none; }
 }

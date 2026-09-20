@@ -37,19 +37,22 @@ class ProgramSeeder extends Seeder
                 ['Bachelor of Science in', 'Tourism Management'],
                 ['Bachelor of Science in', 'Agribusiness'],
             ],
-            'cet' => [
-                ['Bachelor of Science in', 'Agricultural and Biosystems Engineering'],
-                ['Bachelor of Science in', 'Geodetic Engineering'],
-                ['Bachelor of Science in', 'Information Technology'],
+
+            'cvm' => [
+                ['Doctor of', 'Veterinary Medicine'],
             ],
+
             'caf' => [
                 ['Bachelor of Science in', 'Agriculture'],
                 ['Bachelor of', 'Animal Science'],
                 ['Bachelor of Science in', 'Food Technology'],
                 ['Bachelor of Science in', 'Forestry'],
             ],
-            'cvm' => [
-                ['Doctor of', 'Veterinary Medicine'],
+
+            'cet' => [
+                ['Bachelor of Science in', 'Agricultural and Biosystems Engineering'],
+                ['Bachelor of Science in', 'Geodetic Engineering'],
+                ['Bachelor of Science in', 'Information Technology'],
             ],
             'cas' => [
                 ['Bachelor of Science in', 'Psychology'],
