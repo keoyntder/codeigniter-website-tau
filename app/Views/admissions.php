@@ -90,6 +90,89 @@ $firstDay    = array_key_first($enrollSchedule);
     </div>
   </section>
 
+  <!-- ===================== SECTION: DEGREE PROGRAMS BY COLLEGE ===================== -->
+  <section class="programs" id="programs-offered" aria-labelledby="programs-title">
+
+    <div class="programs-head">
+      <h2 class="adm-heading" id="programs-title">Degree programs by college</h2>
+      <p class="enr-sub">Browse the programs offered by each college.</p>
+    </div>
+
+    <div class="college-col">
+     <div class="college-list-panel">
+
+      <?php
+        $collegeCols = array_chunk($colleges, max(1, (int) ceil(count($colleges) / 2)), true);
+      ?>
+      <?php foreach ($collegeCols as $colColleges): ?>
+      <div class="college-half">
+      <?php foreach ($colColleges as $c): ?>
+        <section class="college-block"
+                 id="<?= esc($c['code']) ?>"
+                 aria-labelledby="<?= esc($c['code']) ?>-title">
+
+          <div class="college-info">
+            <div class="college-toggle">
+              <span class="college-logo">
+                <img src="<?= base_url('assets/Images/' . $c['logo']) ?>" alt="">
+              </span>
+              <span class="college-name" id="<?= esc($c['code']) ?>-title"><?= esc($c['name']) ?></span>
+            </div>
+          </div>
+
+          <div class="college-panel" id="<?= esc($c['code']) ?>-panel">
+            <div class="college-panel-inner">
+              <ul class="program-list">
+                <?php foreach ($c['programs'] as $i => $p): ?>
+                  <?php
+                    // $p[0] = degree prefix, $p[1] = title, $p[2] = majors (array or JSON string, optional)
+                    $majors = $p[2] ?? [];
+                    if (is_string($majors)) {
+                        $majors = json_decode($majors, true) ?: [];
+                    }
+
+                    $modalId = '';
+                    if (! empty($majors)) {
+                        $modalId = 'majorsModal-' . $c['code'] . '-' . $i;
+                        $majorsModals[] = [
+                            'id'     => $modalId,
+                            'degree' => $p[0],
+                            'title'  => $p[1],
+                            'majors' => $majors,
+                        ];
+                    }
+                  ?>
+                  <li>
+                    <div class="program-row">
+                      <span class="program-text">
+                        <?php if (trim($p[0]) !== ''): ?>
+                          <span class="program-level"><?= esc($p[0]) ?></span>
+                        <?php endif; ?>
+                        <span class="program-name"><?= esc($p[1]) ?></span>
+                      </span>
+
+                      <?php if ($modalId !== ''): ?>
+                        <button type="button" class="program-majors-btn" data-modal="<?= esc($modalId) ?>" aria-haspopup="dialog">
+                          Majors <span aria-hidden="true">&rsaquo;</span>
+                        </button>
+                      <?php endif; ?>
+                    </div>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+      <?php endforeach; ?>
+      </div>
+      <?php endforeach; ?>
+
+     </div>
+    </div>
+
+  </section>
+
 
   <!-- ============ SECOND COURSER / SECOND DEGREE MODAL ============ -->
 <div class="adm-modal-overlay" id="secondCourserModal">
@@ -244,88 +327,6 @@ $firstDay    = array_key_first($enrollSchedule);
   </div>
 </div>
 
-<!-- ===================== SECTION: DEGREE PROGRAMS BY COLLEGE ===================== -->
-  <section class="programs" id="programs-offered" aria-labelledby="programs-title">
-
-    <div class="programs-head">
-      <h2 class="adm-heading" id="programs-title">Degree programs by college</h2>
-      <p class="enr-sub">Browse the programs offered by each college.</p>
-    </div>
-
-    <div class="college-col">
-     <div class="college-list-panel">
-
-      <?php
-        $collegeCols = array_chunk($colleges, max(1, (int) ceil(count($colleges) / 2)), true);
-      ?>
-      <?php foreach ($collegeCols as $colColleges): ?>
-      <div class="college-half">
-      <?php foreach ($colColleges as $c): ?>
-        <section class="college-block"
-                 id="<?= esc($c['code']) ?>"
-                 aria-labelledby="<?= esc($c['code']) ?>-title">
-
-          <div class="college-info">
-            <div class="college-toggle">
-              <span class="college-logo">
-                <img src="<?= base_url('assets/Images/' . $c['logo']) ?>" alt="">
-              </span>
-              <span class="college-name" id="<?= esc($c['code']) ?>-title"><?= esc($c['name']) ?></span>
-            </div>
-          </div>
-
-          <div class="college-panel" id="<?= esc($c['code']) ?>-panel">
-            <div class="college-panel-inner">
-              <ul class="program-list">
-                <?php foreach ($c['programs'] as $i => $p): ?>
-                  <?php
-                    // $p[0] = degree prefix, $p[1] = title, $p[2] = majors (array or JSON string, optional)
-                    $majors = $p[2] ?? [];
-                    if (is_string($majors)) {
-                        $majors = json_decode($majors, true) ?: [];
-                    }
-
-                    $modalId = '';
-                    if (! empty($majors)) {
-                        $modalId = 'majorsModal-' . $c['code'] . '-' . $i;
-                        $majorsModals[] = [
-                            'id'     => $modalId,
-                            'degree' => $p[0],
-                            'title'  => $p[1],
-                            'majors' => $majors,
-                        ];
-                    }
-                  ?>
-                  <li>
-                    <div class="program-row">
-                      <span class="program-text">
-                        <?php if (trim($p[0]) !== ''): ?>
-                          <span class="program-level"><?= esc($p[0]) ?></span>
-                        <?php endif; ?>
-                        <span class="program-name"><?= esc($p[1]) ?></span>
-                      </span>
-
-                      <?php if ($modalId !== ''): ?>
-                        <button type="button" class="program-majors-btn" data-modal="<?= esc($modalId) ?>" aria-haspopup="dialog">
-                          Majors <span aria-hidden="true">&rsaquo;</span>
-                        </button>
-                      <?php endif; ?>
-                    </div>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            </div>
-          </div>
-
-        </section>
-      <?php endforeach; ?>
-      </div>
-      <?php endforeach; ?>
-
-     </div>
-    </div>
-
-  </section>
 
 
 <!-- ===================== SECTION: HOW YOU'RE APPLYING ===================== -->

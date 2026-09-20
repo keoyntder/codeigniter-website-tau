@@ -302,6 +302,104 @@
     </div>
   </section>
 
+  <!-- ===================== CAREER & JOB PLACEMENT ===================== -->
+<section class="jp-section" id="job-placement">
+
+  <!-- Split intro block (Option 2) -->
+  <div class="jp-hero">
+    <div class="jp-media">
+      <img src="<?= base_url('assets/Images/job-placement-photo.jpg') ?>" alt="TAU Career and Job Placement Office">
+    </div>
+    <div class="jp-content">
+      <span class="jp-eyebrow">Career &amp; Job Placement Office</span>
+      <h2 class="jp-title">Helping Graduates Launch Their Careers</h2>
+      <p class="jp-text">The Career and Job Placement Office connects graduating students and alumni with partner employers through job postings, career counseling, and labor market updates.</p>
+
+      <div class="jp-chips">
+        <div class="jp-chip"><b>Job Postings</b>Shared regularly</div>
+        <div class="jp-chip"><b>Alumni &amp; Grads</b>Open to all</div>
+        <div class="jp-chip"><b>DOLE Region III</b>Labor market info</div>
+      </div>
+
+      <a class="jp-btn" href="#job-placement-list">View Job Openings</a>
+    </div>
+  </div>
+
+  <!-- Job / career listings, accordion style -->
+  <div class="jp-list-wrap" id="job-placement-list">
+    <div class="jp-list-head">
+      <span class="jp-eyebrow">Latest Updates</span>
+      <h2 class="jp-list-title">Job &amp; Career Opportunities</h2>
+    </div>
+
+    <div class="jp-accordion">
+
+      <!-- Item 1: Field Agronomist opening -->
+      <div class="jp-item is-open">
+        <button type="button" class="jp-item-q" data-jp-toggle>
+          <span>Job Opportunity | Field Agronomist</span>
+          <span class="jp-item-icon" aria-hidden="true">−</span>
+        </button>
+        <div class="jp-item-a">
+          <p>The TAU Student Placement Office is pleased to share a job opportunity for interested TAU graduates and graduating students.</p>
+
+          <dl class="jp-facts">
+            <div><dt>Position</dt><dd>Field Agronomist</dd></div>
+            <div><dt>Place of Assignment</dt><dd>Tarlac, Pampanga, and Nueva Vizcaya</dd></div>
+          </dl>
+
+          <p class="jp-label">Qualifications</p>
+          <ul class="jp-bullets">
+            <li>Minimum of a Bachelor's Degree in Agriculture</li>
+            <li>Entry-level or experienced Sales Technician and/or Field Trialist in the agrochemical industry or related field</li>
+            <li>Fresh graduates are encouraged to apply!</li>
+          </ul>
+
+          <p>The Field Agronomist will help promote agricultural products to end-users, implement marketing programs, conduct and monitor product demonstration trials, provide technical training and after-sales support, and assist in developing new product applications.</p>
+
+          <p class="jp-label">How to Apply</p>
+          <p>Interested applicants may send their CV/resumé to:</p>
+          <ul class="jp-bullets jp-bullets--links">
+            <li><a href="mailto:hr@essi.com.ph">hr@essi.com.ph</a></li>
+            <li><a href="mailto:mellanie.mendoza@essi.com.ph">mellanie.mendoza@essi.com.ph</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Item 2: DOLE Region III labor market update -->
+      <div class="jp-item">
+        <button type="button" class="jp-item-q" data-jp-toggle>
+          <span>DOLE Region III &mdash; Labor Market Update</span>
+          <span class="jp-item-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="jp-item-a">
+          <p>Looking for internship, on-the-job training, or employment opportunities after graduation? Stay updated with the latest labor market information from the Department of Labor and Employment (DOLE) Region III.</p>
+
+          <p class="jp-label">Top In-Demand Jobs This Week</p>
+          <ul class="jp-bullets jp-bullets--grid">
+            <li>Call Center Agent</li>
+            <li>Production Worker</li>
+            <li>Machine Operator</li>
+            <li>Technician (General)</li>
+            <li>Administrative/Office Clerk</li>
+            <li>Service Crew</li>
+            <li>Engineer (General)</li>
+            <li>Pipe Fitter</li>
+            <li>Mechanic (General)</li>
+            <li>&hellip;and more!</li>
+          </ul>
+
+          <p>Tarlac City is among the Top 10 locations with the highest number of job vacancies in Central Luzon, making it a great place to explore career opportunities.</p>
+
+          <p>Graduating students, alumni, and jobseekers are encouraged to regularly check available vacancies through <strong>PhilJobNet</strong> and visit your nearest <strong>Public Employment Service Office (PESO)</strong> for assistance.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
   <!-- ===================== VISION & MISSION ===================== -->
 <section class="mission-vision" id="mission-vision">
   <div class="mv-inner">
