@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
 </head>
 <body>
 
@@ -20,65 +21,7 @@
   </div>
 </div>
 
-<!-- ===================== HEADER ===================== -->
-<header class="header site-header" id="siteHeader">
-  <div class="header-inner">
-
-    <div class="brand-group">
-      <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="TAU Logo" class="logo-placeholder">
-      <div class="brand-text">
-        <span class="brand-name">Tarlac Agricultural University</span>
-        <span class="brand-subtitle">Malacama, Camiling</span>
-      </div>
-    </div>
-
-    <nav class="header-nav-main">
-      <a href="<?= base_url('about') ?>" data-en="About" data-tl="Tungkol Sa">About</a>
-      <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok">Admissions</a>
-      <a href="<?= base_url('academic-affairs') ?>" data-en="Academic Affairs" data-tl="Pang-akademikong Sangay">Academic Affairs</a>
-      <a href="<?= base_url('research') ?>" data-en="Research and Development" data-tl="Pananaliksik at Pagpapaunlad">Research and Development</a>
-      <a href="<?= base_url('offices') ?>" data-en="Offices" data-tl="Mga Tanggapan">Offices</a>
-    </nav>
-
-    <div class="header-icons">
-      <div class="lang-toggle" role="group" aria-label="Language selection">
-        <button type="button" class="lang-btn active" id="langEN" data-lang="en">EN</button>
-        <span class="lang-divider" aria-hidden="true">|</span>
-        <button type="button" class="lang-btn" id="langTL" data-lang="tl">TL</button>
-      </div>
-
-      <div class="search-inline" id="searchInline">
-        <button class="icon-btn search-icon-btn" aria-label="Search" id="searchBtn">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-        <input type="text" class="search-inline-input" id="searchInput" placeholder="Search" aria-label="Search">
-        <button type="button" class="search-inline-close" id="searchCloseBtn" aria-label="Close search">&times;</button>
-      </div>
-
-      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
-  </div>
-</header>
-
-<!-- ===================== NAV DRAWER ===================== -->
-<nav class="nav-drawer" id="navMenu">
-  <ul>
-    <li><a href="<?= base_url('') ?>">Home</a></li>
-    <li><a href="<?= base_url('about') ?>">About</a></li>
-    <li><a href="<?= base_url('academic-affairs') ?>">Academic Affairs</a></li>
-    <li><a href="<?= base_url('research-development') ?>">Research and Development</a></li>
-    <li><a href="<?= base_url('admissions') ?>">Admissions</a></li>
-    <li><a href="<?= base_url('offices') ?>">Offices</a></li>
-    <li><a href="#announcements">Announcements</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-<div class="nav-overlay" id="navOverlay"></div>
+<?= $this->include('partials/header') ?>
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="home">
@@ -99,77 +42,41 @@
 
     <div class="hero-overlay"></div>
 
+    <!-- Left: rank content -->
+    <div class="hero-content">
+        <?php foreach ($heroRanks as $i => $r): ?>
+            <div class="hero-slide <?= $i === 0 ? 'is-active' : '' ?>"
+                 id="panel-<?= $r['id'] ?>" role="tabpanel">
+                <span class="hero-badge"><?= $r['badge'] ?></span>
+                <h1 class="hero-title"><?= $r['title'] ?></h1>
+                <p class="hero-text"><?= $r['text'] ?></p>
+                <a href="<?= $r['url'] ?>" class="hero-link" target="_blank" rel="noopener">
+                    <span>↗</span> visit
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Right: rank buttons -->
+    <div class="hero-categories" role="tablist" aria-label="TAU rankings">
+        <?php foreach ($heroRanks as $i => $r): ?>
+            <button type="button"
+                    class="hero-cat <?= $i === 0 ? 'is-active' : '' ?>"
+                    role="tab"
+                    aria-controls="panel-<?= $r['id'] ?>"
+                    aria-selected="<?= $i === 0 ? 'true' : 'false' ?>">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><?= $r['icon'] ?></svg>
+                <span><?= $r['label'] ?></span>
+            </button>
+        <?php endforeach; ?>
+    </div>
+
 </section>
 
 <main>
 
-  <!-- ===================== WHY TAU (true masonry layout) ===================== -->
-  <section class="why-tau" id="about">
-    <div class="why-tau-inner">
-      <h2 class="why-tau-heading">Why Tarlac Agricultural University?</h2>
-    </div>
 
-    <div class="why-tau-cards-wrap">
-      <div class="why-tau-cards" id="whyTauCards">
-
-        <div class="why-tau-card">
-          <div>
-            <h3 class="why-tau-card-title">RANK 64 WORLDWIDE</h3>
-            <p class="why-tau-card-text">Tarlac Agricultural University (TAU) has made a
-              historic leap in the 2026 World University Rankings for Innovation (WURI), climbing
-              from 93rd to 64th place worldwide, a stunning 29-rank surge in just one year.</p>
-          </div>
-          <a href="https://www.facebook.com/share/p/1M26D3H7D3/" class="why-tau-card-btn" target="_blank" rel="noopener">
-            <span class="why-tau-card-btn-icon">↗</span> check
-          </a>
-        </div>
-
-        <div class="why-tau-card">
-          <div>
-            <h3 class="why-tau-card-title">RANK 9 PH</h3>
-            <p class="why-tau-card-text">The University now stands as the 9th most innovative higher education
-              institution (HEI) in the Philippines and also claims the top spot in Central Luzon.</p>
-          </div>
-          <a href="https://www.facebook.com/share/p/1M26D3H7D3/" class="why-tau-card-btn" target="_blank" rel="noopener">
-            <span class="why-tau-card-btn-icon">↗</span> check
-          </a>
-        </div>
-
-        <div class="why-tau-card">
-          <div>
-            <h3 class="why-tau-card-title">RANKED 1001-1500 GLOBAL</h3>
-            <p class="why-tau-card-text">TAU has once again reaffirmed its commitment to the global sustainability agenda,
-              as revealed in the newly released 2026 Times Higher Education (THE) Sustainability Impact Ratings.</p>
-          </div>
-          <a href="https://www.facebook.com/share/p/1EAHjWm9Gp/" class="why-tau-card-btn" target="_blank" rel="noopener">
-            <span class="why-tau-card-btn-icon">↗</span> check
-          </a>
-        </div>
-
-        <div class="why-tau-card">
-          <div>
-            <h3 class="why-tau-card-title">SDG</h3>
-            <p class="why-tau-card-text"></p>
-          </div>
-          <a href="#" class="why-tau-card-btn" target="_blank" rel="noopener">
-            <span class="why-tau-card-btn-icon">↗</span> check
-          </a>
-        </div>
-
-        <div class="why-tau-card">
-          <div>
-            <h3 class="why-tau-card-title">WOW</h3>
-            <p class="why-tau-card-text"></p>
-          </div>
-          <a href="#" class="why-tau-card-btn" target="_blank" rel="noopener">
-            <span class="why-tau-card-btn-icon">↗</span> check
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== UNIVERSITY BULLETIN ===================== -->
+<!-- ===================== UNIVERSITY BULLETIN ===================== -->
 <section class="bulletin" id="bulletin">
   <div class="bulletin-inner">
 
@@ -270,61 +177,6 @@
   </div>
 </section>
 
-  <!-- ===================== CAMPUS HIGHLIGHTS SLIDER ===================== -->
-  <section class="campus-slider" id="highlights">
-    <div class="campus-slider-inner">
-
-      <span class="campus-slider-eyebrow">Campus Life</span>
-      <h2 class="campus-slider-heading">Campus Highlights</h2>
-
-      <div class="campus-slider-viewport">
-        <div class="campus-slider-track" id="campusSliderTrack">
-
-                  <div class="campus-slide">
-          <img src="<?= base_url('assets/Images/pubmats/milestone.png') ?>" alt="Enrollment Advisory" class="campus-slide-img">
-          <div class="campus-slide-caption">
-            <h3 class="campus-slide-title">Enrollment Advisory</h3>
-          </div>
-        </div>
-          <div class="campus-slide">
-            <img src="<?= base_url('assets/Images/cas2.png') ?>" alt="College of Arts and Sciences" class="campus-slide-img">
-            <h3 class="campus-slide-title">College of Arts<br>and Sciences</h3>
-          </div>
-
-          <div class="campus-slide">
-            <img src="<?= base_url('assets/Images/caf.png') ?>" alt="College of Agriculture and Forestry" class="campus-slide-img"  >
-            <h3 class="campus-slide-title">College of Agriculture<br>and Forestry</h3>
-          </div>
-
-          <div class="campus-slide">
-            <img src="<?= base_url('assets/Images/cbm2.png') ?>" alt="College of Business and Management" class="campus-slide-img">
-            <h3 class="campus-slide-title">College of Business<br>and Management</h3>
-          </div>
-
-          <div class="campus-slide">
-            <img src="<?= base_url('assets/Images/cvm.png') ?>" alt="College of Veterinary Medicine" class="campus-slide-img">
-            <h3 class="campus-slide-title">College of Veterinary<br>Medicine</h3>
-          </div>
-
-          <div class="campus-slide">
-            <img src="<?= base_url('assets/Images/coed.png') ?>" alt="College of Education" class="campus-slide-img">
-            <h3 class="campus-slide-title">College of Education</h3>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="campus-slider-controls">
-        <button class="campus-slider-btn" id="campusPrevBtn" aria-label="Previous slide">
-          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        </button>
-        <button class="campus-slider-btn" id="campusNextBtn" aria-label="Next slide">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </button>
-      </div>
-
-    </div>
-  </section>
 
 <!-- ===================== UPCOMING EVENTS + EXAM SCHEDULE ===================== -->
   <section class="events" id="events">
@@ -450,7 +302,33 @@
     </div>
   </section>
 
-
+  <!-- ===================== VISION & MISSION ===================== -->
+<section class="mission-vision" id="mission-vision">
+  <div class="mv-inner">
+ 
+    <div class="mv-media">
+      <img src="<?= base_url('assets/Images/hero-bg.jpg') ?>" alt="Tarlac Agricultural University campus" class="mv-media-img">
+    </div>
+ 
+    <div class="mv-content">
+      <span class="mv-eyebrow">★ About TAU</span>
+      <h2 class="mv-heading">Vision &amp; Mission</h2>
+ 
+      <div class="mv-block">
+        <h3 class="mv-block-title">Vision</h3>
+        <p class="mv-block-text">TAU as one of the leading and globally recognized smart agricultural universities.</p>
+      </div>
+ 
+      <div class="mv-block">
+        <h3 class="mv-block-title">Mission</h3>
+        <p class="mv-block-text">TAU produces highly competent individuals who empower communities through inclusive quality education, impactful research, responsive extension, sustainable production, and good governance that are technology-driven, aimed at enhancing the quality of life in society with unwavering integrity.</p>
+      </div>
+ 
+      <a href="<?= base_url('about') ?>" class="mv-link">More About Us <span>↗</span></a>
+    </div>
+ 
+  </div>
+</section>
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">

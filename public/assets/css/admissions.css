@@ -1,0 +1,605 @@
+/* =========================================================
+   ADMISSIONS OVERVIEW PAGE
+   Uses the tokens and .page-banner from style.css, so load
+   this file AFTER style.css and header.css.
+========================================================= */
+
+:root {
+  --gold-text: #9A7412;                 /* darker gold that stays readable on cream and white */
+  --rule: rgba(43, 43, 43, 0.14);
+}
+
+/* Smooth scrolling for the "Jump to a college" links */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+
+/* =========================================================
+   SHARED TYPE
+========================================================= */
+
+.adm-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 14px;
+}
+
+.adm-lead {
+  max-width: 56ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #555;
+}
+
+
+/* =========================================================
+   BANNER  (photo hero, dark overlay, angled cut — like the
+   reference design)
+========================================================= */
+
+.admissions-banner {
+  position: relative;
+  isolation: isolate;
+
+  background-image: var(--admissions-bg);
+  background-size: cover;
+  background-position: center;
+
+  padding: clamp(170px, 24vw, 230px) 24px 0;
+  overflow: hidden;
+}
+
+/* Dark overlay over the photo, using the site's green tokens
+   instead of navy so it matches the rest of TAU's palette */
+.admissions-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 32, 22, 0.90) 0%,
+    rgba(6, 32, 22, 0.74) 45%,
+    rgba(6, 32, 22, 0.58) 100%
+  );
+}
+
+
+.admissions-hero-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.admissions-hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  margin-bottom: 0;
+}
+
+.admissions-hero-title + .admissions-hero-and {
+  margin-top: 2px;
+}
+
+.admissions-hero-title:last-of-type {
+  margin-bottom: 18px;
+}
+
+/* Small connector word sitting between the two big hero lines */
+.admissions-hero-and {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: lowercase;
+  font-size: clamp(14px, 1.6vw, 18px);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.admissions-hero-lead {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.admissions-hero-caps {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.banner-jump {
+  position: relative;
+  z-index: 3;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: 32px;
+  padding-bottom: 70px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.banner-jump-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 26px;
+}
+
+.banner-applicant-types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 14px;
+}
+
+.banner-applicant-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--white);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.banner-applicant-type:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.banner-applicant-type:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   PROGRAMS BY COLLEGE
+========================================================= */
+
+.programs {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 40px 24px 90px;
+}
+
+.programs-head {
+  margin-bottom: 24px;
+}
+
+
+.college-block {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 48px;
+  padding: 44px 0 56px;
+  border-top: 2px solid var(--green-deep);
+  scroll-margin-top: 100px;
+}
+
+.college-block:last-child {
+  padding-bottom: 0;
+}
+
+.college-info {
+  align-self: start;
+}
+
+.college-logo {
+  display: block;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--white);
+  border: 3px solid var(--white);
+  box-shadow: 0 6px 18px rgba(27, 94, 58, 0.2);
+}
+
+.college-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.college-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+
+.college-meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.college-link {
+  display: inline-block;
+  padding-bottom: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-deep);
+  border-bottom: 1.5px solid var(--gold);
+  transition: border-color 0.2s ease;
+}
+
+.college-link + .college-link {
+  margin-left: 18px;
+}
+
+.college-link--fb {
+  color: #6b6b6b;
+  border-bottom-color: rgba(43, 43, 43, 0.25);   /* ← draws the underline */
+  border-bottom: none;
+}
+
+.college-link--fb:hover {
+  color: var(--green-deep);
+  border-bottom-color: var(--green-deep);        /* ← underline on hover too */
+}
+
+.college-link:hover {
+  border-color: var(--green-deep);
+}
+
+.college-link:focus-visible,
+.apply-link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+
+/* ---------- Program rows ---------- */
+
+.program-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 36px;
+  align-self: start;
+  border-bottom: 1px solid var(--rule);
+}
+
+.program-list li {
+  border-top: 1px solid var(--rule);
+}
+
+.program-row {
+  display: block;
+  height: 100%;
+  padding: 20px 12px 20px 0;
+}
+
+.program-level {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12.5px;
+  color: #6b6b6b;
+}
+
+.program-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.25;
+  color: var(--charcoal);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.adm-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.adm-modal-overlay.is-open { display: flex; }
+
+.adm-modal {
+  background: #fff;
+  color: var(--charcoal);
+max-width: 640px;
+  max-height: 85vh;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.adm-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  z-index: 2;
+}
+
+/* Scrolling still works — the scrollbar is just hidden */
+.adm-modal-body {
+  padding: 32px 28px 8px;
+  overflow-y: auto;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* old Edge / IE */
+}
+
+.adm-modal-body::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, new Edge */
+}
+
+.adm-modal-title { font-family: 'Oswald', sans-serif; font-size: 1.15rem; margin: 24px 0 10px; }
+.adm-modal-title:first-child { margin-top: 0; }
+.adm-modal-lead { font-weight: 600; margin-bottom: 8px; }
+.adm-modal-list { margin: 0 0 12px; padding-left: 20px; }
+.adm-modal-list li { margin-bottom: 6px; line-height: 1.5; }
+
+/* Parenthetical detail under a requirement (foreign student docs) */
+.adm-sub-note {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #666;
+}
+
+.adm-schedule-block, .adm-step-block { margin-bottom: 14px; }
+.adm-schedule-date, .adm-step-title { font-weight: 700; margin-bottom: 4px; }
+.adm-step-venue { font-style: italic; color: #555; margin-top: 4px; }
+.adm-modal-note { font-size: 0.9rem; color: #555; margin: 16px 0 24px; }
+
+.adm-modal-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 28px 24px;
+  border-top: 1px solid #eee;
+}
+.adm-modal-actions .adm-btn { flex: 1; text-align: center; }
+
+/* Keep the pill button from over-sizing inside the modal footer */
+.adm-modal-actions .adm-btn--apply {
+  padding: 11px 24px;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   HELP STRIP
+========================================================= */
+
+.adm-cta {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 80px 24px 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.adm-cta-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.8vw, 34px);
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+
+.adm-cta-text {
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.adm-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.adm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 24px;
+  border-radius: 8px;
+  border: 1.5px solid var(--green-deep);
+  background: var(--green-deep);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.adm-btn:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.adm-btn--ghost {
+  background: transparent;
+  color: var(--green-deep);
+}
+
+.adm-btn--ghost:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: var(--white);
+}
+
+.adm-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   APPLY NOW  (final full-width call to action)
+========================================================= */
+
+.adm-apply-final {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  justify-content: center;
+}
+
+.adm-btn--apply {
+  padding: 14px 52px;
+  font-size: 13px;
+  border-radius: 999px;
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+  box-shadow: 0 10px 26px rgba(212, 160, 23, 0.35);
+}
+
+.adm-btn--apply:hover {
+  background: var(--gold-text);
+  border-color: var(--gold-text);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+  .college-block {
+    grid-template-columns: 230px 1fr;
+    gap: 32px;
+  }
+
+  .apply-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .apply-head {
+    position: static;
+  }
+}
+
+@media (max-width: 800px) {
+  .college-block {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .college-info {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    column-gap: 18px;
+    align-items: center;
+  }
+
+  .college-logo {
+    grid-row: 1 / span 3;
+    margin-bottom: 0;
+  }
+
+  .college-name,
+  .college-meta {
+    margin-bottom: 4px;
+  }
+
+  .college-link {
+    justify-self: start;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .program-list {
+    grid-template-columns: 1fr;
+  }
+
+  .program-name {
+    font-size: 19px;
+  }
+
+  .apply-item {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding-right: 0;
+  }
+
+  .apply-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .apply-link {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .banner-applicant-type {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .admissions-hero-title {
+    font-size: clamp(30px, 9vw, 44px);
+  }
+
+  .admissions-hero-and {
+    font-size: 13px;
+  }
+
+  .adm-cta {
+    padding: 64px 24px 72px;
+  }
+
+  .adm-btn--apply {
+    width: 100%;
+  }
+}

@@ -6,28 +6,21 @@
     if (!header) return;
 
     function updateHeader() {
-
         if (window.scrollY > 40) {
-
             header.classList.add('is-scrolled');
-
         } else {
-
             header.classList.remove('is-scrolled');
-
         }
-
     }
-
     window.addEventListener('scroll', updateHeader, {
         passive: true
     });
-
-    // Set correct state on page load
     updateHeader();
 
 })();
 
+
+/* ===================== HERO PARALLAX ===================== */
 (function () {
 
     const hero = document.querySelector('.hero');
@@ -68,6 +61,7 @@
 
 })();
 
+
 /* ===================== LOADING THROBBER ===================== */
 (function initLoader() {
   const overlay = document.getElementById('loaderOverlay');
@@ -87,6 +81,29 @@
     setTimeout(hideLoader, 5000);
   }
 })();
+
+
+/* ===================== NAV DRAWER DROPDOWNS ===================== */
+(function drawerDropdowns() {
+    document.querySelectorAll('.sub-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item   = btn.closest('.has-sub');
+            const isOpen = item.classList.contains('open');
+
+            // close any other open dropdown first
+            document.querySelectorAll('.has-sub.open').forEach(other => {
+                other.classList.remove('open');
+                other.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+})();
+
 
 /* ===================== BURGER / NAV DRAWER ===================== */
 (function navDrawer() {
@@ -124,6 +141,7 @@
     if (e.key === 'Escape') closeMenu();
   });
 })();
+
 
 /* ===================== SEARCH ICON / INLINE EXPAND ===================== */
 (function searchInline() {
@@ -181,41 +199,6 @@
   }, { passive: true });
 })();
 
-/* ===================== WHY TAU MASONRY (fixed) ===================== */
-function layoutWhyTauMasonry() {
-  const container = document.getElementById('whyTauCards');
-  if (!container) return;
-
-  const NUM_COLUMNS = 4;
-  const cards = Array.from(container.querySelectorAll('.why-tau-card'));
-  if (cards.length === 0) return;
-
-  const cardHeights = cards.map(card => card.offsetHeight);
-
-  const columns = [];
-  for (let i = 0; i < NUM_COLUMNS; i++) {
-    const col = document.createElement('div');
-    col.className = 'why-tau-col-gen' + (i % 2 === 1 ? ' offset' : '');
-    columns.push(col);
-  }
-
-  const heights = columns.map((col, i) => (i % 2 === 1 ? 90 : 0));
-
-  cards.forEach((card, idx) => {
-    let shortest = 0;
-    for (let i = 1; i < heights.length; i++) {
-      if (heights[i] < heights[shortest]) shortest = i;
-    }
-    columns[shortest].appendChild(card);
-    heights[shortest] += cardHeights[idx] + 14;
-  });
-
-  container.innerHTML = '';
-  columns.forEach(col => container.appendChild(col));
-}
-
-document.addEventListener('DOMContentLoaded', layoutWhyTauMasonry);
-window.addEventListener('resize', layoutWhyTauMasonry);
 
 /* ===================== LANGUAGE TOGGLE ===================== */
 (function languageToggle() {
@@ -229,6 +212,48 @@ window.addEventListener('resize', layoutWhyTauMasonry);
     });
   });
 })();
+
+
+/* ===================== HEADER DROPDOWN (Admissions) ===================== */
+/* Hover is handled in CSS; this adds click / tap / keyboard support */
+(function headerDropdown() {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  if (!dropdowns.length) return;
+
+  function setOpen(dd, open) {
+    dd.classList.toggle('open', open);
+    const toggle = dd.querySelector('.nav-dropdown-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.nav-dropdown-toggle');
+    if (!toggle) return;
+
+    // Click / tap / Enter on "Admissions" opens the menu instead of navigating.
+    // (The first item in the menu, "Admissions Overview", links to the page.)
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      setOpen(dd, !dd.classList.contains('open'));
+    });
+
+    // Pointer leaves: release the click-opened state
+    dd.addEventListener('mouseleave', () => setOpen(dd, false));
+  });
+
+  // Click anywhere outside closes it
+  document.addEventListener('click', (e) => {
+    dropdowns.forEach(dd => {
+      if (!dd.contains(e.target)) setOpen(dd, false);
+    });
+  });
+
+  // Escape closes it
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') dropdowns.forEach(dd => setOpen(dd, false));
+  });
+})();
+
 
 /* ===================== CAMPUS HIGHLIGHTS SLIDER ===================== */
 (function campusSlider() {
@@ -280,6 +305,7 @@ window.addEventListener('resize', layoutWhyTauMasonry);
   update();
 })();
 
+
 /* ===================== ADMIN MODAL MANAGER ===================== */
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
@@ -307,4 +333,81 @@ document.addEventListener('keydown', (e) => {
       modal.style.display = 'none';
     });
   }
+});
+
+
+/* ===================== HERO RANK SWITCHER ===================== */
+(function () {
+    const hero   = document.querySelector('.hero');
+    const tabs   = [...document.querySelectorAll('.hero-cat')];
+    const slides = [...document.querySelectorAll('.hero-slide')];
+
+    if (!hero || !tabs.length || !slides.length) return;
+
+    let current = 0;
+    let timer = null;
+
+    function show(i) {
+        current = i;
+        tabs.forEach((t, n) => {
+            t.classList.toggle('is-active', n === i);
+            t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        });
+        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
+    }
+
+    function stop() { clearInterval(timer); }
+
+    function start() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        stop();
+        timer = setInterval(() => show((current + 1) % slides.length), 7000);
+    }
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => { show(i); start(); }));
+
+    hero.addEventListener('mouseenter', stop);   // pause while the mouse is over the hero
+    hero.addEventListener('mouseleave', start);
+
+    start();
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  function openAdmModal(modal) {
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAdmModal(modal) {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      var modal = document.getElementById(trigger.getAttribute('data-modal'));
+      if (modal) openAdmModal(modal);
+    });
+  });
+
+  document.querySelectorAll('[data-modal-close]').forEach(function (closer) {
+    closer.addEventListener('click', function () {
+      var modal = closer.closest('.adm-modal-overlay');
+      if (modal) closeAdmModal(modal);
+    });
+  });
+
+  document.querySelectorAll('.adm-modal-overlay').forEach(function (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeAdmModal(overlay);
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.adm-modal-overlay.is-open').forEach(closeAdmModal);
+    }
+  });
 });
