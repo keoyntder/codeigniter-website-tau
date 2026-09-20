@@ -373,13 +373,14 @@
   min-width: 0;
 }
 
+/* Logo image: no circle background or crop; the logo shows as-is */
 .logo-placeholder {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: var(--green-deep);
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  background: none;
+  border-radius: 0;
   transition: width 0.3s ease, height 0.3s ease;
 }
 

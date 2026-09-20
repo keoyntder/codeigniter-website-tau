@@ -7,6 +7,13 @@
 :root {
   --gold-text: #9A7412;                 /* darker gold that stays readable on cream and white */
   --rule: rgba(43, 43, 43, 0.14);
+
+  /* Plain (non-green) palette used only by the programs/college section */
+  --plain-bg: #FFFFFF;
+  --plain-panel: #F6F5F1;
+  --plain-border: #E3E1DA;
+  --plain-text: var(--charcoal);
+  --plain-muted: #6B6B6B;
 }
 
 /* Smooth scrolling for the "Jump to a college" links */
@@ -49,7 +56,7 @@
   background-size: cover;
   background-position: center;
 
-  padding: clamp(170px, 24vw, 230px) 24px 0;
+  padding: clamp(190px, 26vw, 260px) 24px 110px;
   overflow: hidden;
 }
 
@@ -75,7 +82,6 @@
   max-width: 780px;
   margin: 0 auto;
   text-align: center;
-  padding-bottom: 70px;
 }
 
 .admissions-hero-title {
@@ -125,97 +131,294 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-.banner-jump {
-  position: relative;
-  z-index: 3;
-  max-width: 100%;
+
+/* =========================================================
+   QUICK JUMP
+========================================================= */
+
+.quick-jump {
+  background: var(--paper, #F8F7F2);
+  border-bottom: 1px solid var(--plain-border);
+  padding: 30px 24px;
+}
+
+.quick-jump-inner {
+  max-width: 1250px;
   margin: 0 auto;
-  padding-top: 32px;
-  padding-bottom: 70px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.banner-jump-label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 26px;
-}
-
-.banner-applicant-types {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px 14px;
+  gap: 14px 16px;
 }
 
-.banner-applicant-type {
+.quick-jump-btn {
   display: inline-flex;
   align-items: center;
-  padding: 12px 24px;
+  padding: 15px 30px;
   border-radius: 999px;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  font-size: 13.5px;
+  border: 1.5px solid var(--plain-border);
+  background: var(--plain-bg);
+  color: var(--plain-text);
+  font-family: var(--font-display);
   font-weight: 600;
-  color: var(--white);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  font-size: 15.5px;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.banner-applicant-type:hover {
-  background: var(--gold);
+.quick-jump-btn:hover {
   border-color: var(--gold);
-  color: var(--charcoal);
-  transform: translateY(-2px);
+  color: var(--gold-text);
+  transform: translateY(-1px);
 }
 
-.banner-applicant-type:focus-visible {
+.quick-jump-btn:focus-visible {
   outline: 3px solid var(--gold);
-  outline-offset: 4px;
-  border-radius: 999px;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .quick-jump {
+    padding: 22px 16px;
+  }
+  .quick-jump-inner {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .quick-jump-btn {
+    flex: none;
+    font-size: 13.5px;
+    padding: 12px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-jump-btn { transition: none; }
 }
 
 
 /* =========================================================
-   PROGRAMS BY COLLEGE
+   SECTION 1: HOW YOU'RE APPLYING (applicant types)
+========================================================= */
+
+.apply-types {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 56px 24px 0;
+  scroll-margin-top: 100px;
+}
+
+.apply-types-head {
+  margin-bottom: 24px;
+}
+
+.apply-types-card {
+  background: var(--plain-panel);
+  border: 1px solid var(--plain-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.applicant-type-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.applicant-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--plain-bg);
+  border: 1px solid var(--plain-border);
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--plain-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.applicant-type span {
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--plain-muted);
+  transition: transform 0.2s ease;
+}
+
+.applicant-type:hover {
+  border-left-color: var(--gold);
+  color: var(--gold-text);
+  transform: translateX(2px);
+}
+
+.applicant-type:hover span {
+  transform: translateX(3px);
+  color: var(--gold-text);
+}
+
+.applicant-type:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.apply-types-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--plain-border);
+}
+
+.apply-types-passed {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.applicant-col-subnote {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--plain-muted);
+  margin: 0 0 8px;
+}
+
+.apply-types-passed .applicant-col-subnote {
+  margin: 0;
+}
+
+.applicant-type--alt {
+  background: transparent;
+  border-style: dashed;
+}
+
+.applicant-type--alt span {
+  color: var(--gold-text);
+}
+
+.applicant-type--alt:hover {
+  border-left-style: solid;
+}
+
+.apply-types-passed .applicant-type--alt {
+  width: auto;
+  min-width: 220px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .applicant-type,
+  .applicant-type span { transition: none; }
+}
+
+@media (max-width: 900px) {
+  .applicant-type-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .apply-types { padding-top: 40px; }
+  .apply-types-card { padding: 18px 16px; }
+  .applicant-type-list { grid-template-columns: 1fr; }
+  .apply-types-footer { flex-direction: column; align-items: stretch; }
+  .apply-types-footer .adm-btn--apply { width: 100%; }
+  .apply-types-passed { flex-direction: column; align-items: stretch; }
+  .apply-types-passed .applicant-type--alt { width: 100%; }
+}
+
+
+/* =========================================================
+   SECTION 2: DEGREE PROGRAMS BY COLLEGE
 ========================================================= */
 
 .programs {
   max-width: 1250px;
   margin: 0 auto;
-  padding: 40px 24px 90px;
+  padding: 48px 24px 40px;
+  scroll-margin-top: 100px;
 }
 
 .programs-head {
   margin-bottom: 24px;
 }
 
+/* ---------- Colleges (accordion, plain palette) ---------- */
+
+.college-col {
+  min-width: 0;
+}
+
+/* One panel enclosing every college */
+.college-list-panel {
+  background: var(--plain-panel);
+  border: 1px solid var(--plain-border);
+  border-radius: 16px;
+  padding: 6px 20px;
+}
 
 .college-block {
-  display: grid;
-  grid-template-columns: 290px 1fr;
-  gap: 48px;
-  padding: 44px 0 56px;
-  border-top: 2px solid var(--green-deep);
   scroll-margin-top: 100px;
+  border-bottom: 1px solid var(--plain-border);
 }
 
 .college-block:last-child {
-  padding-bottom: 0;
+  border-bottom: 0;
 }
 
+/* Plain row: the toggle button fills it, the Facebook link sits at the end */
 .college-info {
-  align-self: start;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+}
+
+.college-toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 17px 2px;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: var(--plain-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.college-toggle:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: -3px;
+  border-radius: 10px;
 }
 
 .college-logo {
   display: block;
-  width: 76px;
-  height: 76px;
-  margin-bottom: 20px;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 0;
   border-radius: 50%;
   overflow: hidden;
   background: var(--white);
-  border: 3px solid var(--white);
-  box-shadow: 0 6px 18px rgba(27, 94, 58, 0.2);
+  border: 3px solid var(--plain-border);
 }
 
 .college-logo img {
@@ -226,18 +429,39 @@
 }
 
 .college-name {
+  flex: 1;
+  min-width: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(22px, 2.4vw, 28px);
+  font-size: clamp(20px, 2.2vw, 26px);
   line-height: 1.2;
-  color: var(--charcoal);
-  margin-bottom: 10px;
+  color: var(--plain-text);
+  margin: 0;
 }
 
-.college-meta {
+.college-count {
+  flex: 0 0 auto;
   font-size: 14px;
-  color: #666;
-  margin-bottom: 16px;
+  font-weight: 500;
+  color: var(--plain-muted);
+  white-space: nowrap;
+}
+
+.college-chev {
+  flex: 0 0 auto;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--plain-muted);
+  transition: transform 0.25s ease;
+}
+
+.college-block.is-open .college-chev {
+  transform: rotate(90deg);
+  color: var(--gold-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .college-chev { transition: none; }
 }
 
 .college-link {
@@ -245,28 +469,13 @@
   padding-bottom: 2px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--green-deep);
+  color: var(--plain-text);
   border-bottom: 1.5px solid var(--gold);
   transition: border-color 0.2s ease;
 }
 
-.college-link + .college-link {
-  margin-left: 18px;
-}
-
-.college-link--fb {
-  color: #6b6b6b;
-  border-bottom-color: rgba(43, 43, 43, 0.25);   /* ← draws the underline */
-  border-bottom: none;
-}
-
-.college-link--fb:hover {
-  color: var(--green-deep);
-  border-bottom-color: var(--green-deep);        /* ← underline on hover too */
-}
-
 .college-link:hover {
-  border-color: var(--green-deep);
+  border-color: var(--gold-text);
 }
 
 .college-link:focus-visible,
@@ -275,33 +484,74 @@
   outline-offset: 4px;
 }
 
+.college-link--fb {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0;
+  padding: 0 2px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-text);
+  border-bottom: 0;
+  white-space: nowrap;
+}
+
+.college-link--fb:hover {
+  color: var(--plain-text);
+}
+
+/* ---------- Expanding panel ---------- */
+
+.college-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.college-block.is-open .college-panel {
+  grid-template-rows: 1fr;
+}
+
+.college-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .college-panel { transition: none; }
+}
+
+/* Keeps the first row from touching the bar once open */
+.college-block.is-open .program-list {
+  margin-top: 10px;
+  padding-bottom: 6px;
+}
 
 /* ---------- Program rows ---------- */
 
 .program-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 36px;
-  align-self: start;
-  border-bottom: 1px solid var(--rule);
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 28px;
+  margin-top: 4px;
 }
 
 .program-list li {
-  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
 .program-row {
   display: block;
   height: 100%;
-  padding: 20px 12px 20px 0;
+  padding: 14px 12px 14px 0;
 }
 
 .program-level {
   display: block;
   margin-bottom: 3px;
   font-size: 12.5px;
-  color: #6b6b6b;
+  color: var(--plain-muted);
 }
 
 .program-name {
@@ -310,7 +560,80 @@
   font-weight: 600;
   font-size: 21px;
   line-height: 1.25;
-  color: var(--charcoal);
+  color: var(--plain-text);
+}
+
+/* "Majors" button — plain text style, no underline, opens the majors modal */
+.program-majors-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--plain-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.program-majors-btn span {
+  display: inline-block;
+  font-size: 1.2em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.program-majors-btn:hover {
+  color: var(--gold-text);
+  text-decoration: none;
+}
+
+.program-majors-btn:hover span {
+  transform: translateX(3px);
+}
+
+.program-majors-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 800px) {
+  .college-list-panel { padding: 4px 16px; }
+  .college-toggle { padding: 14px 2px; gap: 12px; }
+  .college-logo { width: 46px; height: 46px; }
+}
+
+@media (max-width: 640px) {
+  .college-list-panel { padding: 4px 14px; }
+  .college-info {
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+  }
+  .college-toggle {
+    flex: 1 1 100%;
+    padding: 14px 2px 4px;
+  }
+  .college-count {
+    font-size: 12.5px;
+  }
+  .college-link--fb {
+    flex: 1 1 100%;
+    padding: 0 0 10px;
+  }
+  .program-name {
+    font-size: 19px;
+  }
 }
 
 
@@ -333,7 +656,8 @@
 .adm-modal {
   background: #fff;
   color: var(--charcoal);
-max-width: 640px;
+  width: 100%;              /* keeps short modals (like Majors) from shrinking to their content */
+  max-width: 640px;
   max-height: 85vh;
   border-radius: 12px;
   overflow: hidden;
@@ -409,7 +733,7 @@ max-width: 640px;
 .adm-cta {
   max-width: 1250px;
   margin: 0 auto;
-  padding: 80px 24px 90px;
+  padding: 40px 24px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -452,6 +776,7 @@ max-width: 640px;
   font-size: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  cursor: pointer;          /* needed now that some .adm-btn elements are <button> */
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
@@ -485,7 +810,7 @@ max-width: 640px;
 .adm-apply-final {
   max-width: 1250px;
   margin: 0 auto;
-  padding: 0 24px 96px;
+  padding: 0 24px 56px;
   display: flex;
   justify-content: center;
 }
@@ -509,15 +834,10 @@ max-width: 640px;
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE (page-level)
 ========================================================= */
 
 @media (max-width: 1000px) {
-  .college-block {
-    grid-template-columns: 230px 1fr;
-    gap: 32px;
-  }
-
   .apply-inner {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -529,43 +849,12 @@ max-width: 640px;
 }
 
 @media (max-width: 800px) {
-  .college-block {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .college-info {
-    display: grid;
-    grid-template-columns: 76px 1fr;
-    column-gap: 18px;
-    align-items: center;
-  }
-
-  .college-logo {
-    grid-row: 1 / span 3;
-    margin-bottom: 0;
-  }
-
-  .college-name,
-  .college-meta {
-    margin-bottom: 4px;
-  }
-
-  .college-link {
-    justify-self: start;
-    margin-top: 6px;
+  .apply-item {
+    grid-template-columns: 44px 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .program-list {
-    grid-template-columns: 1fr;
-  }
-
-  .program-name {
-    font-size: 19px;
-  }
-
   .apply-item {
     grid-template-columns: 44px 1fr;
     gap: 16px;
@@ -582,11 +871,6 @@ max-width: 640px;
     justify-self: start;
   }
 
-  .banner-applicant-type {
-    padding: 10px 18px;
-    font-size: 13px;
-  }
-
   .admissions-hero-title {
     font-size: clamp(30px, 9vw, 44px);
   }
@@ -596,10 +880,182 @@ max-width: 640px;
   }
 
   .adm-cta {
-    padding: 64px 24px 72px;
+    padding: 40px 24px 40px;
   }
 
   .adm-btn--apply {
     width: 100%;
   }
+}
+
+/* ===================== ADMISSION TEST REMINDERS ===================== */
+.cat-reminders { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+.cat-grid { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
+.cat-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.cat-card {
+  background: #f6f5f1;
+  border: 1px solid #e3e1da;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.cat-card--wide { margin-bottom: 1.25rem; }
+.cat-card p { line-height: 1.5; margin: 0 0 .75rem; }
+
+.cat-card-title {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  color: #1a5c3a;
+  font-size: 1.15rem;
+}
+.cat-ico {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: none;
+  background: #fff;
+  border: 1px solid #e3e1da;
+  border-radius: 10px;
+}
+
+/* slip details */
+.cat-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.cat-chips li {
+  background: #fff;
+  border: 1px solid #e3e1da;
+  border-radius: 999px;
+  padding: .3rem .8rem;
+  font-size: .88rem;
+}
+
+/* what to bring */
+.cat-bring { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.cat-bring li {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: #fff;
+  border: 1px solid #e3e1da;
+  border-radius: 10px;
+  padding: .6rem .9rem;
+  line-height: 1.35;
+}
+.cat-bring li span { font-size: 1.25rem; flex: none; }
+
+/* lists inside cards use the same checklist look, on white */
+.cat-card .adm-modal-list > li { background: #fff; }
+
+@media (max-width: 720px) {
+  .cat-grid--2 { grid-template-columns: 1fr; }
+}
+
+/* ===================== LIST OF PASSERS ===================== */
+.passers { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+
+.passers-card {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.passers-batch {
+  background: #f6f5f1;
+  border: 1px solid #e3e1da;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.passers-batch-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  color: var(--plain-text, #1B1B18);
+  margin: 0 0 1rem;
+}
+
+.passers-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .5rem .75rem;
+}
+
+.passers-list li {
+  background: #fff;
+  border: 1px solid #e3e1da;
+  border-radius: 8px;
+  padding: .55rem .8rem;
+  font-size: .92rem;
+}
+
+.passers-empty {
+  border: 1px dashed #d9d6cc;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #6b6b6b;
+}
+
+.passers-empty p {
+  margin: 0;
+  max-width: 46ch;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* ===================== ENROLLMENT SCHEDULE ===================== */
+.enr-schedule { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; scroll-margin-top: 100px; }
+.enr-sub { color: #6b6b6b; margin: .25rem 0 1.25rem; }
+
+.enr-card {
+  display: grid;
+  grid-template-columns: 320px 1px 1fr;   /* calendar | separator | details */
+  gap: 2rem;
+  padding: 1.5rem;
+  background: #f6f5f1;
+  border: 1px solid #e3e1da;
+  border-radius: 16px;
+}
+
+/* vertical separator between calendar and programs */
+.enr-divider {
+  background: #d9d6cc;
+  width: 1px;
+  align-self: stretch;
+}
+
+/* calendar */
+.enr-month { color: #1a5c3a; font-weight: 600; margin: 0 0 1rem; }
+.enr-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.enr-dow { font-size: .8rem; color: #777; padding-bottom: 4px; }
+.enr-day { padding: 8px 0; border-radius: 8px; font-size: .9rem; border: 0; background: none; }
+.enr-day.is-enroll { background: #1a5c3a; color: #fff; font-weight: 600; cursor: pointer; }
+.enr-day.is-enroll:hover { background: #237a4d; }
+.enr-day.is-active { outline: 3px solid #f2c94c; outline-offset: 1px; }
+
+/* details panel */
+.enr-panel { display: none; }
+.enr-panel.is-active { display: block; }
+.enr-date { color: #1a5c3a; margin: 0 0 1rem; }
+
+/* AM and PM each get their own box */
+.enr-session {
+  background: #fff;
+  border: 1px solid #e3e1da;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.enr-session:last-child { margin-bottom: 0; }
+
+.enr-slot { margin: 0 0 .5rem; font-weight: 600; color: #1a5c3a; }
+.enr-list { margin: 0; padding-left: 1.2rem; }
+.enr-list li { margin-bottom: .25rem; }
+
+@media (max-width: 720px) {
+  .enr-card { grid-template-columns: 1fr; }
+  .enr-divider { width: auto; height: 1px; }   /* horizontal on mobile */
 }

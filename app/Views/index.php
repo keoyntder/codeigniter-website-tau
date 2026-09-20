@@ -310,10 +310,7 @@
       <img src="<?= base_url('assets/Images/hero-bg.jpg') ?>" alt="Tarlac Agricultural University campus" class="mv-media-img">
     </div>
  
-    <div class="mv-content">
-      <span class="mv-eyebrow">★ About TAU</span>
-      <h2 class="mv-heading">Vision &amp; Mission</h2>
- 
+    <div class="mv-content"> 
       <div class="mv-block">
         <h3 class="mv-block-title">Vision</h3>
         <p class="mv-block-text">TAU as one of the leading and globally recognized smart agricultural universities.</p>
@@ -323,9 +320,7 @@
         <h3 class="mv-block-title">Mission</h3>
         <p class="mv-block-text">TAU produces highly competent individuals who empower communities through inclusive quality education, impactful research, responsive extension, sustainable production, and good governance that are technology-driven, aimed at enhancing the quality of life in society with unwavering integrity.</p>
       </div>
- 
-      <a href="<?= base_url('about') ?>" class="mv-link">More About Us <span>↗</span></a>
-    </div>
+     </div>
  
   </div>
 </section>

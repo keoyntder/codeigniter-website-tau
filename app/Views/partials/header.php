@@ -11,7 +11,7 @@
     </div>
 
     <nav class="header-nav-main">
-      <a href="<?= base_url('about') ?>" data-en="About" data-tl="Tungkol Sa">About</a>
+      <a href="<?= base_url('') ?>" data-en="Home" data-tl="Tahanan">Home</a>
       <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok">Admissions</a>
       <a href="<?= base_url('academic-affairs') ?>" data-en="Academic Affairs" data-tl="Pang-akademikong Sangay">Academic Affairs</a>
       <a href="<?= base_url('research') ?>" data-en="Research and Development" data-tl="Pananaliksik at Pagpapaunlad">Research and Development</a>
@@ -47,7 +47,6 @@
 <nav class="nav-drawer" id="navMenu">
   <ul>
     <li><a href="<?= base_url('') ?>">Home</a></li>
-    <li><a href="<?= base_url('about') ?>">About</a></li>
     <li><a href="<?= base_url('admissions') ?>">Admissions</a></li>
     <li><a href="<?= base_url('academic-affairs') ?>">Academic Affairs</a></li>
     <li><a href="<?= base_url('research') ?>">Research and Development</a></li>

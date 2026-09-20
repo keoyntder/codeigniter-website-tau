@@ -372,6 +372,8 @@ document.addEventListener('keydown', (e) => {
     start();
 })();
 
+
+/* ===================== ADMISSIONS MODALS ===================== */
 document.addEventListener('DOMContentLoaded', function () {
 
   function openAdmModal(modal) {
@@ -411,3 +413,65 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+/* ===================== ENROLLMENT SCHEDULE CALENDAR ===================== */
+document.addEventListener('DOMContentLoaded', function () {
+  var days = document.querySelectorAll('.enr-day.is-enroll');
+  if (!days.length) return;
+
+  days.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document
+        .querySelectorAll('.enr-day.is-active, .enr-panel.is-active')
+        .forEach(function (el) { el.classList.remove('is-active'); });
+
+      btn.classList.add('is-active');
+
+      var panel = document.getElementById('enr-panel-' + btn.dataset.day);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+});
+
+/* ===================== PROGRAMS BY COLLEGE — ACCORDION ===================== */
+(function () {
+  var toggles = document.querySelectorAll('.college-toggle');
+  if (!toggles.length) return;
+
+  // Set to true if only one college should stay open at a time
+  var singleOpen = false;
+
+  function setOpen(block, open) {
+    var btn = block.querySelector('.college-toggle');
+    block.classList.toggle('is-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  toggles.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var block = btn.closest('.college-block');
+      var open  = !block.classList.contains('is-open');
+
+      if (singleOpen && open) {
+        document.querySelectorAll('.college-block.is-open').forEach(function (other) {
+          if (other !== block) setOpen(other, false);
+        });
+      }
+      setOpen(block, open);
+    });
+  });
+
+  // Open the right college when the page is reached by #cet, #coed, etc.
+  function openFromHash() {
+    var id = window.location.hash.slice(1);
+    if (!id) return;
+    var block = document.getElementById(id);
+    if (block && block.classList.contains('college-block')) {
+      setOpen(block, true);
+      block.scrollIntoView({ block: 'start' });
+    }
+  }
+
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+})();

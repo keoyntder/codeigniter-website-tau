@@ -15,13 +15,19 @@ class Admissions extends BaseController
 
         foreach ($colleges as &$c) {
             $rows = $programModel->forCollege($c['id']);
-            $c['programs'] = array_map(fn($p) => [$p['degree'], $p['title']], $rows);
-            $c['logo']     = $c['logo'];      // already a filename, matches view's expected key
-            $c['short']    = $c['short_name']; // view uses 'short', column is 'short_name'
+
+            // Each program: [degree, title, majors (JSON string or null)]
+            $c['programs'] = array_map(
+                fn($p) => [$p['degree'], $p['title'], $p['majors'] ?? null],
+                $rows
+            );
+
+            $c['logo']  = $c['logo'];
+            $c['short'] = $c['short_name'];
         }
         unset($c);
 
-        // Applicant types: keep static here unless you built the applicant_types table
+        // Applicant types
         $applicantTypes = [
             ['id' => 'freshmen',    'title' => 'Freshmen Students', 'text' => 'First-year students entering college for the first time.',
                 'icon' => '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'],
@@ -35,13 +41,34 @@ class Admissions extends BaseController
                 'icon' => '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'],
         ];
 
+        // Enrollment schedule
+        $schedRows = db_connect()->table('enrollment_schedules es')
+            ->select('es.sched_date, es.session, p.degree, p.title')
+            ->join('programs p', 'p.id = es.program_id')
+            ->where('es.term', '1st Sem AY 2026-2027')
+            ->orderBy('es.sched_date')->orderBy('es.id')
+            ->get()->getResultArray();
+
+        $enrollSchedule = [];
+        foreach ($schedRows as $r) {
+            $day = (int) date('j', strtotime($r['sched_date']));
+            $enrollSchedule[$day][$r['session']][] = trim($r['degree'] . ' ' . $r['title']);
+        }
+
+        $first      = $schedRows[0]['sched_date'] ?? date('Y-m-d');
+        $schedYear  = (int) date('Y', strtotime($first));
+        $schedMonth = (int) date('n', strtotime($first));
+
         return view('admissions', [
             'colleges'       => $colleges,
             'applicantTypes' => $applicantTypes,
+            'enrollSchedule' => $enrollSchedule,
+            'schedYear'      => $schedYear,
+            'schedMonth'     => $schedMonth,
         ]);
     }
 
-    // Individual college page — e.g. /departments/cet
+    // Individual college page, e.g. /departments/cet
     public function department(string $code)
     {
         $collegeModel = new CollegeModel();

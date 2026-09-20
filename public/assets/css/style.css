@@ -38,7 +38,7 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-/* Header, nav and drawer styles live in nav.css */
+/* Header, nav and drawer styles live in header.css */
 
 /* ===================== HERO ===================== */
 .hero {
@@ -108,7 +108,7 @@ a { color: inherit; text-decoration: none; }
     border: 0;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.92);
-    color: #0b6b4a;
+    color: var(--green-deep);
 
     font-family: inherit;
     font-size: 1rem;
@@ -133,17 +133,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-cat:hover {
-    background: #fff;
+    background: var(--white);
+    color: var(--green-dark);
     transform: translateX(-4px);
 }
 
 .hero-cat.is-active {
-    background: #0f9d6b;
-    color: #fff;
+    background: var(--green-deep);
+    color: var(--white);
+}
+
+.hero-cat.is-active:hover {
+    background: var(--green-dark);
+    color: var(--white);
 }
 
 .hero-cat:focus-visible {
-    outline: 3px solid #fff;
+    outline: 3px solid var(--white);
     outline-offset: 2px;
 }
 
@@ -178,7 +184,8 @@ a { color: inherit; text-decoration: none; }
     padding: 6px 14px;
     margin-bottom: 16px;
     border-radius: 4px;
-    background: #0f9d6b;
+    background: var(--green-deep);
+    color: var(--white);
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -205,14 +212,16 @@ a { color: inherit; text-decoration: none; }
     gap: 8px;
     padding: 12px 22px;
     border-radius: 6px;
-    background: #fff;
-    color: #0b6b4a;
+    background: var(--white);
+    color: var(--green-deep);
     font-weight: 700;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .hero-link:hover {
+    background: var(--green-deep);
+    color: var(--white);
     transform: translateY(-2px);
 }
 
