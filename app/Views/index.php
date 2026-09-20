@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
+
+
 </head>
 <body>
 
@@ -34,45 +36,54 @@
         playsinline
         poster="<?= base_url('assets/Images/hero-bg.jpg') ?>"
     >
-        <source
-            src="<?= base_url('assets/Images/hero.mp4') ?>"
-            type="video/mp4"
-        >
+        <source src="<?= base_url('assets/Images/hero.mp4') ?>" type="video/mp4">
     </video>
 
     <div class="hero-overlay"></div>
 
-    <!-- Left: rank content -->
     <div class="hero-content">
-        <?php foreach ($heroRanks as $i => $r): ?>
-            <div class="hero-slide <?= $i === 0 ? 'is-active' : '' ?>"
-                 id="panel-<?= $r['id'] ?>" role="tabpanel">
-                <span class="hero-badge"><?= $r['badge'] ?></span>
-                <h1 class="hero-title"><?= $r['title'] ?></h1>
-                <p class="hero-text"><?= $r['text'] ?></p>
-                <a href="<?= $r['url'] ?>" class="hero-link" target="_blank" rel="noopener">
-                    <span>↗</span> visit
-                </a>
-            </div>
-        <?php endforeach; ?>
-    </div>
 
-    <!-- Right: rank buttons -->
-    <div class="hero-categories" role="tablist" aria-label="TAU rankings">
-        <?php foreach ($heroRanks as $i => $r): ?>
-            <button type="button"
-                    class="hero-cat <?= $i === 0 ? 'is-active' : '' ?>"
-                    role="tab"
-                    aria-controls="panel-<?= $r['id'] ?>"
-                    aria-selected="<?= $i === 0 ? 'true' : 'false' ?>">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><?= $r['icon'] ?></svg>
-                <span><?= $r['label'] ?></span>
-            </button>
-        <?php endforeach; ?>
+        <?php if (!empty($heroRanks)): ?>
+
+            <?php foreach ($heroRanks as $index => $rank): ?>
+
+                <article class="hero-slide <?= $index === 0 ? 'is-active' : '' ?>">
+
+                    <?php if (!empty($rank['badge'])): ?>
+                        <div class="hero-badge">
+                            <?= esc($rank['badge']) ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <h1 class="hero-title">
+                        <?= esc($rank['title']) ?>
+                    </h1>
+
+                    <?php if (!empty($rank['text'])): ?>
+                        <p class="hero-text">
+                            <?= esc($rank['text']) ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php if (!empty($rank['url'])): ?>
+                        <a
+                            href="<?= esc($rank['url']) ?>"
+                            class="hero-link"
+                        >
+                            Learn More
+                            <span>→</span>
+                        </a>
+                    <?php endif; ?>
+
+                </article>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
     </div>
 
 </section>
-
 <main>
 
 
