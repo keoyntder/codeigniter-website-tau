@@ -44,6 +44,8 @@ $firstDay    = array_key_first($enrollSchedule);
 <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/admissions.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
+
 </head>
 <body>
 
@@ -374,13 +376,13 @@ $firstDay    = array_key_first($enrollSchedule);
     <!-- venue + slip -->
     <div class="cat-grid cat-grid--2">
       <article class="cat-card">
-        <h3 class="cat-card-title"><span class="cat-ico" aria-hidden="true">📍</span> Testing venue</h3>
+        <h3 class="cat-card-title">Testing venue</h3>
         <p>The testing venue is at the <strong>TAU Amphitheater</strong>, located within the TAU Student and Alumni Center.</p>
         <p class="adm-modal-note">Applicants are expected to arrive at the venue at least 30 minutes before their scheduled test.</p>
       </article>
 
       <article class="cat-card">
-        <h3 class="cat-card-title"><span class="cat-ico" aria-hidden="true">🎫</span> Your schedule is on your Admission Test Slip</h3>
+        <h3 class="cat-card-title">Your schedule is on your Admission Test Slip</h3>
         <p>Check the following details on your College Admission Test Slip:</p>
         <ul class="cat-chips">
           <li>Application no.</li>
@@ -396,7 +398,7 @@ $firstDay    = array_key_first($enrollSchedule);
 
     <!-- reminders -->
     <article class="cat-card cat-card--wide">
-      <h3 class="cat-card-title"><span class="cat-ico" aria-hidden="true">⚠️</span> Important reminders</h3>
+      <h3 class="cat-card-title">Important reminders</h3>
       <ul class="adm-modal-list">
         <li>
           Applicants for the following programs are scheduled for examination from 8:00 a.m. to 5:00 p.m.
@@ -417,21 +419,21 @@ $firstDay    = array_key_first($enrollSchedule);
     <!-- bring + dress code -->
     <div class="cat-grid cat-grid--2">
       <article class="cat-card">
-        <h3 class="cat-card-title"><span class="cat-ico" aria-hidden="true">🎒</span> Kindly bring the following</h3>
+        <h3 class="cat-card-title">Kindly bring the following</h3>
         <ul class="cat-bring">
-          <li><span aria-hidden="true">✏️</span> Pencil</li>
-          <li><span aria-hidden="true">🧽</span> Eraser</li>
-          <li><span aria-hidden="true">📐</span> Sharpener</li>
-          <li><span aria-hidden="true">🍪</span> Snacks</li>
-          <li><span aria-hidden="true">💧</span> Bottled water</li>
-          <li><span aria-hidden="true">🪪</span> Valid ID</li>
-          <li><span aria-hidden="true">🎫</span> Admission Test Slip (printed on A4 bond paper)</li>
-          <li><span aria-hidden="true">📝</span> Printed, filled-out Application Form with 2x2 picture (A4 bond paper)</li>
+          <li><span aria-hidden="true"></span> Pencil</li>
+          <li><span aria-hidden="true"></span> Eraser</li>
+          <li><span aria-hidden="true"></span> Sharpener</li>
+          <li><span aria-hidden="true"></span> Snacks</li>
+          <li><span aria-hidden="true"></span> Bottled water</li>
+          <li><span aria-hidden="true"></span> Valid ID</li>
+          <li><span aria-hidden="true"></span> Admission Test Slip (printed on A4 bond paper)</li>
+          <li><span aria-hidden="true"></span> Printed, filled-out Application Form with 2x2 picture (A4 bond paper)</li>
         </ul>
       </article>
 
       <article class="cat-card">
-        <h3 class="cat-card-title"><span class="cat-ico" aria-hidden="true">👕</span> Observe proper dress code</h3>
+        <h3 class="cat-card-title">Observe proper dress code</h3>
         <ul class="adm-modal-list">
           <li>Tops must cover shoulder to shoulder, and must be long enough to clearly overlap the belt line.</li>
           <li>Bottoms must be entirely covered, even when seated.</li>
@@ -612,106 +614,7 @@ $firstDay    = array_key_first($enrollSchedule);
 </main>
 
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-
-    <div class="footer-brand-col">
-      <div class="footer-brand-row">
-        <div class="footer-logo-container">
-          <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="TAU Logo" class="footer-logo">
-        </div>
-        <div class="footer-brand-text">
-          <h3 class="footer-univ-name">Tarlac Agricultural University</h3>
-          <p class="footer-univ-loc">Malacama, Camiling</p>
-        </div>
-      </div>
-
-      <p class="footer-contact">
-        +63 (045) 123 4567 &nbsp;|&nbsp; +63 912 345 6789
-      </p>
-
-      <div class="footer-badges">
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cetlogo.png') ?>" alt="College of Engineering and Technology" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cas2.png') ?>" alt="College of Arts and Sciences" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/caf.png') ?>" alt="College of Agriculture and Forestry" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cbm2.png') ?>" alt="College of Business Management" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cvm.png') ?>" alt="College of Veterinary Medicine" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/coed.png') ?>" alt="College of Education" class="footer-sub-logo">
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-nav-grid">
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Colleges</h4>
-        <ul>
-          <li><a href="<?= base_url('departments/cet') ?>">College of Engineering and Technology</a></li>
-          <li><a href="<?= base_url('departments/cas') ?>">College of Arts and Sciences</a></li>
-          <li><a href="<?= base_url('departments/caf') ?>">College of Agriculture and Forestry</a></li>
-          <li><a href="<?= base_url('departments/cbm') ?>">College of Business and Management</a></li>
-          <li><a href="<?= base_url('departments/cvm') ?>">College of Veterinary Medicine</a></li>
-          <li><a href="<?= base_url('departments/coed') ?>">College of Education</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Contact Us</h4>
-        <ul>
-          <li><a href="#">Admissions and Registration</a></li>
-          <li><a href="#">Registrar</a></li>
-          <li><a href="#">Help Desk</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">About TAU</h4>
-        <ul>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Administration</a></li>
-          <li><a href="#">Board of Regents</a></li>
-          <li><a href="#">Quality Policy</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Offices</h4>
-        <ul>
-          <li><a href="#">HR</a></li>
-          <li><a href="#">Finance</a></li>
-          <li><a href="#">Research</a></li>
-          <li><a href="#">Extension</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Mission</h4>
-        <ul>
-          <li><a href="#">Core Values</a></li>
-          <li><a href="#">Goals</a></li>
-          <li><a href="#">Strategic Plan</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Vision</h4>
-        <ul>
-          <li><a href="#">2028 Vision</a></li>
-          <li><a href="#">Development</a></li>
-          <li><a href="#">Sustainability</a></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</footer>
+<?= $this->include('partials/footer') ?>
 
 <script src="<?= base_url('assets/script.js') ?>"></script>
 </body>

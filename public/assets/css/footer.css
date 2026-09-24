@@ -1,0 +1,310 @@
+/* ===================== FOOTER ===================== */
+.site-footer {
+  background: linear-gradient(
+    180deg,
+    var(--cream) 0%,
+    rgba(27, 94, 58, 0.08) 20%,
+    rgba(27, 94, 58, 0.18) 25%,
+    rgba(27, 94, 58, 0.32) 35%,
+    rgba(27, 94, 58, 0.48) 41%,
+    rgba(27, 94, 58, 0.65) 50%,
+    rgba(27, 94, 58, 0.82) 60%,
+    var(--green-deep) 78%,
+    var(--green-dark) 100%
+  );
+  color: var(--white);
+  padding: 48px 24px 40px;
+  font-family: var(--font-body);
+}
+
+.footer-inner {
+  max-width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.footer-brand-col {
+  flex: 0 0 300px;
+  min-width: 240px;
+}
+
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.footer-logo-placeholder {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.footer-univ-name {
+  font-family: var(--font-display);
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.footer-univ-loc {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.footer-contact {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.social-placeholder {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.footer-nav-grid {
+  flex: 1;
+  min-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 32px;
+}
+
+/* ===================== FOOTER LOGOS ===================== */
+.footer-logo-container {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.footer-sub-logo-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.footer-sub-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.footer-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.footer-nav-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgba(212, 160, 23, 0.3);
+}
+
+.footer-nav-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-nav-col a {
+  color: rgba(14, 13, 13, 0.75);
+  font-size: 13px;
+  transition: none;
+}
+
+@media (max-width: 900px) {
+  .footer-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .footer-brand-col {
+    flex: none;
+    width: 100%;
+  }
+  .footer-nav-grid {
+    grid-template-columns: 1fr 1fr;
+    min-width: 0;
+    gap: 20px;
+  }
+}
+
+
+/* ===================== RECOGNITIONS (logos in ONE row, no background) ===================== */
+.recognition {
+  padding: 64px 24px 24px;
+}
+
+/* works with either markup: .recognition-inner > .recognition-item
+   or .recognition-inner > .recognition-grid > .recognition-card */
+.recognition-inner,
+.recognition-grid {
+  max-width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: nowrap;                 /* ONE LINE ONLY */
+  align-items: center;
+  justify-content: center;
+  gap: 0 clamp(16px, 2.5vw, 40px);   /* <-- GAP BETWEEN LOGOS: change the numbers here */
+}
+
+.recognition-item,
+.recognition-card {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto;                    /* lets each logo shrink a little if needed */
+  min-width: 0;
+  transition: transform 0.2s ease;
+}
+
+.recognition-item:hover,
+.recognition-card:hover {
+  transform: scale(1.05);
+}
+
+.recognition-item:focus-visible,
+.recognition-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+}
+
+.recognition-logo {
+  display: block;
+  height: clamp(24px, 2.6vw, 45px);  /* <-- LOGO SIZE: last number = max height on big screens */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* phones: one line would be too tiny, so allow wrapping here */
+@media (max-width: 600px) {
+  .recognition { padding: 48px 16px 16px; }
+  .recognition-inner,
+  .recognition-grid {
+    flex-wrap: wrap;
+    gap: 20px 24px;
+  }
+  .recognition-logo { height: 40px; }
+}
+
+
+/* ===================== FOOTER: 4 columns + OFFICE HOURS ===================== */
+/* these come after your old footer rules, so they override the 3-column grid */
+.footer-nav-grid {
+  grid-template-columns: 1fr 1fr 1.5fr 1fr;
+  align-items: start;
+}
+
+/* Office hours: same look as the other columns (heading, text colour, spacing).
+   The list itself already gets list-style / flex / gap from ".footer-nav-col ul". */
+.hours-list {
+  gap: 4px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(14, 13, 13, 0.75);
+}
+
+.hours-time {
+  white-space: nowrap;
+}
+
+.hours-time.is-closed {
+  color: rgba(14, 13, 13, 0.6);
+}
+
+.hours-row.is-today {
+  margin: 0 -10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--gold);
+  color: var(--green-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hours-row.is-today .hours-time,
+.hours-row.is-today .hours-time.is-closed {
+  color: var(--green-dark);
+}
+
+.site-footer {
+  background: linear-gradient(
+    180deg,
+    var(--cream) 0%,
+    rgba(27, 94, 58, 0.08) 25%,
+    rgba(27, 94, 58, 0.25) 45%,
+    rgba(27, 94, 58, 0.50) 68%,
+    rgba(27, 94, 58, 0.80) 88%,
+    var(--green-deep) 100%
+  );
+}
+
+
+@media (max-width: 900px) {
+  .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .footer-nav-grid { grid-template-columns: 1fr 1fr; }
+  .footer-nav-col--hours { grid-column: 1 / -1; }
+}

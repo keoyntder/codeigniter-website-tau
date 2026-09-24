@@ -1,0 +1,202 @@
+/* ===================== CAREERS PAGE ===================== */
+
+/*
+  Adjust this to match your actual header height.
+  This is what fixes the overlap in your screenshot — without it,
+  .careers-page content starts at the very top of the viewport and
+  the fixed/sticky header sits on top of it.
+*/
+.careers-page {
+  padding-top: 96px; /* <-- tweak to match header.css height */
+}
+
+/* ===================== JOB FEED SECTION ===================== */
+
+.jp-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.jp-feed-head {
+  margin-bottom: 32px;
+}
+
+.jp-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c9a227; /* gold */
+  margin-bottom: 6px;
+}
+
+.jp-list-title {
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 700;
+  font-size: clamp(26px, 3.5vw, 36px);
+  color: #14301f; /* deep green */
+  margin: 0;
+}
+
+/* ===================== TWO-COLUMN LAYOUT ===================== */
+
+.jp-feed-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+.jp-feed-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ===================== FEATURED CARD ===================== */
+
+.jp-featured {
+  display: flex;
+  flex-direction: column;
+}
+
+.jp-featured-img {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e5e5; /* placeholder fallback */
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.jp-featured-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.jp-featured-tag {
+  display: inline-block;
+  background: #c9a227;
+  color: #14301f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.jp-featured-title {
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 700;
+  font-size: 22px;
+  color: #14301f;
+  margin: 0 0 12px;
+}
+
+.jp-featured-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0 0 18px;
+}
+
+.jp-featured-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #14301f;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jp-featured-link span {
+  transition: transform 0.15s ease;
+}
+
+.jp-featured-link:hover span {
+  transform: translateX(3px);
+}
+
+/* ===================== SIDEBAR ===================== */
+
+.jp-sidebar-heading {
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 600;
+  font-size: 15px;
+  color: #14301f;
+  margin: 0 0 16px;
+}
+
+.jp-sidebar-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.jp-sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 18px 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.jp-sidebar-item:first-child {
+  padding-top: 0;
+}
+
+.jp-sidebar-text h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14301f;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.jp-sidebar-text span {
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.jp-sidebar-img {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e5e5;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 900px) {
+  .jp-feed-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .jp-feed-divider {
+    display: none;
+  }
+
+  .jp-sidebar {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+}

@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 
 
 </head>
@@ -70,7 +71,6 @@
                             href="<?= esc($rank['url']) ?>"
                             class="hero-link"
                         >
-                            Learn More
                             <span>→</span>
                         </a>
                     <?php endif; ?>
@@ -96,7 +96,6 @@
         <h2 class="bulletin-heading">University Bulletin</h2>
       </div>
       <div class="bulletin-header-right">
-        <p class="bulletin-subtext">Stay updated with the latest news, memos, and announcements from Tarlac Agricultural University.</p>
         <a href="#" class="bulletin-view-all">
           View All Announcements
           <span class="bulletin-view-all-circle">→</span>
@@ -206,14 +205,14 @@
 
             <div class="events-row">
               <div class="events-date">
-                <span class="events-date-month">JUN</span>
-                <span class="events-date-day">23</span>
+                <span class="events-date-month">AUG SEPT</span>
+                <span class="events-date-day">29 03</span>
               </div>
 
               <div class="events-img" style="background-image: url('<?= base_url('assets/Images/taulogo.png') ?>');"></div>
 
               <div class="events-details">
-                <h3 class="events-title">Foundation Day Celebration</h3>
+                <h3 class="events-title">INTRAMURALS</h3>
                 <p class="events-meta">Malacama, Camiling, Tarlac<br>7:00 am — 5:00 pm</p>
                 <p class="events-desc">Replace this with a short description of the event — activities, guests, or highlights attendees can look forward to.</p>
                 <a href="#" class="events-link">View Event Details <span>→</span></a>
@@ -238,14 +237,14 @@
 
             <div class="events-row">
               <div class="events-date">
-                <span class="events-date-month">AUG</span>
-                <span class="events-date-day">30</span>
+                <span class="events-date-month">SEPT</span>
+                <span class="events-date-day">18</span>
               </div>
 
               <div class="events-img" style="background-image: url('<?= base_url('assets/Images/taulogo.png') ?>');"></div>
 
               <div class="events-details">
-                <h3 class="events-title">Agri-Fair and Trade Expo</h3>
+                <h3 class="events-title">ASEAN</h3>
                 <p class="events-meta">TAU Grounds<br>9:00 am — 6:00 pm</p>
                 <p class="events-desc">Replace this with a short description of the event — activities, guests, or highlights attendees can look forward to.</p>
                 <a href="#" class="events-link">View Event Details <span>→</span></a>
@@ -313,103 +312,6 @@
     </div>
   </section>
 
-  <!-- ===================== CAREER & JOB PLACEMENT ===================== -->
-<section class="jp-section" id="job-placement">
-
-  <!-- Split intro block (Option 2) -->
-  <div class="jp-hero">
-    <div class="jp-media">
-      <img src="<?= base_url('assets/Images/job-placement-photo.jpg') ?>" alt="TAU Career and Job Placement Office">
-    </div>
-    <div class="jp-content">
-      <span class="jp-eyebrow">Career &amp; Job Placement Office</span>
-      <h2 class="jp-title">Helping Graduates Launch Their Careers</h2>
-      <p class="jp-text">The Career and Job Placement Office connects graduating students and alumni with partner employers through job postings, career counseling, and labor market updates.</p>
-
-      <div class="jp-chips">
-        <div class="jp-chip"><b>Job Postings</b>Shared regularly</div>
-        <div class="jp-chip"><b>Alumni &amp; Grads</b>Open to all</div>
-        <div class="jp-chip"><b>DOLE Region III</b>Labor market info</div>
-      </div>
-
-      <a class="jp-btn" href="#job-placement-list">View Job Openings</a>
-    </div>
-  </div>
-
-  <!-- Job / career listings, accordion style -->
-  <div class="jp-list-wrap" id="job-placement-list">
-    <div class="jp-list-head">
-      <span class="jp-eyebrow">Latest Updates</span>
-      <h2 class="jp-list-title">Job &amp; Career Opportunities</h2>
-    </div>
-
-    <div class="jp-accordion">
-
-      <!-- Item 1: Field Agronomist opening -->
-      <div class="jp-item is-open">
-        <button type="button" class="jp-item-q" data-jp-toggle>
-          <span>Job Opportunity | Field Agronomist</span>
-          <span class="jp-item-icon" aria-hidden="true">−</span>
-        </button>
-        <div class="jp-item-a">
-          <p>The TAU Student Placement Office is pleased to share a job opportunity for interested TAU graduates and graduating students.</p>
-
-          <dl class="jp-facts">
-            <div><dt>Position</dt><dd>Field Agronomist</dd></div>
-            <div><dt>Place of Assignment</dt><dd>Tarlac, Pampanga, and Nueva Vizcaya</dd></div>
-          </dl>
-
-          <p class="jp-label">Qualifications</p>
-          <ul class="jp-bullets">
-            <li>Minimum of a Bachelor's Degree in Agriculture</li>
-            <li>Entry-level or experienced Sales Technician and/or Field Trialist in the agrochemical industry or related field</li>
-            <li>Fresh graduates are encouraged to apply!</li>
-          </ul>
-
-          <p>The Field Agronomist will help promote agricultural products to end-users, implement marketing programs, conduct and monitor product demonstration trials, provide technical training and after-sales support, and assist in developing new product applications.</p>
-
-          <p class="jp-label">How to Apply</p>
-          <p>Interested applicants may send their CV/resumé to:</p>
-          <ul class="jp-bullets jp-bullets--links">
-            <li><a href="mailto:hr@essi.com.ph">hr@essi.com.ph</a></li>
-            <li><a href="mailto:mellanie.mendoza@essi.com.ph">mellanie.mendoza@essi.com.ph</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Item 2: DOLE Region III labor market update -->
-      <div class="jp-item">
-        <button type="button" class="jp-item-q" data-jp-toggle>
-          <span>DOLE Region III &mdash; Labor Market Update</span>
-          <span class="jp-item-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="jp-item-a">
-          <p>Looking for internship, on-the-job training, or employment opportunities after graduation? Stay updated with the latest labor market information from the Department of Labor and Employment (DOLE) Region III.</p>
-
-          <p class="jp-label">Top In-Demand Jobs This Week</p>
-          <ul class="jp-bullets jp-bullets--grid">
-            <li>Call Center Agent</li>
-            <li>Production Worker</li>
-            <li>Machine Operator</li>
-            <li>Technician (General)</li>
-            <li>Administrative/Office Clerk</li>
-            <li>Service Crew</li>
-            <li>Engineer (General)</li>
-            <li>Pipe Fitter</li>
-            <li>Mechanic (General)</li>
-            <li>&hellip;and more!</li>
-          </ul>
-
-          <p>Tarlac City is among the Top 10 locations with the highest number of job vacancies in Central Luzon, making it a great place to explore career opportunities.</p>
-
-          <p>Graduating students, alumni, and jobseekers are encouraged to regularly check available vacancies through <strong>PhilJobNet</strong> and visit your nearest <strong>Public Employment Service Office (PESO)</strong> for assistance.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
 
   <!-- ===================== VISION & MISSION ===================== -->
 <section class="mission-vision" id="mission-vision">
@@ -434,106 +336,9 @@
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="site-footer">
-  <div class="footer-inner">
+</main>
 
-    <div class="footer-brand-col">
-      <div class="footer-brand-row">
-        <div class="footer-logo-container">
-          <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="TAU Logo" class="footer-logo">
-        </div>
-        <div class="footer-brand-text">
-          <h3 class="footer-univ-name">Tarlac Agricultural University</h3>
-          <p class="footer-univ-loc">Malacama, Camiling</p>
-        </div>
-      </div>
-
-      <p class="footer-contact">
-        +63 (045) 123 4567 &nbsp;|&nbsp; +63 912 345 6789
-      </p>
-
-      <div class="footer-badges">
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cetlogo.png') ?>" alt="College of Engineering and Technology" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cas2.png') ?>" alt="College of Arts and Sciences" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/caf.png') ?>" alt="College of Agriculture and Forestry" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cbm2.png') ?>" alt="College of Business Management" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/cvm.png') ?>" alt="College of Veterinary Medicine" class="footer-sub-logo">
-        </div>
-        <div class="footer-sub-logo-container">
-          <img src="<?= base_url('assets/Images/coed.png') ?>" alt="College of Education" class="footer-sub-logo">
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-nav-grid">
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Colleges</h4>
-        <ul>
-          <li><a href="<?= base_url('departments/cet') ?>">College of Engineering and Technology</a></li>
-          <li><a href="<?= base_url('departments/cas') ?>">College of Arts and Sciences</a></li>
-          <li><a href="<?= base_url('departments/caf') ?>">College of Agriculture and Forestry</a></li>
-          <li><a href="<?= base_url('departments/cbm') ?>">College of Business and Management</a></li>
-          <li><a href="<?= base_url('departments/cvm') ?>">College of Veterinary Medicine</a></li>
-          <li><a href="<?= base_url('departments/coed') ?>">College of Education</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Contact Us</h4>
-        <ul>
-          <li><a href="#">Admissions</a></li>
-          <li><a href="#">Registrar</a></li>
-          <li><a href="#">Help Desk</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">About TAU</h4>
-        <ul>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Administration</a></li>
-          <li><a href="#">Board of Regents</a></li>
-          <li><a href="#">Quality Policy</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Offices</h4>
-        <ul>
-          <li><a href="#">HR</a></li>
-          <li><a href="#">Finance</a></li>
-          <li><a href="#">Research</a></li>
-          <li><a href="#">Extension</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Mission</h4>
-        <ul>
-          <li><a href="#">Core Values</a></li>
-          <li><a href="#">Goals</a></li>
-          <li><a href="#">Strategic Plan</a></li>
-        </ul>
-      </div>
-      <div class="footer-nav-col">
-        <h4 class="footer-nav-heading">Vision</h4>
-        <ul>
-          <li><a href="#">2028 Vision</a></li>
-          <li><a href="#">Development</a></li>
-          <li><a href="#">Sustainability</a></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</footer>
+<?= $this->include('partials/footer') ?>
 
 <script src="<?= base_url('assets/script.js') ?>"></script>
 </body>

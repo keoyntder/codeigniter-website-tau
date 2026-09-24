@@ -505,3 +505,13 @@ document.addEventListener('DOMContentLoaded', function () {
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
 })();
+
+(function () {
+  const rows = document.querySelectorAll('.hours-row');
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+  rows.forEach(row => {
+    if (row.querySelector('.hours-day').textContent.trim() === today) {
+      row.classList.add('is-today');
+    }
+  });
+})();
