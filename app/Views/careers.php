@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/careers.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
+<link rel="icon" type="image/png" href="<?= base_url('assets/Images/taulogo.png') ?>">
 
 </head>
 <body>

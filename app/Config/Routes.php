@@ -25,7 +25,7 @@ $routes->get('about', 'Home::about');
 $routes->get('admissions', 'Admissions::index');
 $routes->get('departments/(:segment)', 'Admissions::department/$1');
 $routes->get('careers', 'Careers::index');
-$routes->get('admin/dashboard', 'Admin::index');
+$routes->get('admin/dashboard', 'Admin\Admin::index');
 $routes->get('history', 'History::index');
 
 // Route group for controllers inside the app/Controllers/Admin/ subfolder
