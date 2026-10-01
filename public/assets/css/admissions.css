@@ -5,63 +5,49 @@
 ========================================================= */
 
 :root {
-  --gold-text: #9A7412;                 /* darker gold that stays readable on cream and white */
-  --rule: rgba(43, 43, 43, 0.14);
+  --gold-text: #9A7412;
 
-  /* Plain (non-green) palette used only by the programs/college section */
-  --plain-bg: #FFFFFF;
+  /* Plain (non-green) palette used by the programs section */
   --plain-panel: #F6F5F1;
   --plain-border: #E3E1DA;
   --plain-text: var(--charcoal);
   --plain-muted: #6B6B6B;
 }
 
-/* Smooth scrolling for the "Jump to a college" links */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
+/* Panels marked hidden must stay hidden */
+.admissions-panel[hidden] { display: none; }
 
-/* =========================================================
-   SHARED TYPE
-========================================================= */
-
-.adm-heading {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(28px, 3.4vw, 42px);
-  line-height: 1.15;
-  color: var(--charcoal);
-  margin-bottom: 14px;
-}
-
-.adm-lead {
-  max-width: 56ch;
-  font-size: 16px;
-  line-height: 1.65;
-  color: #555;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 
 /* =========================================================
-   BANNER  (photo hero, dark overlay, angled cut — like the
-   reference design)
+   BANNER
 ========================================================= */
 
 .admissions-banner {
   position: relative;
   isolation: isolate;
-
   background-image: var(--admissions-bg);
   background-size: cover;
   background-position: center;
-
   padding: clamp(190px, 26vw, 260px) 24px 110px;
   overflow: hidden;
 }
 
-/* Dark overlay over the photo, using the site's green tokens
-   instead of navy so it matches the rest of TAU's palette */
 .admissions-banner::before {
   content: "";
   position: absolute;
@@ -74,7 +60,6 @@
     rgba(6, 32, 22, 0.58) 100%
   );
 }
-
 
 .admissions-hero-inner {
   position: relative;
@@ -96,15 +81,9 @@
   margin-bottom: 0;
 }
 
-.admissions-hero-title + .admissions-hero-and {
-  margin-top: 2px;
-}
+.admissions-hero-title + .admissions-hero-and { margin-top: 2px; }
+.admissions-hero-title:last-of-type { margin-bottom: 18px; }
 
-.admissions-hero-title:last-of-type {
-  margin-bottom: 18px;
-}
-
-/* Small connector word sitting between the two big hero lines */
 .admissions-hero-and {
   display: block;
   font-family: var(--font-display);
@@ -137,34 +116,34 @@
 ========================================================= */
 
 .quick-jump {
-  background: var(--paper, #F8F7F2);
   border-bottom: 1px solid var(--plain-border);
-  padding: 30px 24px;
+  padding: 5px clamp(16px, 4vw, 64px);
 }
 
 .quick-jump-inner {
-  max-width: 1250px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 14px 16px;
+  gap: 8px 10px;
 }
 
 .quick-jump-btn {
   display: inline-flex;
   align-items: center;
-  padding: 15px 30px;
+  padding: 10px 16px;
   border-radius: 999px;
   border: 1.5px solid var(--plain-border);
-  background: var(--plain-bg);
+  background: #fff;
   color: var(--plain-text);
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 15.5px;
+  font-size: 13px;
   letter-spacing: 0.2px;
+  white-space: nowrap;
   text-decoration: none;
-  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .quick-jump-btn:hover {
@@ -178,21 +157,50 @@
   outline-offset: 3px;
 }
 
+.quick-jump-btn.active,
+.quick-jump-btn[aria-current="page"] {
+  background: #1a5c3a;
+  border-color: #1a5c3a;
+  color: #fff;
+}
+
+.quick-jump-btn.active:hover,
+.quick-jump-btn[aria-current="page"]:hover {
+  border-color: #1a5c3a;
+  color: #fff;
+  transform: none;
+}
+
+.quick-jump-select { display: none; }
+
 @media (max-width: 640px) {
-  .quick-jump {
-    padding: 22px 16px;
+  .quick-jump { padding: 22px 16px; }
+
+  .quick-jump-inner { display: none; }
+
+  .quick-jump-select {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--plain-border);
+    background-color: #fff;
+    color: var(--plain-text);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
   }
-  .quick-jump-inner {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
-  }
-  .quick-jump-btn {
-    flex: none;
-    font-size: 13.5px;
-    padding: 12px 22px;
+
+  .quick-jump-select:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
   }
 }
 
@@ -202,432 +210,222 @@
 
 
 /* =========================================================
-   SECTION 1: HOW YOU'RE APPLYING (applicant types)
+   APPLICATION REQUIREMENTS
 ========================================================= */
 
 .apply-types {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 56px clamp(16px, 4vw, 64px) 0;
+  padding: 35px clamp(16px, 4vw, 64px);
   scroll-margin-top: 100px;
+  text-align: justify;
 }
 
-.apply-types-head {
-  margin-bottom: 24px;
-}
-
-.apply-types-card {
+.apply-notice {
   background: var(--plain-panel);
-  padding: 24px;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
 }
 
-.applicant-type-list {
-  list-style: none;
+.apply-notice p {
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.applicant-type {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  padding: 12px 14px;
-  background: var(--plain-bg);
-  border: 1px solid var(--plain-border);
-  border-left: 3px solid transparent;
-  border-radius: 10px;
-  font: inherit;
-  font-size: 14.5px;
-  font-weight: 600;
+  line-height: 1.5;
   color: var(--plain-text);
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.applicant-type span {
-  font-size: 1.2em;
-  line-height: 1;
-  color: var(--plain-muted);
-  transition: transform 0.2s ease;
-}
-
-.applicant-type:hover {
-  border-left-color: var(--gold);
-  color: var(--gold-text);
-  transform: translateX(2px);
-}
-
-.applicant-type:hover span {
-  transform: translateX(3px);
-  color: var(--gold-text);
-}
-
-.applicant-type:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.apply-types-footer {
+.apply-cards {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.apply-card {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--plain-border);
+  border-radius: 0;
+  padding: 1.75rem 0;
+}
+.apply-card:last-child { border-bottom: 0; }
+
+.apply-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.15rem;
+  color: #1a5c3a;
+  margin: 0 0 14px;
+}
+
+.apply-panel-subhead {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  color: #1a5c3a;
+  margin: 16px 0 8px;
+}
+.apply-panel-subhead:first-child { margin-top: 0; }
+
+.apply-section-actions {
+  display: flex;
   gap: 20px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--plain-border);
+  max-width: 640px;
+  margin: 24px auto 0;
 }
-
-.apply-types-passed {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.applicant-col-subnote {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--plain-muted);
-  margin: 0 0 8px;
-}
-
-.apply-types-passed .applicant-col-subnote {
-  margin: 0;
-}
-
-.applicant-type--alt {
-  background: transparent;
-  border-style: dashed;
-}
-
-.applicant-type--alt span {
-  color: var(--gold-text);
-}
-
-.applicant-type--alt:hover {
-  border-left-style: solid;
-}
-
-.apply-types-passed .applicant-type--alt {
-  width: auto;
-  min-width: 220px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .applicant-type,
-  .applicant-type span { transition: none; }
-}
-
-@media (max-width: 900px) {
-  .applicant-type-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+.apply-section-actions .adm-btn { flex: 1; text-align: center; }
+.apply-section-actions .adm-btn--apply { padding: 11px 24px; font-size: 12px; }
 
 @media (max-width: 560px) {
   .apply-types { padding-top: 40px; }
-  .apply-types-card { padding: 18px 16px; }
-  .applicant-type-list { grid-template-columns: 1fr; }
-  .apply-types-footer { flex-direction: column; align-items: stretch; }
-  .apply-types-footer .adm-btn--apply { width: 100%; }
-  .apply-types-passed { flex-direction: column; align-items: stretch; }
-  .apply-types-passed .applicant-type--alt { width: 100%; }
+  .apply-card { padding: 20px 0; }
+  .apply-section-actions { flex-direction: column; margin-left: 0; margin-right: 0; max-width: none; }
 }
 
 
 /* =========================================================
-   SECTION 2: DEGREE PROGRAMS BY COLLEGE
+   PROGRAMS OFFERED (academic catalog)
+   Replaces the whole "PROGRAMS OFFERED (filterable table)" block.
 ========================================================= */
 
 .programs {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 48px clamp(16px, 4vw, 64px) 40px;
+  padding: 35px clamp(16px, 4vw, 64px);
   scroll-margin-top: 100px;
 }
 
-.programs-head {
-  margin-bottom: 24px;
-}
-
-/* ---------- Colleges (accordion, plain palette) ---------- */
-
-.college-col {
-  min-width: 0;
-}
-
-/* One panel enclosing every college */
-.college-list-panel {
-  background: var(--plain-panel);
-  border-radius: 16px;
-  padding: 2px 24px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(24px, 3vw, 48px);
-  align-items: start;
-}
-
-/* Each half is its own stack, so opening a college never moves the other column */
-.college-half {
-  min-width: 0;
-}
-
-.college-block {
-  scroll-margin-top: 100px;
-  border-bottom: 1px solid var(--plain-border);
-}
-
-.college-block:last-child {
-  border-bottom: 0;
-}
-
-/* Plain row: the toggle button fills it, the Facebook link sits at the end */
-.college-info {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  padding: 0;
-}
-
-.college-toggle {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  min-width: 0;
-  padding: 10px 2px;
-  background: none;
-  border: 0;
-  font: inherit;
-  color: var(--plain-text);
-  text-align: left;
-  cursor: default;
-  pointer-events: none;      /* header only, colleges no longer collapse */
-}
-
-.college-toggle:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: -3px;
-  border-radius: 10px;
-}
-
-.college-logo {
-  display: block;
-  flex: 0 0 auto;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--white);
-  border: 3px solid var(--plain-border);
-}
-
-.college-logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.college-name {
-  flex: 1;
-  min-width: 0;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(16px, 1.45vw, 20px);
-  line-height: 1.2;
-  color: var(--plain-text);
+.catalog {
+  container-type: inline-size;
+  max-width: 100%;
   margin: 0;
+  padding: 10px 0 12px;
+  background: #fff;
 }
 
-.college-count {
-  flex: 0 0 auto;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--plain-muted);
-  white-space: nowrap;
+/* ---------- Heading ---------- */
+.catalog-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1a5c3a;
 }
 
-.college-link {
-  display: inline-block;
-  padding-bottom: 2px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--plain-text);
-  border-bottom: 1.5px solid var(--gold);
-  transition: border-color 0.2s ease;
-}
-
-.college-link:hover {
-  border-color: var(--gold-text);
-}
-
-.college-link:focus-visible,
-.apply-link:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 4px;
-}
-
-.college-link--fb {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0;
-  padding: 0 2px 0 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gold-text);
-  border-bottom: 0;
-  white-space: nowrap;
-}
-
-.college-link--fb:hover {
+.catalog-title {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 2.6vw, 32px);
   color: var(--plain-text);
 }
 
-/* ---------- Expanding panel ---------- */
-
-/* Programs are always shown, so there is no expand/collapse animation */
-.college-panel-inner {
-  min-height: 0;
-}
-
-/* Keeps the first row from touching the college header */
-.college-block .program-list {
-  margin-top: 10px;
-  padding-bottom: 12px;
-}
-
-/* ---------- Program rows ---------- */
-
-.program-list {
-  list-style: none;
+/* ---------- College row ---------- */
+.catalog-college {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  column-gap: 28px;
-  margin-top: 4px;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 1.7fr);
+  gap: 16px clamp(24px, 4vw, 56px);
+  padding: 24px 0;
+  border-bottom: 1px solid var(--plain-border);
+  scroll-margin-top: 100px;
 }
+.catalog-college:last-child { border-bottom: 0; }
 
-.program-row {
-  display: block;
-  height: 100%;
-  padding: 11px 10px 11px 0;
-}
-
-/* Degree prefix and title share one line: "Bachelor of Science in Agriculture".
-   .program-text stays a block so the Majors button drops to its own line below. */
-.program-text {
-  display: block;
+.catalog-college-name {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 20px);
   line-height: 1.3;
+  color: #1a5c3a;
 }
 
-.program-level,
-.program-name {
-  display: inline;
-  font-family: var(--font-display);
-  font-size: 17px;
-  line-height: 1.3;
-}
-
-.program-level {
-  font-weight: 500;
-  color: var(--plain-muted);
-}
-
-.program-name {
-  font-weight: 600;
-  color: var(--plain-text);
-}
-
-/* "Majors" button — plain text style, no underline, opens the majors modal */
-.program-majors-btn {
-  appearance: none;
-  -webkit-appearance: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 3px;
+/* ---------- Program list ---------- */
+.catalog-programs {
+  list-style: none;
+  margin: 0;
   padding: 0;
-  background: none;
-  border: 0;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
+}
+
+.catalog-program {
+  display: flex;
+  gap: 16px;
+  padding: 6px 0;
+  font-family: inherit;
+  font-size: 16.5px;
+  line-height: 1.45;
   color: var(--plain-text);
-  text-decoration: none;
+}
+
+.catalog-program > .catalog-program-name,
+.catalog-program > .catalog-details {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Majors (italic label, expands the list) ---------- */
+.catalog-details > summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  list-style: none;
 }
+.catalog-details > summary::-webkit-details-marker { display: none; }
 
-.program-majors-btn span {
-  display: inline-block;
-  font-size: 1.2em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.program-majors-btn:hover {
-  color: var(--gold-text);
-  text-decoration: none;
-}
-
-.program-majors-btn:hover span {
-  transform: translateX(3px);
-}
-
-.program-majors-btn:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 4px;
+.catalog-details > summary:focus-visible {
+  outline: 3px solid var(--green-deep);
+  outline-offset: 3px;
   border-radius: 4px;
-  text-decoration: none;
 }
 
-/* ---------- Responsive ---------- */
-
-@media (max-width: 900px) {
-  .college-list-panel { grid-template-columns: minmax(0, 1fr); }
-  .college-half:not(:last-child) .college-block:last-child { border-bottom: 1px solid var(--plain-border); }
+.catalog-majors-toggle {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--plain-muted);
+  border-bottom: 1px dotted transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-@media (max-width: 800px) {
-  .college-list-panel { padding: 4px 16px; }
-  .college-toggle { padding: 9px 2px; gap: 11px; }
-  .college-logo { width: 36px; height: 36px; }
+.catalog-details > summary:hover .catalog-majors-toggle,
+.catalog-details[open] .catalog-majors-toggle {
+  color: #1a5c3a;
+  border-color: #1a5c3a;
 }
 
-@media (max-width: 640px) {
-  .college-list-panel { padding: 4px 14px; }
-  .college-info {
-    flex-wrap: wrap;
-    padding-bottom: 10px;
+.catalog-majors {
+  list-style: none;
+  margin: 8px 0 10px;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid var(--green-deep);
+  display: grid;
+  gap: 5px;
+}
+
+.catalog-majors li {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--plain-text);
+}
+
+/* ---------- Stack when the container is narrow (modal or phone) ---------- */
+@container (max-width: 700px) {
+  .catalog-college {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
-  .college-toggle {
-    flex: 1 1 100%;
-    padding: 10px 2px 4px;
-  }
-  .college-count {
-    font-size: 12.5px;
-  }
-  .college-link--fb {
-    flex: 1 1 100%;
-    padding: 0 0 10px;
-  }
-  .program-level,
-  .program-name {
-    font-size: 16px;
-  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-majors-toggle { transition: none; }
 }
 
 
 /* =========================================================
-   MODAL
+   MODAL (kept for use elsewhere on the page)
 ========================================================= */
 
 .adm-modal-overlay {
@@ -645,7 +443,7 @@
 .adm-modal {
   background: #fff;
   color: var(--charcoal);
-  width: 100%;              /* keeps short modals (like Majors) from shrinking to their content */
+  width: 100%;
   max-width: 640px;
   max-height: 85vh;
   border-radius: 12px;
@@ -657,28 +455,24 @@
 
 .adm-modal-close {
   position: absolute;
-  top: 12px;
-  right: 16px;
+  top: 16px;
+  right: 20px;
   background: none;
   border: none;
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
   color: #333;
-  z-index: 2;
+  z-index: 30;
 }
 
-/* Scrolling still works — the scrollbar is just hidden */
 .adm-modal-body {
   padding: 32px 28px 8px;
   overflow-y: auto;
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* old Edge / IE */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-
-.adm-modal-body::-webkit-scrollbar {
-  display: none;                /* Chrome, Safari, new Edge */
-}
+.adm-modal-body::-webkit-scrollbar { display: none; }
 
 .adm-modal-title { font-family: 'Oswald', sans-serif; font-size: 1.15rem; margin: 24px 0 10px; }
 .adm-modal-title:first-child { margin-top: 0; }
@@ -686,7 +480,6 @@
 .adm-modal-list { margin: 0 0 12px; padding-left: 20px; }
 .adm-modal-list li { margin-bottom: 6px; line-height: 1.5; }
 
-/* Parenthetical detail under a requirement (foreign student docs) */
 .adm-sub-note {
   display: block;
   margin-top: 3px;
@@ -707,49 +500,12 @@
   border-top: 1px solid #eee;
 }
 .adm-modal-actions .adm-btn { flex: 1; text-align: center; }
-
-/* Keep the pill button from over-sizing inside the modal footer */
-.adm-modal-actions .adm-btn--apply {
-  padding: 11px 24px;
-  font-size: 12px;
-}
+.adm-modal-actions .adm-btn--apply { padding: 11px 24px; font-size: 12px; }
 
 
 /* =========================================================
-   HELP STRIP
+   BUTTONS
 ========================================================= */
-
-.adm-cta {
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 40px 24px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 32px;
-}
-
-.adm-cta-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(24px, 2.8vw, 34px);
-  color: var(--charcoal);
-  margin-bottom: 8px;
-}
-
-.adm-cta-text {
-  max-width: 52ch;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #555;
-}
-
-.adm-cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
 
 .adm-btn {
   display: inline-flex;
@@ -765,7 +521,7 @@
   font-size: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  cursor: pointer;          /* needed now that some .adm-btn elements are <button> */
+  cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
@@ -791,19 +547,6 @@
   outline-offset: 3px;
 }
 
-
-/* =========================================================
-   APPLY NOW  (final full-width call to action)
-========================================================= */
-
-.adm-apply-final {
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 0 24px 56px;
-  display: flex;
-  justify-content: center;
-}
-
 .adm-btn--apply {
   padding: 14px 52px;
   font-size: 13px;
@@ -821,145 +564,222 @@
   transform: translateY(-2px);
 }
 
+@media (max-width: 640px) {
+  .admissions-hero-title { font-size: clamp(30px, 9vw, 44px); }
+  .admissions-hero-and { font-size: 13px; }
+  .adm-btn--apply { width: 100%; }
+}
+
 
 /* =========================================================
-   RESPONSIVE (page-level)
+   ADMISSION TEST REMINDERS
+   Optional serif: add to <head>
+   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
 ========================================================= */
 
-@media (max-width: 1000px) {
-  .apply-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .apply-head {
-    position: static;
-  }
-}
-
-@media (max-width: 800px) {
-  .apply-item {
-    grid-template-columns: 44px 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .apply-item {
-    grid-template-columns: 44px 1fr;
-    gap: 16px;
-    padding-right: 0;
-  }
-
-  .apply-icon {
-    width: 44px;
-    height: 44px;
-  }
-
-  .apply-link {
-    grid-column: 2;
-    justify-self: start;
-  }
-
-  .admissions-hero-title {
-    font-size: clamp(30px, 9vw, 44px);
-  }
-
-  .admissions-hero-and {
-    font-size: 13px;
-  }
-
-  .adm-cta {
-    padding: 40px 24px 40px;
-  }
-
-  .adm-btn--apply {
-    width: 100%;
-  }
-}
-
-/* ===================== ADMISSION TEST REMINDERS ===================== */
 .cat-reminders {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  padding: 35px clamp(5px, 4vw, 64px);
   scroll-margin-top: 100px;
+  text-align: justify;
 }
 
-.cat-grid { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
-.cat-grid--2 { grid-template-columns: repeat(2, 1fr); }
-
-.cat-card {
-  background: #f6f5f1;
-  border: 1px solid #e3e1da;
-  border-radius: 16px;
-  padding: 1.5rem;
+.cat-sheet {
+  --cat-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  background: #fff;
+  padding: clamp(24px, 3.5vw, 44px);
 }
-.cat-card--wide { margin-bottom: 1.25rem; }
-.cat-card p { line-height: 1.5; margin: 0 0 .75rem; }
 
-.cat-card-title {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  margin: 0 0 1rem;
+/* ---------- Heading ---------- */
+
+.cat-kicker {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+
+.cat-title {
+  margin: 0;
+  font-family: var(--cat-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
   color: #1a5c3a;
-  font-size: 1.15rem;
 }
-.cat-ico {
+
+/* ---------- Key numbers ---------- */
+.cat-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  flex: none;
-  background: #fff;
-  border: 1px solid #e3e1da;
-  border-radius: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--plain-border);
 }
 
-/* slip details */
-.cat-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
-.cat-chips li {
-  background: #fff;
-  border: 1px solid #e3e1da;
-  border-radius: 999px;
-  padding: .3rem .8rem;
-  font-size: .88rem;
+.cat-stat { padding: 1px 24px 24px; border-left: 0px solid var(--plain-border); }
+.cat-stat:first-child { padding-left: 0; border-left: 0; }
+
+.cat-stat-num {
+  margin: 0 0 6px;
+  font-family: var(--cat-serif);
+  font-weight: 400;
+  font-size: clamp(44px, 5.4vw, 68px);
+  line-height: 1;
+  color: #1a5c3a;
 }
 
-/* what to bring */
-.cat-bring { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
-.cat-bring li {
+.cat-stat-num span {
+  margin-left: 6px;
+  font-size: clamp(15px, 1.5vw, 20px);
+  color: var(--plain-muted);
+}
+
+.cat-stat-label {
+  margin: 0;
+  font-size: 15px;
+  color: var(--plain-muted);
+}
+
+/* ---------- Details ---------- */
+/* Two columns now: Testing venue + Kindly bring (slip details merged in) */
+.cat-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 40px;
+  padding-top: 28px;
+  text-align: justify;
+}
+
+.cat-rows {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 40px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--plain-border);
+}
+
+.cat-detail-label {
+  margin: 0 0 10px;
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a5c3a;
+}
+
+.cat-detail--rules .cat-detail-label { color: var(--gold-text); }
+
+.cat-detail p {
+  margin: 0 0 10px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--plain-text);
+}
+.cat-detail p:last-child { margin-bottom: 0; }
+
+.cat-detail .cat-note {
+  font-size: 14px;
+  color: var(--plain-muted);
+}
+
+.cat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.cat-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--plain-text);
+}
+
+.cat-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .7em;
+  width: 7px;
+  height: 1px;
+  background: var(--plain-muted);
+}
+
+.cat-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  align-items: center;
-  gap: .75rem;
-  background: #fff;
-  border: 1px solid #e3e1da;
-  border-radius: 10px;
-  padding: .6rem .9rem;
-  line-height: 1.35;
+  flex-wrap: wrap;
+  gap: 6px;
 }
-.cat-bring li span { font-size: 1.25rem; flex: none; }
 
-/* lists inside cards use the same checklist look, on white */
-.cat-card .adm-modal-list > li { background: #fff; }
+.cat-chips li {
+  border: 1px solid var(--plain-border);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 13.5px;
+  color: var(--plain-text);
+}
+
+/* Chips nested inside the "Kindly bring" list: no dash bullet, no extra indent */
+.cat-list .cat-chips {
+  display: flex;
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.cat-list .cat-chips li {
+  padding: 3px 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.cat-list .cat-chips li::before { content: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cat-details { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 720px) {
-  .cat-grid--2 { grid-template-columns: 1fr; }
+  .cat-stats { grid-template-columns: 1fr; }
+  .cat-stat,
+  .cat-stat:first-child {
+    padding: 18px 0;
+    border-left: 0;
+    border-top: 1px solid var(--plain-border);
+  }
+  .cat-stat:first-child { border-top: 0; }
+  .cat-details { gap: 20px; }
+  .cat-rows { grid-template-columns: 1fr; gap: 20px; }
 }
 
-/* ===================== LIST OF PASSERS ===================== */
-.passers { width: 100%;
+
+/* =========================================================
+   LIST OF PASSERS
+========================================================= */
+
+.passers {
+  width: 100%;
   max-width: none;
   margin: 0;
-  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  padding: 35px clamp(16px, 4vw, 64px);
   scroll-margin-top: 100px;
 }
 
-.passers-card {
-  display: grid;
-  gap: 1.25rem;
-}
+.passers-card { display: grid; gap: 1.25rem; }
 
 .passers-batch {
   background: #f6f5f1;
@@ -1001,40 +821,39 @@
 }
 
 .passers-empty p {
-  margin: 0;
-  max-width: 46ch;
   margin: 0 auto;
+  max-width: 46ch;
   line-height: 1.55;
 }
 
-/* ===================== ENROLLMENT SCHEDULE ===================== */
-.enr-schedule { width: 100%;
+
+/* =========================================================
+   ENROLLMENT SCHEDULE
+========================================================= */
+
+.enr-schedule {
+  width: 100%;
   max-width: none;
   margin: 0;
-  padding: 3rem clamp(16px, 4vw, 64px) 0;
+  padding: 35px clamp(16px, 4vw, 64px);
   scroll-margin-top: 100px;
-
 }
 .enr-sub { color: #6b6b6b; margin: .25rem 0 1.25rem; }
 
 .enr-card {
   display: grid;
-  grid-template-columns: 320px 1px 1fr;   /* calendar | separator | details */
+  grid-template-columns: 320px 1px 1fr;
   gap: 2rem;
   padding: 1.5rem;
   background: #f6f5f1;
-  border: 1px solid #e3e1da;
-  border-radius: 16px;
 }
 
-/* vertical separator between calendar and programs */
 .enr-divider {
   background: #d9d6cc;
   width: 1px;
   align-self: stretch;
 }
 
-/* calendar */
 .enr-month { color: #1a5c3a; font-weight: 600; margin: 0 0 1rem; }
 .enr-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
 .enr-dow { font-size: .8rem; color: #777; padding-bottom: 4px; }
@@ -1043,12 +862,10 @@
 .enr-day.is-enroll:hover { background: #237a4d; }
 .enr-day.is-active { outline: 3px solid #f2c94c; outline-offset: 1px; }
 
-/* details panel */
 .enr-panel { display: none; }
 .enr-panel.is-active { display: block; }
 .enr-date { color: #1a5c3a; margin: 0 0 1rem; }
 
-/* AM and PM each get their own box */
 .enr-session {
   background: #fff;
   border: 1px solid #e3e1da;
@@ -1064,29 +881,28 @@
 
 @media (max-width: 720px) {
   .enr-card { grid-template-columns: 1fr; }
-  .enr-divider { width: auto; height: 1px; }   /* horizontal on mobile */
+  .enr-divider { width: auto; height: 1px; }
 }
 
-/* ===================== ENROLLMENT PROCESS ===================== */
-.enrollment-process { 
+
+/* =========================================================
+   ENROLLMENT PROCESS
+========================================================= */
+
+.enrollment-process {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 3rem clamp(16px, 4vw, 64px) 0;
-  scroll-margin-top: 100px; }
+  padding: 35px clamp(16px, 4vw, 64px);
+  scroll-margin-top: 100px;
+  text-align: justify;
+}
 
 .enrp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 20px;
-}
-
-.enrp-card {
-  background: var(--plain-panel);
-  border: 1px solid var(--plain-border);
-  border-radius: 16px;
-  padding: 20px;
 }
 
 .enrp-card-head {
@@ -1100,18 +916,6 @@
   margin-bottom: 14px;
 }
 
-.enrp-ico {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: #fff;
-  border: 1px solid var(--plain-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-}
-
 .enrp-checklist {
   list-style: none;
   margin: 0;
@@ -1120,25 +924,7 @@
   flex-direction: column;
   gap: 8px;
 }
-
-.enrp-checklist li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #fff;
-  border: 1px solid var(--plain-border);
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: .88rem;
-  color: var(--plain-text);
-  line-height: 1.4;
-}
-
-.enrp-checklist li i {
-  color: #1a5c3a;
-  font-size: 16px;
-  flex: none;
-}
+.enrp-checklist li { padding: 2px 0; }
 
 .enrp-note {
   font-size: .88rem;
@@ -1157,15 +943,7 @@
   font-size: .85rem;
   color: var(--plain-text);
 }
-
-.enrp-contact i {
-  margin-right: 6px;
-  color: var(--plain-muted);
-}
-
-.enrp-contact a {
-  color: var(--gold-text);
-}
+.enrp-contact a { color: var(--gold-text); }
 
 .enrp-steps-card {
   background: var(--plain-panel);
@@ -1221,10 +999,7 @@
   font-weight: 600;
 }
 
-.enrp-step i {
-  font-size: 18px;
-  color: #1a5c3a;
-}
+.enrp-step i { font-size: 18px; color: #1a5c3a; }
 
 .enrp-step span {
   font-size: .74rem;
@@ -1236,19 +1011,50 @@
 .enrp-step--final .enrp-step-num { background: var(--gold); }
 .enrp-step--final i { color: var(--gold-text); }
 
-.enrp-steps-note {
-  font-size: .78rem;
-  line-height: 1.5;
-  color: var(--plain-muted);
-  margin: 20px 0 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--plain-border);
-}
-
 @media (max-width: 700px) {
   .enrp-grid { grid-template-columns: 1fr; }
   .enrp-steps { flex-direction: column; gap: 20px; align-items: stretch; }
   .enrp-steps::before { display: none; }
   .enrp-step { flex-direction: row; text-align: left; gap: 12px; }
   .enrp-step span { max-width: none; }
+}
+
+
+/* =========================================================
+   INSIDE THE ABOUT MODAL
+========================================================= */
+
+#admissionsModalBody.about-modal-body {
+  display: block !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+.about-modal-box:has(#admissionsModalBody) { height: 85vh; }
+
+#admissionsModalBody.about-modal-body .modal-loader {
+  height: 100%;
+  min-height: 0;
+}
+
+.about-modal-body .admissions-page { width: 100%; }
+.about-modal-body .admissions-page .page-banner { display: none; }
+
+.about-modal-body .admissions-page .quick-jump {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #fff;
+  padding-bottom: 35px;
+  padding-right: 56px;
+  box-sizing: border-box;
+}
+
+.about-modal-body .admissions-page .programs,
+.about-modal-body .admissions-page .apply-types,
+.about-modal-body .admissions-page .cat-reminders,
+.about-modal-body .admissions-page .passers,
+.about-modal-body .admissions-page .enr-schedule,
+.about-modal-body .admissions-page .enrollment-process {
+  padding-top: 24px;
 }

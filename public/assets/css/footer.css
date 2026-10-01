@@ -22,12 +22,14 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 80px;
   justify-content: space-between;
 }
 
+/* was: flex: 0 0 300px  -> too narrow, so the name wrapped to 2 lines.
+   Now the column grows to fit the one-line name. */
 .footer-brand-col {
-  flex: 0 0 300px;
+  flex: 0 0 auto;
   min-width: 240px;
 }
 
@@ -55,6 +57,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 2px;
+  white-space: nowrap;               /* ONE LINE ONLY */
 }
 
 .footer-univ-loc {
@@ -67,6 +70,7 @@
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 14px;
   line-height: 1.5;
+  padding-left: 84px;                /* 70px logo + 14px gap = same left edge as the text above */
 }
 
 .footer-social {
@@ -176,6 +180,11 @@
     flex: none;
     width: 100%;
   }
+  /* phones: shrink the text so it still fits on ONE line next to the logo */
+  .footer-univ-name {
+    font-size: clamp(11px, 3.6vw, 18px);
+    letter-spacing: 0.3px;
+  }
   .footer-nav-grid {
     grid-template-columns: 1fr 1fr;
     min-width: 0;
@@ -245,7 +254,7 @@
 /* ===================== FOOTER: 4 columns + OFFICE HOURS ===================== */
 /* these come after your old footer rules, so they override the 3-column grid */
 .footer-nav-grid {
-  grid-template-columns: 1fr 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: start;
 }
 
@@ -301,10 +310,69 @@
 
 
 @media (max-width: 900px) {
-  .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-nav-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 600px) {
   .footer-nav-grid { grid-template-columns: 1fr 1fr; }
   .footer-nav-col--hours { grid-column: 1 / -1; }
+}
+
+/* ===================== FOOTER SHARE ROW ===================== */
+
+.footer-nav-col--share { min-width: 160px; }
+
+.share-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(14, 13, 13, 0.75);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.share-btn svg {
+  flex-shrink: 0;
+}
+
+.share-btn:hover,
+.share-btn:focus-visible {
+  background: transparent;
+  color: var(--gold, #c9a227);
+  transform: translateX(2px);
+}
+
+.share-btn:focus-visible {
+  outline: 2px solid var(--gold, #c9a227);
+  outline-offset: 2px;
+}
+
+.share-copied {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--gold, #c9a227);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.share-copied.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .share-btn { transition: none; }
 }

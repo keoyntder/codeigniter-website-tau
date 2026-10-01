@@ -1,3 +1,13 @@
+<link rel="stylesheet" href="<?= base_url('assets/css/about.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/admissions.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/careers.css') ?>">
+
+<!-- TAU logo watermark for the About modal (file name must match assets/Images exactly) -->
+<style>
+  :root { --about-watermark: url('<?= base_url('assets/Images/taulogo.png') ?>'); }
+</style>
+
+
 <!-- ===================== HEADER ===================== -->
 <header class="header site-header" id="siteHeader">
   <div class="header-inner">
@@ -11,12 +21,11 @@
     </div>
 
     <nav class="header-nav-main">
-      <a href="<?= base_url('') ?>" data-en="Home" data-tl="Tahanan">Home</a>
-      <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok">Admissions</a>
-      <a href="<?= base_url('academic-affairs') ?>" data-en="Academic Affairs" data-tl="Pang-akademikong Sangay">Academic Affairs</a>
-      <a href="<?= base_url('research') ?>" data-en="Research and Development" data-tl="Pananaliksik at Pagpapaunlad">Research and Development</a>
+      <a href="<?= base_url('') ?>" data-en="Home" data-tl="Tahanan">explore</a>
+      <a href="<?= base_url('about') ?>" data-en="Universitas Agriculturae" data-tl="Universitas Agriculturae" class="about-modal-trigger">About TAU</a>
+      <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok" class="admissions-modal-trigger">Admissions</a>
       <a href="<?= base_url('offices') ?>" data-en="Offices" data-tl="Mga Tanggapan">Offices</a>
-      <a href="<?= base_url('careers') ?>" data-en="Careers" data-tl="Karera">Careers</a>
+      <a href="<?= base_url('careers') ?>" data-en="Careers" data-tl="Karera" class="careers-modal-trigger">Careers</a>
     </nav>
 
     <div class="header-icons">
@@ -48,13 +57,54 @@
 <nav class="nav-drawer" id="navMenu">
   <ul>
     <li><a href="<?= base_url('') ?>">Home</a></li>
-    <li><a href="<?= base_url('admissions') ?>">Admissions</a></li>
-    <li><a href="<?= base_url('academic-affairs') ?>">Academic Affairs</a></li>
-    <li><a href="<?= base_url('research') ?>">Research and Development</a></li>
+    <li><a href="<?= base_url('about') ?>" class="about-modal-trigger">about tau</a></li>
+    <li><a href="<?= base_url('admissions') ?>" class="admissions-modal-trigger">Admissions</a></li>
     <li><a href="<?= base_url('offices') ?>">Offices</a></li>
-    <li><a href="<?= base_url('careers') ?>">Careers</a></li>
+    <li><a href="<?= base_url('careers') ?>" class="careers-modal-trigger">Careers</a></li>
     <li><a href="<?= base_url('#announcements') ?>">Announcements</a></li>
     <li><a href="<?= base_url('#contact') ?>">Contact</a></li>
   </ul>
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ===================== UNIVERSITAS AGRICULTURAE MODAL ===================== -->
+<div class="about-modal-overlay" id="aboutModalOverlay" data-about-url="<?= base_url('about') ?>">
+  <div class="about-modal-box" role="dialog" aria-modal="true">
+    <div class="about-modal-head">
+      <div class="about-modal-head-actions">
+        <button type="button" class="about-modal-close" id="aboutModalClose" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="about-modal-body" id="aboutModalBody">
+      <p class="about-modal-status">Loading&hellip;</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADMISSIONS MODAL ===================== -->
+<div class="about-modal-overlay" id="admissionsModalOverlay" data-about-url="<?= base_url('admissions') ?>">
+  <div class="about-modal-box" role="dialog" aria-modal="true">
+    <div class="about-modal-head">
+      <div class="about-modal-head-actions">
+        <button type="button" class="about-modal-close" id="admissionsModalClose" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="about-modal-body" id="admissionsModalBody">
+      <p class="about-modal-status">Loading&hellip;</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CAREERS MODAL ===================== -->
+<div class="about-modal-overlay" id="careersModalOverlay" data-about-url="<?= base_url('careers') ?>">
+  <div class="about-modal-box" role="dialog" aria-modal="true">
+    <div class="about-modal-head">
+      <div class="about-modal-head-actions">
+        <button type="button" class="about-modal-close" id="careersModalClose" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="about-modal-body" id="careersModalBody">
+      <p class="about-modal-status">Loading&hellip;</p>
+    </div>
+  </div>
+</div>

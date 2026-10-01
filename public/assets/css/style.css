@@ -22,6 +22,33 @@ body {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 a { color: inherit; text-decoration: none; }
+
+/* ===================== GLOBAL SCROLLBAR HIDING =====================
+   Hides scrollbars everywhere on the site (page, modals, event lists,
+   sidebars, any overflow:auto/scroll container) while scrolling itself
+   keeps working normally via mouse wheel, trackpad, touch, and
+   keyboard. Applied broadly with the universal selector so it covers
+   every current and future scrollable element without needing a rule
+   per component.
+   ===================================================================== */
+html {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* older Edge / IE */
+}
+
+html::-webkit-scrollbar {      /* Chrome, Safari, newer Edge */
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .hero-content h1 {
     background: linear-gradient(
         90deg,
@@ -1540,8 +1567,8 @@ a { color: inherit; text-decoration: none; }
  
 .loader-ring {
   position: relative;
-  width: 165px;
-  height: 165px;
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1557,8 +1584,8 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 0;
   left: 50%;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   transform: translateX(-50%);
   animation: counterSpin 2s linear infinite;
 }
@@ -1566,8 +1593,8 @@ a { color: inherit; text-decoration: none; }
 .loader-logo {
   position: relative;
   z-index: 1;
-  width: 110px;
-  height: 110px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
 }
