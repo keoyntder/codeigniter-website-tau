@@ -8,7 +8,7 @@ $routes->get('/', 'Home::index');
 
 // Admin Login Processing Routes
 $routes->get('admin', 'Admin\Login::index');
-$routes->post('admin/login', 'Admin\Login::authenticate'); // Points to authenticate()
+$routes->post('admin/login', 'Admin\Login::authenticate');
 
 // Dashboard & Logout System Routes
 $routes->get('dashboard', 'Admin\Login::dashboard');
@@ -27,34 +27,29 @@ $routes->get('departments/(:segment)', 'Admissions::department/$1');
 $routes->get('research', 'Research::index');
 $routes->get('office-of-the-president', 'President::index');
 
-// Offices Under the OP (app/Views/planning_development.php)
-// The parent link (/offices) opens the first office, Planning and Development.
+// Offices Under the OP
 $routes->get('office-of-the-president/offices', 'President::planningDevelopment');
 $routes->get('office-of-the-president/offices/planning-and-development', 'President::planningDevelopment');
-$routes->get('office-of-the-president/offices/external-linkage', 'President::elia'); // app/Views/elia.php
+$routes->get('office-of-the-president/offices/external-linkage', 'President::elia');
 
 $routes->get('admissions', 'Admissions::index');
 $routes->get('careers', 'Careers::index');
-<<<<<<< HEAD
-$routes->get('admin/dashboard', 'Admin\Admin::index');
-=======
-$routes->get('admin/dashboard', 'Admin::index');
 
-// About (all sub-pages are panels inside app/Views/about.php)
+$routes->get('admin/dashboard', 'Admin\Admin::index');
+
+// About
 $routes->get('about', 'Home::about');
 
-// Standalone history route (remove if you only use about/history)
->>>>>>> my-before-kent
+// History
 $routes->get('history', 'History::index');
-$routes->get('offices', 'Offices::index');
 
+$routes->get('offices', 'Offices::index');
 
 // Route group for controllers inside the app/Controllers/Admin/ subfolder
 $routes->group('admin', function ($routes) {
     $routes->get('research', 'Admin\Research::index');
     $routes->get('research/edit/(:num)', 'Admin\Research::edit/$1');
     $routes->post('research/update/(:num)', 'Admin\Research::update/$1');
-
 
     $routes->get('offices', 'Admin\Offices::index');
     $routes->get('offices/create', 'Admin\Offices::create');

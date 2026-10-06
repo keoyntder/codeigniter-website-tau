@@ -16,7 +16,7 @@
       <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="TAU Logo" class="logo-placeholder">
       <div class="brand-text">
         <span class="brand-name">Tarlac Agricultural University</span>
-        <span class="brand-subtitle">Malacama, Camiling</span>
+        <span class="brand-subtitle">Malacampa, Camiling</span>
       </div>
     </div>
 

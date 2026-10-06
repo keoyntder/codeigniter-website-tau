@@ -10,11 +10,8 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/loader.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 <link rel="icon" type="image/png" href="<?= base_url('assets/Images/taulogo.png') ?>">
-<<<<<<< HEAD
 
 
-=======
->>>>>>> my-before-kent
 </head>
 <body>
 
@@ -28,7 +25,7 @@
       <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="TAU Logo" class="logo-placeholder">
       <div class="brand-text">
         <span class="brand-name">Tarlac Agricultural University</span>
-        <span class="brand-subtitle">Malacama, Camiling</span>
+        <span class="brand-subtitle">Malacampa, Camiling</span>
       </div>
     </div>
 
@@ -271,101 +268,125 @@
 </section>
 
 
-<!-- ===================== UNIVERSITY BULLETIN ===================== -->
+  <!-- ===================== UNIVERSITY BULLETIN ===================== -->
 <section class="bulletin" id="bulletin">
   <div class="bulletin-inner">
 
+    <!-- HEADER -->
     <div class="bulletin-header">
       <div class="bulletin-header-left">
+        <span class="bulletin-eyebrow">News &amp; Updates</span>
         <h2 class="bulletin-heading">University Bulletin</h2>
       </div>
+
       <div class="bulletin-header-right">
         <a href="#announcementsModal" class="bulletin-view-all" data-ann-open aria-haspopup="dialog">
           View All Announcements
-          <span class="bulletin-view-all-circle">→</span>
+          <span class="bulletin-view-all-circle" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
 
-    <div class="bulletin-layout">
+    <!-- BULLETIN LAYOUT -->
+    <div class="bulletin-grid">
 
-      <!-- LEFT: today's news -->
-      <div class="bulletin-main">
-
-        <!-- small stacked items, beside/above the featured story -->
-        <div class="bulletin-stack">
-          <a href="#" class="bulletin-stack-item">
-            <div class="bulletin-stack-img" style="background-image: url('Images/bulletin-2.jpg');"></div>
-            <div class="bulletin-stack-body">
-              <h3 class="bulletin-stack-title">Campus Memo</h3>
-              <p class="bulletin-stack-meta">JANUARY 20, 7:49 AM &middot; ADMIN</p>
-            </div>
-          </a>
-          <a href="#" class="bulletin-stack-item">
-            <div class="bulletin-stack-img" style="background-image: url('Images/bulletin-3.jpg');"></div>
-            <div class="bulletin-stack-body">
-              <h3 class="bulletin-stack-title">Graduation Notice</h3>
-              <p class="bulletin-stack-meta">JANUARY 21, 8:32 AM &middot; ADMIN</p>
-            </div>
-          </a>
+      <!-- =========================
+          LEFT / MAIN FEATURED STORY
+      ========================== -->
+      <a href="https://www.facebook.com/photo?fbid=1515958020558492" class="bulletin-featured-card">
+        <div class="bulletin-featured-media">
+          <img src="<?= base_url('assets/Images/bulletin/bulletin2.jpg') ?>" alt="Official List of Accredited Student Organizations" class="bulletin-featured-img" />
+          <span class="bulletin-badge badge-gold">Latest Announcement</span>
         </div>
 
-        <!-- featured / biggest story of the day -->
-        <div class="bulletin-featured">
-          <div class="bulletin-featured-img" style="background-image: url('Images/bulletin1.jpg');"></div>
-          <div class="bulletin-featured-caption">
-            <span class="bulletin-featured-tag">Latest</span>
-            <h3 class="bulletin-featured-title">Official List of Accredited Student Organizations, A.Y. 2026–2027</h3>
-            <p class="bulletin-featured-text">The Office of Student Services and Development (OSSD) has announced this year's accredited student organizations. Students are encouraged to join and grow through leadership and community.</p>
-            <a href="https://www.facebook.com/photo/?fbid=1441665724645667&set=pcb.1441668574645382" class="bulletin-featured-link">Read More <span>→</span></a>
+        <div class="bulletin-featured-body">
+          <h3 class="bulletin-featured-title">
+           𝐈𝐧𝐯𝐞𝐬𝐭𝐢𝐭𝐮𝐫𝐞 𝐨𝐟 𝐓𝐒𝐔’𝐬 𝐒𝐞𝐯𝐞𝐧𝐭𝐡 𝐏𝐫𝐞𝐬𝐢𝐝𝐞𝐧𝐭
+          </h3>
+          <p class="bulletin-featured-text">
+            Tarlac Agricultural University (TAU) President Dr. Silverio Ramon DC. Salunson, together with the University's four Vice Presidents, joins the academic community and distinguished guests in the investiture of Prof. Jasper Jay Nievera Mendoza, PhD, DDM, as the seventh President of Tarlac State University (TSU). 
+          </p>
+          
+          <div class="bulletin-card-footer">
+            <span class="bulletin-meta">October 6, 2026 &middot; OSSD Admin</span>
+            <span class="bulletin-read-more">Read Full Story <span class="arrow">→</span></span>
           </div>
         </div>
+      </a>
+
+      <!-- =========================
+          MIDDLE STACKED ARTICLES
+      ========================== -->
+      <div class="bulletin-stack">
+
+        <!-- CAMPUS MEMO -->
+        <a href="https://www.facebook.com/photo?fbid=1518989333588694" class="bulletin-mini-card">
+          <div class="bulletin-mini-media">
+            <img src="<?= base_url('assets/Images/bulletin/bulletin1.jpg') ?>" alt="Campus Safety Guidelines" class="bulletin-mini-img" />
+          </div>
+          <div class="bulletin-mini-body">
+            <span class="bulletin-badge badge-subtle">MARKETING</span>
+            <h4 class="bulletin-mini-title">𝐄𝐧𝐭𝐫𝐞𝐩𝐫𝐞𝐧𝐞𝐮𝐫𝐬𝐡𝐢𝐩 𝐚𝐧𝐝 𝐏𝐫𝐨𝐝𝐮𝐜𝐭 𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐓𝐫𝐚𝐢𝐧𝐢𝐧𝐠 𝐖𝐨𝐫𝐤𝐬𝐡𝐨𝐩 - 𝐃𝐚𝐲 𝟏</h4>
+            <p class="bulletin-meta">1 day ago</p>
+          </div>
+        </a>
+
+        <!-- GRADUATION NOTICE -->
+        <a href="<?= base_url('bulletin/graduation-notice') ?>" class="bulletin-mini-card">
+          <div class="bulletin-mini-media">
+            <img src="<?= base_url('assets/Images/bulletin/bulletin3.jpg') ?>" alt="Graduation Clearance Schedule" class="bulletin-mini-img" />
+          </div>
+          <div class="bulletin-mini-body">
+            <span class="bulletin-badge badge-subtle">INNOWRITE</span>
+            <h4 class="bulletin-mini-title"> 𝐈𝐍𝐍𝐎𝐖𝐑𝐈𝐓𝐄 𝟐𝟎𝟐𝟔 - 𝐃𝐚𝐲 𝟐 𝐀𝐈 𝐚𝐧𝐝 𝐑𝐨𝐛𝐨𝐭𝐢𝐜𝐬 𝐇𝐚𝐧𝐝𝐬-𝐨𝐧 𝐏𝐫𝐨𝐠𝐫𝐚𝐦</h4>
+            <p class="bulletin-meta">02 October 2026</p>
+          </div>
+        </a>
 
       </div>
 
-      <!-- vertical divider -->
-      <div class="bulletin-divider"></div>
-
-      <!-- RIGHT: latest list -->
-      <div class="bulletin-sidebar">
-        <h3 class="bulletin-sidebar-heading">Latest</h3>
+      <!-- =========================
+          RIGHT SIDEBAR (QUICK FEED)
+      ========================== -->
+      <aside class="bulletin-sidebar">
+        <h3 class="bulletin-sidebar-heading">Recent Bulletins</h3>
 
         <div class="bulletin-sidebar-list">
 
-          <a href="#" class="bulletin-sidebar-item">
+          <a href="https://www.facebook.com/photo?fbid=1518989333588694" class="bulletin-sidebar-item">
             <div class="bulletin-sidebar-text">
               <h4>Official List of Accredited Student Organizations</h4>
-              <span>By Admin</span>
+              <span class="bulletin-meta">Admin &middot; 2 days ago</span>
             </div>
-            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin1.jpg');"></div>
+            <img src="<?= base_url('assets/Images/bulletin/bulletin1.jpg') ?>" alt="Accredited Organizations" class="bulletin-sidebar-img" />
           </a>
 
-          <a href="#" class="bulletin-sidebar-item">
+          <a href="<?= base_url('bulletin/campus-memo') ?>" class="bulletin-sidebar-item">
             <div class="bulletin-sidebar-text">
-              <h4>Campus Memo: Updated Policy Guidelines</h4>
-              <span>By Admin</span>
+              <h4>𝐄𝐧𝐭𝐫𝐞𝐩𝐫𝐞𝐧𝐞𝐮𝐫𝐬𝐡𝐢𝐩 𝐚𝐧𝐝 𝐏𝐫𝐨𝐝𝐮𝐜𝐭 𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐓𝐫𝐚𝐢𝐧𝐢𝐧𝐠 𝐖𝐨𝐫𝐤𝐬𝐡𝐨𝐩 - 𝐃𝐚𝐲 𝟏</h4>
+              <span class="bulletin-meta">1 day ago</span>
             </div>
-            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin2.jpg');"></div>
+            <img src="<?= base_url('assets/Images/bulletin/bulletin2.jpg') ?>" alt="Campus Memo" class="bulletin-sidebar-img" />
           </a>
 
-          <a href="#" class="bulletin-sidebar-item">
+          <a href="<?= base_url('bulletin/graduation-notice') ?>" class="bulletin-sidebar-item">
             <div class="bulletin-sidebar-text">
               <h4>Graduation Notice: Requirements &amp; Schedule</h4>
-              <span>By Admin</span>
+              <span class="bulletin-meta">Admin &middot; 5 days ago</span>
             </div>
-            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin3.jpg');"></div>
+            <img src="<?= base_url('assets/Images/bulletin/bulletin3.jpg') ?>" alt="Graduation Notice" class="bulletin-sidebar-img" />
           </a>
 
-          <a href="#" class="bulletin-sidebar-item">
+          <a href="<?= base_url('bulletin/enrollment-reminders') ?>" class="bulletin-sidebar-item">
             <div class="bulletin-sidebar-text">
               <h4>Enrollment Reminders for Next Semester</h4>
-              <span>By Admin</span>
+              <span class="bulletin-meta">Admin &middot; 1 week ago</span>
             </div>
-            <div class="bulletin-sidebar-img" style="background-image: url('Images/bulletin4.jpg');"></div>
+            <img src="<?= base_url('assets/Images/bulletin/bulletin4.jpg') ?>" alt="Enrollment Reminders" class="bulletin-sidebar-img" />
           </a>
 
         </div>
-      </div>
+      </aside>
 
     </div>
   </div>
