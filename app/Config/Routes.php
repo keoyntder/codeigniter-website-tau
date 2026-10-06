@@ -25,6 +25,14 @@ $routes->get('departments/(:segment)', 'Admissions::department/$1');
 
 // Main pages
 $routes->get('research', 'Research::index');
+$routes->get('office-of-the-president', 'President::index');
+
+// Offices Under the OP (app/Views/planning_development.php)
+// The parent link (/offices) opens the first office, Planning and Development.
+$routes->get('office-of-the-president/offices', 'President::planningDevelopment');
+$routes->get('office-of-the-president/offices/planning-and-development', 'President::planningDevelopment');
+$routes->get('office-of-the-president/offices/external-linkage', 'President::elia'); // app/Views/elia.php
+
 $routes->get('admissions', 'Admissions::index');
 $routes->get('careers', 'Careers::index');
 $routes->get('admin/dashboard', 'Admin::index');

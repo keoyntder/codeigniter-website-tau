@@ -1,24 +1,18 @@
-/* =========================================================
-   ADMISSIONS OVERVIEW PAGE
-   Uses the tokens and .page-banner from style.css, so load
-   this file AFTER style.css and header.css.
-========================================================= */
-
 :root {
   --gold-text: #9A7412;
-
-  /* Plain (non-green) palette used by the programs section */
-  --plain-panel: #F6F5F1;
+  --plain-panel: #fff;
   --plain-border: #E3E1DA;
   --plain-text: var(--charcoal);
   --plain-muted: #6B6B6B;
+  --adm-pad-y: 24px;
+  --adm-pad-x: clamp(16px, 4vw, 64px);
+  --adm-head-gap: 24px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
-/* Panels marked hidden must stay hidden */
 .admissions-panel[hidden] { display: none; }
 
 .sr-only {
@@ -34,160 +28,147 @@
 }
 
 
-/* =========================================================
-   BANNER
-========================================================= */
-
-.admissions-banner {
-  position: relative;
-  isolation: isolate;
-  background-image: var(--admissions-bg);
-  background-size: cover;
-  background-position: center;
-  padding: clamp(190px, 26vw, 260px) 24px 110px;
-  overflow: hidden;
+.admissions-page {
+  --adm-header-h: var(--header-h-full, 130px);
+  --adm-top-trim: 0px; 
+  padding-top: calc(var(--adm-header-h) - var(--adm-top-trim));
 }
 
-.admissions-banner::before {
+.adm-layout {
+  display: flex;
+  align-items: stretch;
+  height: calc(100vh - var(--adm-header-h) + var(--adm-top-trim));
+  height: calc(100svh - var(--adm-header-h) + var(--adm-top-trim));
+  min-height: 520px;
+  background: var(--cream);
+}
+
+
+.adm-sidebar {
+  position: relative;
+  flex: 0 0 260px;
+  align-self: stretch;
+  overflow-y: auto;
+  padding: 52px 14px 20px;        
+  background: transparent;
+  color: var(--charcoal);
+}
+
+.adm-sidebar::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(6, 32, 22, 0.90) 0%,
-    rgba(6, 32, 22, 0.74) 45%,
-    rgba(6, 32, 22, 0.58) 100%
-  );
+  top: 30px;
+  bottom: 32px;
+  right: 0;
+  width: 1px;
+  background: rgba(43, 43, 43, 0.12);
 }
 
-.admissions-hero-inner {
-  position: relative;
-  z-index: 3;
-  max-width: 780px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.admissions-hero-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(38px, 6vw, 68px);
-  line-height: 1.05;
-  letter-spacing: 0.5px;
-  color: var(--white);
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  margin-bottom: 0;
-}
-
-.admissions-hero-title + .admissions-hero-and { margin-top: 2px; }
-.admissions-hero-title:last-of-type { margin-bottom: 18px; }
-
-.admissions-hero-and {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 500;
-  text-transform: lowercase;
-  font-size: clamp(14px, 1.6vw, 18px);
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-}
-
-.admissions-hero-lead {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(16px, 1.8vw, 20px);
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.admissions-hero-caps {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-
-/* =========================================================
-   QUICK JUMP
-========================================================= */
-
-.quick-jump {
-  border-bottom: 1px solid var(--plain-border);
-  padding: 5px clamp(16px, 4vw, 64px);
-}
-
-.quick-jump-inner {
-  max-width: none;
-  margin: 0;
+.adm-nav-list {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 8px 10px;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.quick-jump-btn {
-  display: inline-flex;
+.adm-nav-btn {
+  position: relative;
+  display: flex;
   align-items: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1.5px solid var(--plain-border);
-  background: #fff;
-  color: var(--plain-text);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.2px;
-  white-space: nowrap;
+  width: 100%;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.3;
   text-decoration: none;
-  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  box-shadow: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, padding 0.2s ease, color 0.2s ease;
 }
 
-.quick-jump-btn:hover {
-  border-color: var(--gold);
-  color: var(--gold-text);
-  transform: translateY(-1px);
+.adm-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--green-deep);
 }
 
-.quick-jump-btn:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
+.adm-nav-btn.active,
+.adm-nav-btn[aria-current="page"],
+.adm-nav-btn.active:hover,
+.adm-nav-btn[aria-current="page"]:hover {
+  padding: 14px 16px;
+  background: #fff;
+  border-color: transparent;
+  color: #1a5c3a;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.quick-jump-btn.active,
-.quick-jump-btn[aria-current="page"] {
-  background: #1a5c3a;
-  border-color: #1a5c3a;
-  color: #fff;
+.adm-nav-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
-.quick-jump-btn.active:hover,
-.quick-jump-btn[aria-current="page"]:hover {
-  border-color: #1a5c3a;
-  color: #fff;
-  transform: none;
+.adm-nav-select { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .adm-nav-btn { transition: none; }
 }
 
-.quick-jump-select { display: none; }
 
-@media (max-width: 640px) {
-  .quick-jump { padding: 22px 16px; }
+.adm-content {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  background: var(--cream);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(27, 94, 58, 0.4) transparent;
+}
 
-  .quick-jump-inner { display: none; }
+@media (min-width: 901px) {
+  .adm-content { padding-top: 32px; }
+}
 
-  .quick-jump-select {
+@media (hover: hover) and (pointer: fine) {
+  .adm-content { overscroll-behavior: contain; }
+}
+
+.adm-content::-webkit-scrollbar { width: 8px; }
+.adm-content::-webkit-scrollbar-thumb {
+  background: rgba(27, 94, 58, 0.4);
+  border-radius: 4px;
+}
+
+
+@media (max-width: 900px) {
+  .adm-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+
+  .adm-sidebar {
+    flex: none;
+    overflow: visible;
+    padding: 14px 16px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(27, 94, 58, 0.15);
+  }
+
+  .adm-sidebar::after { display: none; }
+
+  .adm-nav-list { display: none; }
+
+  .adm-nav-select {
     display: block;
     width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
     padding: 12px 16px;
     border-radius: 999px;
     border: 1.5px solid var(--plain-border);
     background-color: #fff;
-    color: var(--plain-text);
+    color: var(--charcoal);
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 14px;
@@ -198,120 +179,56 @@
     background-position: right 16px center;
   }
 
-  .quick-jump-select:focus-visible {
+  .adm-nav-select:focus-visible {
     outline: 3px solid var(--gold);
     outline-offset: 2px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .quick-jump-btn { transition: none; }
-}
-
-
-/* =========================================================
-   APPLICATION REQUIREMENTS
-========================================================= */
-
-.apply-types {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 35px clamp(16px, 4vw, 64px);
-  scroll-margin-top: 100px;
-  text-align: justify;
-}
-
-.apply-notice {
-  background: var(--plain-panel);
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 16px;
-}
-
-.apply-notice p {
-  margin: 0;
-  line-height: 1.5;
-  color: var(--plain-text);
-}
-
-.apply-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.apply-card {
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--plain-border);
-  border-radius: 0;
-  padding: 1.75rem 0;
-}
-.apply-card:last-child { border-bottom: 0; }
-
-.apply-card-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.15rem;
-  color: #1a5c3a;
-  margin: 0 0 14px;
-}
-
-.apply-panel-subhead {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1rem;
-  color: #1a5c3a;
-  margin: 16px 0 8px;
-}
-.apply-panel-subhead:first-child { margin-top: 0; }
-
-.apply-section-actions {
-  display: flex;
-  gap: 20px;
-  max-width: 640px;
-  margin: 24px auto 0;
-}
-.apply-section-actions .adm-btn { flex: 1; text-align: center; }
-.apply-section-actions .adm-btn--apply { padding: 11px 24px; font-size: 12px; }
-
-@media (max-width: 560px) {
-  .apply-types { padding-top: 40px; }
-  .apply-card { padding: 20px 0; }
-  .apply-section-actions { flex-direction: column; margin-left: 0; margin-right: 0; max-width: none; }
+  .adm-content { overflow: visible; }
 }
 
 
-/* =========================================================
-   PROGRAMS OFFERED (academic catalog)
-   Replaces the whole "PROGRAMS OFFERED (filterable table)" block.
-========================================================= */
+.about-modal-body .adm-layout {
+  height: 100%;
+  min-height: 0;
+}
+
+
+.admissions-panel {
+  position: relative;
+  background: var(--cream);
+}
+
 
 .programs {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 35px clamp(16px, 4vw, 64px);
-  scroll-margin-top: 100px;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
 
 .catalog {
   container-type: inline-size;
   max-width: 100%;
   margin: 0;
-  padding: 10px 0 12px;
-  background: #fff;
+  padding: 0 0 12px;
+  background: transparent;
 }
 
-/* ---------- Heading ---------- */
 .catalog-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 6px 24px;
+  margin: 0 0 var(--adm-head-gap);
+  padding-top: 0;
   padding-bottom: 10px;
   border-bottom: 2px solid #1a5c3a;
 }
+
+.catalog > .catalog-head { margin-bottom: 0; }
 
 .catalog-title {
   margin: 0;
@@ -321,14 +238,12 @@
   color: var(--plain-text);
 }
 
-/* ---------- College row ---------- */
 .catalog-college {
   display: grid;
   grid-template-columns: minmax(200px, 1fr) minmax(0, 1.7fr);
   gap: 16px clamp(24px, 4vw, 56px);
   padding: 24px 0;
   border-bottom: 1px solid var(--plain-border);
-  scroll-margin-top: 100px;
 }
 .catalog-college:last-child { border-bottom: 0; }
 
@@ -341,7 +256,6 @@
   color: #1a5c3a;
 }
 
-/* ---------- Program list ---------- */
 .catalog-programs {
   list-style: none;
   margin: 0;
@@ -364,7 +278,6 @@
   min-width: 0;
 }
 
-/* ---------- Majors (italic label, expands the list) ---------- */
 .catalog-details > summary {
   display: flex;
   align-items: baseline;
@@ -411,7 +324,6 @@
   color: var(--plain-text);
 }
 
-/* ---------- Stack when the container is narrow (modal or phone) ---------- */
 @container (max-width: 700px) {
   .catalog-college {
     grid-template-columns: minmax(0, 1fr);
@@ -424,61 +336,121 @@
 }
 
 
-/* =========================================================
-   MODAL (kept for use elsewhere on the page)
-========================================================= */
-
-.adm-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.adm-modal-overlay.is-open { display: flex; }
-
-.adm-modal {
-  background: #fff;
-  color: var(--charcoal);
+.apply-types {
+  container-type: inline-size;
   width: 100%;
-  max-width: 640px;
-  max-height: 85vh;
-  border-radius: 12px;
-  overflow: hidden;
+  max-width: none;
+  margin: 0;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
+}
+
+.apply-notice {
+  background: none;
+  padding: 0px 0 0px 0px;
+  margin: 0 0 8px;
+}
+
+.apply-notice p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--plain-text);
+}
+
+.apply-cards {
   display: flex;
   flex-direction: column;
-  position: relative;
+  gap: 0;
 }
 
-.adm-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 20px;
+.apply-card {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 1.7fr);
+  column-gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: 24px 0;
   background: none;
-  border: none;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  color: #333;
-  z-index: 30;
+  border: 0;
+  border-bottom: 1px solid var(--plain-border);
+  border-radius: 0;
+}
+.apply-card:last-child { border-bottom: 0; }
+
+.apply-card > * { grid-column: 2; }
+
+.apply-card > .apply-card-title {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.3;
+  color: #1a5c3a;
 }
 
-.adm-modal-body {
-  padding: 32px 28px 8px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.apply-panel-subhead {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  color: #1a5c3a;
+  margin: 18px 0 6px;
 }
-.adm-modal-body::-webkit-scrollbar { display: none; }
+.apply-card-title + .apply-panel-subhead { margin-top: 0; }
 
-.adm-modal-title { font-family: 'Oswald', sans-serif; font-size: 1.15rem; margin: 24px 0 10px; }
-.adm-modal-title:first-child { margin-top: 0; }
-.adm-modal-lead { font-weight: 600; margin-bottom: 8px; }
-.adm-modal-list { margin: 0 0 12px; padding-left: 20px; }
-.adm-modal-list li { margin-bottom: 6px; line-height: 1.5; }
+.apply-section-actions {
+  display: flex;
+  gap: 20px;
+  max-width: 640px;
+  margin: 24px auto 0;
+}
+.apply-section-actions .adm-btn { flex: 1; text-align: center; }
+.apply-section-actions .adm-btn--apply { padding: 11px 24px; font-size: 12px; }
+
+@container (max-width: 700px) {
+  .apply-card {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+
+  .apply-card > *,
+  .apply-card > .apply-card-title {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .apply-card { padding: 20px 0; }
+  .apply-section-actions { flex-direction: column; margin-left: 0; margin-right: 0; max-width: none; }
+}
+
+
+.adm-modal-lead { font-weight: 600; margin: 0 0 8px; }
+
+.adm-modal-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.adm-modal-list li {
+  position: relative;
+  margin: 0;
+  padding: 6px 0 6px 16px;
+  font-size: 16.5px;
+  line-height: 1.45;
+  color: var(--plain-text);
+}
+
+.adm-modal-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15em;
+  width: 7px;
+  height: 1px;
+  background: var(--plain-muted);
+}
 
 .adm-sub-note {
   display: block;
@@ -488,24 +460,8 @@
   color: #666;
 }
 
-.adm-schedule-block, .adm-step-block { margin-bottom: 14px; }
-.adm-schedule-date, .adm-step-title { font-weight: 700; margin-bottom: 4px; }
-.adm-step-venue { font-style: italic; color: #555; margin-top: 4px; }
-.adm-modal-note { font-size: 0.9rem; color: #555; margin: 16px 0 24px; }
+.adm-modal-note { font-size: 0.9rem; color: #555; margin: 12px 0 0; }
 
-.adm-modal-actions {
-  display: flex;
-  gap: 12px;
-  padding: 16px 28px 24px;
-  border-top: 1px solid #eee;
-}
-.adm-modal-actions .adm-btn { flex: 1; text-align: center; }
-.adm-modal-actions .adm-btn--apply { padding: 11px 24px; font-size: 12px; }
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
 
 .adm-btn {
   display: inline-flex;
@@ -521,6 +477,7 @@
   font-size: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
@@ -565,34 +522,23 @@
 }
 
 @media (max-width: 640px) {
-  .admissions-hero-title { font-size: clamp(30px, 9vw, 44px); }
-  .admissions-hero-and { font-size: 13px; }
   .adm-btn--apply { width: 100%; }
 }
 
-
-/* =========================================================
-   ADMISSION TEST REMINDERS
-   Optional serif: add to <head>
-   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
-========================================================= */
 
 .cat-reminders {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 35px clamp(5px, 4vw, 64px);
-  scroll-margin-top: 100px;
-  text-align: justify;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
 
 .cat-sheet {
   --cat-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  background: #fff;
-  padding: clamp(24px, 3.5vw, 44px);
+  background: transparent;
+  padding: 0;
 }
-
-/* ---------- Heading ---------- */
 
 .cat-kicker {
   margin: 0 0 4px;
@@ -612,7 +558,6 @@
   color: #1a5c3a;
 }
 
-/* ---------- Key numbers ---------- */
 .cat-stats {
   list-style: none;
   margin: 0;
@@ -622,7 +567,7 @@
   border-bottom: 1px solid var(--plain-border);
 }
 
-.cat-stat { padding: 1px 24px 24px; border-left: 0px solid var(--plain-border); }
+.cat-stat { padding: 1px 24px 24px; border-left: 0 solid var(--plain-border); }
 .cat-stat:first-child { padding-left: 0; border-left: 0; }
 
 .cat-stat-num {
@@ -646,14 +591,12 @@
   color: var(--plain-muted);
 }
 
-/* ---------- Details ---------- */
-/* Two columns now: Testing venue + Kindly bring (slip details merged in) */
 .cat-details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px 40px;
   padding-top: 28px;
-  text-align: justify;
+  text-align: left;
 }
 
 .cat-rows {
@@ -733,7 +676,6 @@
   color: var(--plain-text);
 }
 
-/* Chips nested inside the "Kindly bring" list: no dash bullet, no extra indent */
 .cat-list .cat-chips {
   display: flex;
   margin-top: 10px;
@@ -748,7 +690,6 @@
 
 .cat-list .cat-chips li::before { content: none; }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cat-details { grid-template-columns: 1fr; }
 }
@@ -767,22 +708,18 @@
 }
 
 
-/* =========================================================
-   LIST OF PASSERS
-========================================================= */
-
 .passers {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 35px clamp(16px, 4vw, 64px);
-  scroll-margin-top: 100px;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
 
 .passers-card { display: grid; gap: 1.25rem; }
 
 .passers-batch {
-  background: #f6f5f1;
+  background: #fff;
   border: 1px solid #e3e1da;
   border-radius: 16px;
   padding: 1.5rem;
@@ -813,7 +750,6 @@
 }
 
 .passers-empty {
-  border: 1px dashed #d9d6cc;
   border-radius: 16px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -827,25 +763,21 @@
 }
 
 
-/* =========================================================
-   ENROLLMENT SCHEDULE
-========================================================= */
-
 .enr-schedule {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 35px clamp(16px, 4vw, 64px);
-  scroll-margin-top: 100px;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
-.enr-sub { color: #6b6b6b; margin: .25rem 0 1.25rem; }
+.enr-sub { color: #6b6b6b; margin: 0 0 1.25rem; }
 
 .enr-card {
   display: grid;
   grid-template-columns: 320px 1px 1fr;
   gap: 2rem;
   padding: 1.5rem;
-  background: #f6f5f1;
+  background: #fff;
 }
 
 .enr-divider {
@@ -867,7 +799,7 @@
 .enr-date { color: #1a5c3a; margin: 0 0 1rem; }
 
 .enr-session {
-  background: #fff;
+  background: var(--cream);
   border: 1px solid #e3e1da;
   border-radius: 12px;
   padding: 1rem 1.25rem;
@@ -885,17 +817,12 @@
 }
 
 
-/* =========================================================
-   ENROLLMENT PROCESS
-========================================================= */
-
 .enrollment-process {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 35px clamp(16px, 4vw, 64px);
-  scroll-margin-top: 100px;
-  text-align: justify;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
 
 .enrp-grid {
@@ -1020,41 +947,90 @@
 }
 
 
-/* =========================================================
-   INSIDE THE ABOUT MODAL
-========================================================= */
-
-#admissionsModalBody.about-modal-body {
-  display: block !important;
-  overflow-y: auto !important;
-  overflow-x: hidden;
+.downloads {
+  container-type: inline-size;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--adm-pad-y) var(--adm-pad-x);
+  text-align: left;
 }
 
-.about-modal-box:has(#admissionsModalBody) { height: 85vh; }
+.dl-group {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 1.7fr);
+  gap: 16px clamp(24px, 4vw, 56px);
+  padding: 24px 0;
+  border-bottom: 1px solid var(--plain-border);
+}
+.dl-group:last-child { border-bottom: 0; }
 
-#admissionsModalBody.about-modal-body .modal-loader {
-  height: 100%;
-  min-height: 0;
+.dl-group-name {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.3;
+  color: #1a5c3a;
 }
 
-.about-modal-body .admissions-page { width: 100%; }
-.about-modal-body .admissions-page .page-banner { display: none; }
-
-.about-modal-body .admissions-page .quick-jump {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: #fff;
-  padding-bottom: 35px;
-  padding-right: 56px;
-  box-sizing: border-box;
+.dl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.about-modal-body .admissions-page .programs,
-.about-modal-body .admissions-page .apply-types,
-.about-modal-body .admissions-page .cat-reminders,
-.about-modal-body .admissions-page .passers,
-.about-modal-body .admissions-page .enr-schedule,
-.about-modal-body .admissions-page .enrollment-process {
-  padding-top: 24px;
+.dl-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+.dl-item:first-child { padding-top: 0; }
+.dl-item + .dl-item { border-top: 1px solid var(--plain-border); }
+
+.dl-info { min-width: 0; }
+
+.dl-title {
+  display: block;
+  font-size: 16.5px;
+  line-height: 1.45;
+  color: var(--plain-text);
+}
+
+.dl-btn {
+  flex-shrink: 0;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.dl-type {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(27, 94, 58, 0.12);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.dl-btn:hover .dl-type { background: rgba(255, 255, 255, 0.22); }
+
+@container (max-width: 700px) {
+  .dl-group {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@container (max-width: 480px) {
+  .dl-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+
+html.loader-first .loader-overlay,
+html.loader-inside .loader-overlay {
+  background: #1b5e20;
 }

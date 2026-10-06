@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers | Tarlac Agricultural University</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/careers.css') ?>">
+<link rel="icon" type="image/png" href="<?= base_url('assets/Images/taulogo.png') ?>">
+</head>
+<body>
+
+<!-- ===================== LOADING THROBBER ===================== -->
+<div class="loader-overlay" id="loaderOverlay">
+  <div class="loader-ring">
+    <div class="orbit-wrap">
+      <img src="<?= base_url('assets/Images/orbit-icon.png') ?>" class="orbit-image" alt="">
+    </div>
+    <img src="<?= base_url('assets/Images/taulogo.png') ?>" alt="Loading" class="loader-logo">
+  </div>
+</div>
+
+<?= $this->include('partials/header') ?>
 
 <main class="careers-page" data-hash-sync="true">
 
@@ -58,3 +87,9 @@
   </section>
 
 </main>
+
+<?= $this->include('partials/footer') ?>
+
+<script src="<?= base_url('assets/script.js') ?>"></script>
+</body>
+</html>

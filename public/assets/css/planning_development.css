@@ -1,0 +1,33 @@
+/* =========================================================
+   OFFICES UNDER THE OP (planning_development.php)
+========================================================= */
+
+.office-body { margin-top: 36px; }
+.office-overview {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--charcoal);
+  text-align: justify;
+  margin: 0;
+}
+.office-unit + .office-unit { margin-top: 28px; }
+.office-unit h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--charcoal);
+  margin: 0 0 10px;
+}
+.office-unit ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 0;
+}
+.office-unit li {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  text-align: justify;
+  margin-bottom: 6px;
+}
+.office-unit li::marker { color: var(--green-deep); }
