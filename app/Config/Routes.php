@@ -14,24 +14,43 @@ $routes->post('admin/login', 'Admin\Login::authenticate'); // Points to authenti
 $routes->get('dashboard', 'Admin\Login::dashboard');
 $routes->get('logout', 'Admin\Login::logout');
 
+// Departments (specific routes must come before the (:segment) catch-all)
 $routes->get('departments/cet', 'DepartmentController::cet');
 $routes->get('departments/cas', 'DepartmentController::cas');
 $routes->get('departments/caf', 'DepartmentController::caf');
 $routes->get('departments/cbm', 'DepartmentController::cbm');
 $routes->get('departments/cvm', 'DepartmentController::cvm');
 $routes->get('departments/ced', 'DepartmentController::ced');
-$routes->get('/research', 'Research::index');
-$routes->get('about', 'Home::about');
-$routes->get('admissions', 'Admissions::index');
 $routes->get('departments/(:segment)', 'Admissions::department/$1');
+
+// Main pages
+$routes->get('research', 'Research::index');
+$routes->get('office-of-the-president', 'President::index');
+
+// Offices Under the OP (app/Views/planning_development.php)
+// The parent link (/offices) opens the first office, Planning and Development.
+$routes->get('office-of-the-president/offices', 'President::planningDevelopment');
+$routes->get('office-of-the-president/offices/planning-and-development', 'President::planningDevelopment');
+$routes->get('office-of-the-president/offices/external-linkage', 'President::elia'); // app/Views/elia.php
+
+$routes->get('admissions', 'Admissions::index');
 $routes->get('careers', 'Careers::index');
+<<<<<<< HEAD
 $routes->get('admin/dashboard', 'Admin\Admin::index');
+=======
+$routes->get('admin/dashboard', 'Admin::index');
+
+// About (all sub-pages are panels inside app/Views/about.php)
+$routes->get('about', 'Home::about');
+
+// Standalone history route (remove if you only use about/history)
+>>>>>>> my-before-kent
 $routes->get('history', 'History::index');
 $routes->get('offices', 'Offices::index');
 
 
 // Route group for controllers inside the app/Controllers/Admin/ subfolder
-$routes->group('admin', function($routes) {
+$routes->group('admin', function ($routes) {
     $routes->get('research', 'Admin\Research::index');
     $routes->get('research/edit/(:num)', 'Admin\Research::edit/$1');
     $routes->post('research/update/(:num)', 'Admin\Research::update/$1');

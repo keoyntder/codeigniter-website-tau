@@ -1,16 +1,7 @@
-/* ===================== CAREERS PAGE ===================== */
-
-/*
-  Adjust this to match your actual header height.
-  This is what fixes the overlap in your screenshot — without it,
-  .careers-page content starts at the very top of the viewport and
-  the fixed/sticky header sits on top of it.
-*/
 .careers-page {
-  padding-top: 96px; /* <-- tweak to match header.css height */
+  padding-top: var(--header-h-full, 96px);
 }
 
-/* ===================== JOB FEED SECTION ===================== */
 
 .jp-section {
   max-width: 1200px;
@@ -28,7 +19,7 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #c9a227; /* gold */
+  color: #c9a227;
   margin-bottom: 6px;
 }
 
@@ -36,11 +27,10 @@
   font-family: var(--font-display, "Oswald", sans-serif);
   font-weight: 700;
   font-size: clamp(26px, 3.5vw, 36px);
-  color: #14301f; /* deep green */
+  color: #14301f;
   margin: 0;
 }
 
-/* ===================== TWO-COLUMN LAYOUT ===================== */
 
 .jp-feed-layout {
   display: grid;
@@ -55,7 +45,6 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* ===================== FEATURED CARD ===================== */
 
 .jp-featured {
   display: flex;
@@ -67,7 +56,7 @@
   aspect-ratio: 16 / 8;
   background-size: cover;
   background-position: center;
-  background-color: #e5e5e5; /* placeholder fallback */
+  background-color: #e5e5e5;
   border-radius: 8px;
   margin-bottom: 20px;
 }
@@ -127,7 +116,6 @@
   transform: translateX(3px);
 }
 
-/* ===================== SIDEBAR ===================== */
 
 .jp-sidebar-heading {
   font-family: var(--font-display, "Oswald", sans-serif);
@@ -183,7 +171,6 @@
   background-color: #e5e5e5;
 }
 
-/* ===================== RESPONSIVE ===================== */
 
 @media (max-width: 900px) {
   .jp-feed-layout {
@@ -198,5 +185,71 @@
     border-top: 1px solid rgba(0, 0, 0, 0.08);
     padding-top: 24px;
     margin-top: 8px;
+  }
+}
+
+
+.about-modal-body .careers-page {
+  padding-top: 0;
+}
+
+
+#careersModalBody.about-modal-body {
+  display: block !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+.about-modal-box:has(#careersModalBody) {
+  height: 85vh;
+}
+
+#careersModalBody.about-modal-body .modal-loader {
+  height: 100%;
+  min-height: 0;
+}
+
+
+@media (max-width: 900px) {
+  .about-modal-body .careers-page .jp-section {
+    padding-top: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 40px;
+  }
+
+  .about-modal-body .careers-page .jp-featured-img {
+    aspect-ratio: 16 / 10;
+    max-height: 160px;
+  }
+
+  .about-modal-body .careers-page .jp-list-title {
+    font-size: 24px;
+  }
+
+  .about-modal-body .careers-page .jp-sidebar-img {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+.about-modal-body .careers-page .jp-section {
+  padding-top: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.about-modal-body .careers-page .jp-featured-img {
+  aspect-ratio: 16 / 7;
+  max-height: 220px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-modal-overlay,
+  .about-modal-box,
+  .about-modal-close,
+  .about-modal-menu {
+    transition: none;
   }
 }

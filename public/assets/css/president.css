@@ -1,0 +1,259 @@
+.oop {
+  --oop-green: #1f5f3b;
+  --oop-green-dark: #143f28;
+  --oop-gold: #d4a017;
+  --oop-text: #1d2a22;
+  --oop-muted: #5b6b61;
+  --oop-border: #dfe6e0;
+  --oop-paper: var(--cream, #fafafa);
+
+  --oop-pad-y: 64px;
+  --oop-gap: 56px;
+}
+
+.oop *,
+.oop *::before,
+.oop *::after { box-sizing: border-box; }
+
+
+.oop {
+  padding-top: 110px;
+  padding-bottom: 40px;
+  background: var(--oop-paper);
+  color: var(--oop-text);
+  font-family: inherit;
+  line-height: 1.7;
+}
+
+.oop-wrap {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.oop h1,
+.oop h2,
+.oop h3 {
+  margin: 0;
+  line-height: 1.15;
+  color: var(--oop-green-dark);
+}
+
+
+.oop-hero {
+  background: linear-gradient(180deg, #f1f6f2 0%, var(--oop-paper) 100%);
+  border-bottom: 1px solid var(--oop-border);
+}
+
+.oop-hero .oop-wrap {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--oop-gap);
+  align-items: center;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.oop-photo {
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.oop-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.oop-hero h1 {
+  font-size: clamp(1.5rem, 2.9vw, 2.4rem);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.oop-role {
+  margin: 14px 0 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--oop-green);
+}
+
+.oop-alias {
+  margin: 6px 0 24px;
+  color: var(--oop-muted);
+}
+
+.oop-quote {
+  max-width: none;
+  font-size: 1.1rem;
+  color: var(--oop-text);
+}
+
+@media (min-width: 1600px) {
+  .oop-quote { white-space: nowrap; }
+}
+
+
+.oop-section {
+  padding: var(--oop-pad-y) 0;
+  border-bottom: 1px solid var(--oop-border);
+}
+
+.oop-section:last-child { padding-bottom: 72px; }
+
+.oop-section h2 {
+  margin-bottom: 28px;
+  font-size: 1.8rem;
+}
+
+.oop-sub {
+  margin: 56px 0 14px;
+  font-size: 1.1rem;
+  color: var(--oop-green);
+}
+
+.oop-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.oop-list li { margin-bottom: 10px; }
+
+
+.oop-profile p,
+.oop-prose p,
+.oop-pillars p,
+.oop-lead {
+  max-width: none;
+  margin: 0 0 18px;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.oop-lead {
+  margin-bottom: 28px;
+  color: var(--oop-muted);
+}
+
+.oop-prose h3 {
+  margin: 32px 0 12px;
+  font-size: 1.25rem;
+  color: var(--oop-green);
+}
+
+
+.oop-profile {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--oop-gap);
+}
+
+.oop-facts {
+  align-self: start;
+  margin: 0;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--oop-border);
+}
+
+.oop-facts dt {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--oop-green-dark);
+}
+
+.oop-facts dd {
+  margin: 2px 0 16px;
+  font-size: 0.95rem;
+  color: var(--oop-muted);
+}
+
+.oop-facts dd:last-child { margin-bottom: 0; }
+
+
+.oop-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.oop-timeline li { padding: 0 0 22px; }
+
+.oop-timeline strong {
+  display: block;
+  color: var(--oop-green-dark);
+}
+
+.oop-timeline span {
+  font-size: 0.95rem;
+  color: var(--oop-muted);
+}
+
+
+.oop-pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--oop-border);
+}
+
+.oop-pillars li {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--oop-border);
+}
+
+.oop-pillars h3 {
+  font-size: 1.15rem;
+  color: var(--oop-green);
+}
+
+.oop-pillars p { margin: 0 0 12px; }
+.oop-pillars p:last-child { margin-bottom: 0; }
+
+
+.oop-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oop-gap);
+}
+
+.oop-two h2 { font-size: 1.4rem; }
+
+
+@media (max-width: 820px) {
+  .oop { padding-top: 90px; }
+
+  .oop-hero .oop-wrap,
+  .oop-profile,
+  .oop-two {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .oop-photo { max-width: 260px; }
+
+  .oop-hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    white-space: normal;
+  }
+
+  .oop-pillars li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .oop-profile p,
+  .oop-prose p,
+  .oop-pillars p,
+  .oop-lead {
+    text-align: left;
+    hyphens: manual;
+  }
+}
