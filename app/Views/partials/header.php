@@ -2,6 +2,20 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/admissions.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/careers.css') ?>">
 
+<?php
+// Which top-level menu item matches the page being shown
+$__path = trim(uri_string(), '/');
+$__seg  = explode('/', $__path)[0] ?? '';
+$isHome       = $__seg === '';
+$isTau        = $__seg === 'about';
+$isPresident  = $__seg === 'office-of-the-president';
+$isAcademics  = in_array($__seg, ['academics', 'departments'], true);
+$isAdmissions = $__seg === 'admissions';
+$isOffices    = $__seg === 'offices';
+$isCareers    = $__seg === 'careers';
+$isColleges   = $__path === 'academics/colleges';
+?>
+
 <!-- TAU logo watermark for the About modal (file name must match assets/Images exactly) -->
 <style>
   :root { --about-watermark: url('<?= base_url('assets/Images/taulogo.png') ?>'); }
@@ -21,11 +35,11 @@
     </div>
 
     <nav class="header-nav-main">
-      <a href="<?= base_url('') ?>" data-en="Home" data-tl="Tahanan">explore</a>
-      <a href="<?= base_url('about') ?>" data-en="TAU" data-tl="TAU" class="about-modal-trigger">TAU</a>
+      <a href="<?= base_url('') ?>"<?= $isHome ? ' class="is-current" aria-current="page"' : '' ?> data-en="Home" data-tl="Tahanan">explore</a>
+      <a href="<?= base_url('about') ?>" data-en="TAU" data-tl="TAU" class="about-modal-trigger<?= $isTau ? ' is-current' : '' ?>">TAU</a>
 
       <!-- Office of the President dropdown -->
-      <div class="nav-dropdown nav-dropdown-op">
+      <div class="nav-dropdown nav-dropdown-op<?= $isPresident ? ' is-current' : '' ?>">
         <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           <span data-en="Office of the president" data-tl="Tanggapan ng Pangulo">Office of the president</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -66,8 +80,20 @@
         </ul>
       </div>
 
-      <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok" class="admissions-modal-trigger">Admissions</a>
-      <a href="<?= base_url('offices') ?>" data-en="Offices" data-tl="Mga Tanggapan">Offices</a>
+      <!-- Academics dropdown -->
+      <div class="nav-dropdown<?= $isAcademics ? ' is-current' : '' ?>">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          <span data-en="Academics" data-tl="Akademiko">Academics</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="<?= base_url('academics/colleges') ?>"<?= $isColleges ? ' aria-current="page"' : '' ?> data-en="Colleges" data-tl="Mga Kolehiyo">Colleges</a></li>
+          <li><a href="https://tau.onstrike.com.ph/cgi-bin/koha/opac-main.pl" target="_blank" rel="noopener" data-en="University Library" data-tl="Aklatan ng Unibersidad">University Library</a></li>
+        </ul>
+      </div>
+
+      <a href="<?= base_url('admissions') ?>" data-en="Admissions" data-tl="Pagpasok" class="admissions-modal-trigger<?= $isAdmissions ? ' is-current' : '' ?>">Admissions</a>
+      <a href="<?= base_url('offices') ?>" data-en="Offices" data-tl="Mga Tanggapan"<?= $isOffices ? ' class="is-current"' : '' ?>>Offices</a>
 
       <!-- Online Services dropdown -->
       <div class="nav-dropdown">
@@ -86,7 +112,7 @@
         </ul>
       </div>
 
-      <a href="<?= base_url('careers') ?>" data-en="Careers" data-tl="Karera" class="careers-modal-trigger">Careers</a>
+      <a href="<?= base_url('careers') ?>" data-en="Careers" data-tl="Karera" class="careers-modal-trigger<?= $isCareers ? ' is-current' : '' ?>">Careers</a>
     </nav>
 
     <div class="header-icons">
@@ -155,6 +181,16 @@
             <li><a href="<?= base_url('office-of-the-president/publications/2025-2035') ?>">2025-2035</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+
+    <li class="drawer-dropdown">
+      <button type="button" class="drawer-dropdown-toggle" aria-expanded="false">
+        Academics <span class="drawer-chevron">▾</span>
+      </button>
+      <ul class="drawer-submenu">
+        <li><a href="<?= base_url('academics/colleges') ?>"<?= $isColleges ? ' aria-current="page"' : '' ?>>Colleges</a></li>
+        <li><a href="https://tau.onstrike.com.ph/cgi-bin/koha/opac-main.pl" target="_blank" rel="noopener">University Library</a></li>
       </ul>
     </li>
 

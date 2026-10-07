@@ -35,6 +35,9 @@ $routes->get('office-of-the-president/offices/external-linkage', 'President::eli
 $routes->get('admissions', 'Admissions::index');
 $routes->get('careers', 'Careers::index');
 
+// Academics
+$routes->get('academics/colleges', 'Academics::colleges');
+
 $routes->get('admin/dashboard', 'Admin\Admin::index');
 
 // About

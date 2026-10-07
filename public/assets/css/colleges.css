@@ -1,0 +1,117 @@
+/* ==========================================================
+   TAU Colleges page
+   Only the college-card styles live here. The header, sidebar,
+   catalog head/title and the adm-layout come from the shared
+   header.css / admissions.css that every page already loads.
+   ========================================================== */
+
+/* ------------------------------------------------------ Card list
+   Sized so the first two cards fit on screen at load. */
+.colleges {
+  list-style: none;
+  margin: 0;
+  padding: clamp(28px, 4.5vh, 44px) 0 clamp(96px, 16vh, 160px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5.5vh, 60px);
+}
+
+.college {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  padding: clamp(20px, 2.4vw, 30px) clamp(24px, 3.4vw, 48px) clamp(20px, 2.4vw, 30px) clamp(34px, 4vw, 56px);
+  background: #fff;
+  border: 1px solid var(--plain-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+/* college colour: a bar down the left edge that identifies the card */
+.college::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 8px;
+  background: var(--accent, #1a5c3a);
+  transform-origin: top;
+  transform: scaleY(var(--p, 1));
+}
+
+.college__seal { width: clamp(88px, 8.6vw, 124px); aspect-ratio: 1; flex: none; }
+.college__seal img { width: 100%; height: 100%; object-fit: contain; }
+
+.college__body h2 {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.2;
+  color: #1a5c3a;
+}
+
+.college__code {
+  margin-top: 8px;
+  font: 600 13px/1 var(--font-body);
+  letter-spacing: 0.12em;
+  color: var(--gold-text);
+}
+
+/* the two Facebook links, stacked, icon beside each */
+.college__links { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+.fb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 500 15px/1.2 var(--font-body);
+  color: #1a5c3a;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+.fb-link svg { width: 24px; height: 24px; flex: none; }
+.fb-link:hover { color: var(--green-dark); text-decoration-color: var(--gold); }
+.fb-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+@media (max-width: 760px) {
+  .college { grid-template-columns: auto minmax(0, 1fr); }
+  .college__links { grid-column: 1 / -1; }
+}
+
+@media (max-width: 480px) {
+  .college__seal { width: 76px; }
+  .college { gap: 16px; padding-left: 30px; }
+}
+
+/* ---------------------------------------------- Scroll transition
+   The colleges page script writes two numbers on every card:
+   --p   0 -> 1 while the card rises into view
+   --out 0 -> 1 while it leaves through the top
+   Everything below is driven by those two values, so the
+   motion follows the scrollbar in both directions.            */
+.js .college {
+  --p: 0;
+  --out: 0;
+  opacity: calc(min(1, var(--p) * 1.7) * (1 - 0.5 * var(--out)));
+  transform:
+    translate3d(0, calc((1 - var(--p)) * 96px), 0)
+    scale(calc(0.9 + 0.1 * var(--p) - 0.04 * var(--out)));
+  will-change: transform, opacity;
+}
+
+.js .college__seal img {
+  transform: scale(calc(0.82 + 0.18 * var(--p)));
+}
+
+/* ------------------------------------------------ Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .js .college { opacity: 1; transform: none; will-change: auto; }
+  .js .college::before { transform: none; }
+  .js .college__seal img { transform: none; }
+}
