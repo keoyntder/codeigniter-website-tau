@@ -1623,12 +1623,87 @@ document.querySelectorAll('.drawer-dropdown-toggle').forEach(function (btn) {
         results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
-  }
-
-  // Run after the HTML exists, even if the script is loaded in <head>
+  }  // Run after the HTML exists, even if the script is loaded in <head>
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+})();
+
+
+/* =====================================================================
+   ACADEMICS — COLLEGES PAGE
+   Scroll-linked card motion, plus the phone section picker which
+   navigates to real pages (unlike the Admissions in-page panels).
+   The header, language toggle, search and burger are handled above.
+===================================================================== */
+(function collegesPage() {
+  var list = document.querySelector('.colleges');
+  if (!list) return;
+
+  var clamp = function (n) { return Math.min(1, Math.max(0, n)); };
+
+  var content = document.getElementById('admContent');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.college'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var ticking = false;
+
+  /* On desktop the cards scroll inside .adm-content (same as the
+     Admissions page). On phones that box stops scrolling and the
+     whole page scrolls instead, so measure whichever one scrolls. */
+  function update() {
+    ticking = false;
+    if (!content) return;
+
+    var inner = window.getComputedStyle(content).overflowY === 'auto';
+    var box = inner ? content.getBoundingClientRect() : { top: 0 };
+    var H = inner ? content.clientHeight : window.innerHeight;
+
+    cards.forEach(function (card) {
+      var r = card.getBoundingClientRect();
+      var top = r.top - box.top;
+      var bottom = r.bottom - box.top;
+
+      // p: 0 when the card's top edge is at 92% of the view height,
+      //    1 once it has risen to 66%. Cards already above 66% (the
+      //    first two on load) start fully shown.
+      var p = clamp((H * 0.92 - top) / (H * 0.26));
+
+      // out: 0 until the card's bottom is inside the top 22%, 1 when gone
+      var out = clamp((H * 0.22 - bottom) / (H * 0.22));
+
+      card.style.setProperty('--p', p.toFixed(3));
+      card.style.setProperty('--out', out.toFixed(3));
+    });
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  if (content && !reduce.matches) {
+    content.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    update();
+  }
+
+  /* Phone picker: real navigation instead of in-page panels */
+  var select = document.getElementById('admSelect');
+  if (select) {
+    var currentValue = select.value;
+    select.addEventListener('change', function () {
+      if (!select.value || select.value === '#') return;
+      if (/^https?:/.test(select.value)) {
+        window.open(select.value, '_blank', 'noopener');
+        select.value = currentValue;   // stay on this page in the picker
+      } else {
+        window.location.href = select.value;
+      }
+    });
   }
 })();

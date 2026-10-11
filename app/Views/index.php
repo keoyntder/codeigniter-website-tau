@@ -30,7 +30,7 @@
     </div>
 
     <nav class="header-nav-main">
-      <a href="<?= base_url('') ?>" data-en="Home" data-tl="Tahanan">Home</a>
+      <a href="<?= base_url('') ?>" class="is-current" aria-current="page" data-en="Home" data-tl="Tahanan">Home</a>
       <a href="<?= base_url('about') ?>" data-en="TAU" data-tl="TAU">TAU</a>
 
       <!-- Office of the President dropdown -->
@@ -69,6 +69,18 @@
               <li><a href="<?= base_url('office-of-the-president/publications/2025-2035') ?>">2025-2035</a></li>
             </ul>
           </li>
+        </ul>
+      </div>
+
+      <!-- Academics dropdown -->
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          <span data-en="Academics" data-tl="Akademiko">Academics</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="<?= base_url('academics/colleges') ?>" data-en="Colleges" data-tl="Mga Kolehiyo">Colleges</a></li>
+          <li><a href="https://tau.onstrike.com.ph/cgi-bin/koha/opac-main.pl" target="_blank" rel="noopener" data-en="University Library" data-tl="Aklatan ng Unibersidad">University Library</a></li>
         </ul>
       </div>
 
@@ -159,6 +171,16 @@
             <li><a href="<?= base_url('office-of-the-president/publications/2025-2035') ?>">2025-2035</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+
+    <li class="drawer-dropdown">
+      <button type="button" class="drawer-dropdown-toggle" aria-expanded="false">
+        Academics <span class="drawer-chevron">▾</span>
+      </button>
+      <ul class="drawer-submenu">
+        <li><a href="<?= base_url('academics/colleges') ?>">Colleges</a></li>
+        <li><a href="https://tau.onstrike.com.ph/cgi-bin/koha/opac-main.pl" target="_blank" rel="noopener">University Library</a></li>
       </ul>
     </li>
 
